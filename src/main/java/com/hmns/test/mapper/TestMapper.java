@@ -3,9 +3,9 @@ package com.hmns.test.mapper;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
+import com.hmns.config.MIMSConnMapper;
 
-@Mapper
+@MIMSConnMapper
 public interface TestMapper {
 	@SuppressWarnings( "rawtypes" )
 	public List<HashMap> selectCommonCodeList( HashMap param );

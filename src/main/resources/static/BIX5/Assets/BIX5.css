@@ -1,0 +1,2672 @@
+.BIX5__Root {
+	font-family : "맑은 고딕", 돋움, Verdana;
+	font-size : 12px;
+	font-style : normal;
+	font-weight : normal;
+	font-variant : normal;
+	line-height : normal;
+	text-align : left;
+	cursor : default;
+
+	-moz-box-sizing : border-box;
+	-webkit-box-sizing : border-box;
+	box-sizing : border-box;
+}
+.BIX5__Root * {
+	-moz-box-sizing : border-box;
+	-webkit-box-sizing : border-box;
+	box-sizing : border-box;
+}
+
+.BIX5__Button {
+	padding : 3px 8px 3px 8px;
+	margin : 0;
+	border : #AAB3B3 solid 1px;
+	display : block;
+	cursor : pointer;
+	text-decoration : none;
+	outline : none;
+	white-space : nowrap;
+	overflow : visible;
+	font-weight : bold;
+	border-radius : 4px;
+	font-family : inherit;
+	transition : background-color 0.2s;
+}
+.BIX5__Button:hover {
+	background-color : #BDBDBD;
+}
+.BIX5__Button .BIX5__Table {
+	display : inline-block;
+}
+.BIX5__Button .BIX5__Label {
+	white-space : pre;
+	vertical-align : middle;
+}
+.BIX5__Button .BIX5__Image {
+	vertical-align : middle;
+}
+
+.BIX5__CheckBox input {
+	display : block;
+}
+
+.BIX5__ComboBox {
+	margin : 0;
+}
+
+.BIX5__RadioButton input {
+	display : block;
+}
+
+.BIX5__ToolTip {
+	font-family : "맑은 고딕", 돋움, Verdana;
+	font-size : 11px;
+	padding : 2px 5px 2px 5px;
+	margin : 0;
+	color : #FFFFFF;
+	background-color : #000000;
+	border : #222222 solid 1px;
+	display : block;
+	overflow : hidden;
+	border-radius : 3px;
+	cursor : default;
+	text-align : center;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select : none;
+}
+
+.BIX5__ErrorTip {
+	font-family : "맑은 고딕", 돋움, Verdana;
+	font-size : 11px;
+	padding : 1px 5px 3px 5px;
+	margin : 0;
+	color : #FFFFFF;
+	background-color : #FF0000;
+	border : #F54444 solid 1px;
+	display : block;
+	overflow : hidden;
+	border-radius : 3px;
+	cursor : default;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select : none;
+}
+
+.BIX5__BrowserScrollBarH {
+	background-color : rgba(0,0,0,0);
+	-ms-filter : "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+}
+
+.BIX5__Box, .BIX5__HBox, .BIX5__VBox {
+	-webkit-overflow-scrolling : touch;
+}
+
+.BIX5__HBrowserScrollBar, .BIX5__VBrowserScrollBar {
+	-webkit-overflow-scrolling : touch;
+}
+
+/* If the scroll bar does not appear, apply "auto" to "webkit-overflow-scrolling".
+.BIX5__HBrowserScrollBar_Auto {
+	-webkit-overflow-scrolling : auto;
+	min-height : 3px;
+}
+.BIX5__HBrowserScrollBar_Auto::-webkit-scrollbar {
+	-webkit-appearance : none;
+}
+.BIX5__HBrowserScrollBar_Auto::-webkit-scrollbar:horizontal {
+	height : 3px;
+}
+.BIX5__HBrowserScrollBar_Auto::-webkit-scrollbar-thumb {
+	border-radius : 1px;
+	background-color : rgba(0, 0, 0, 0.5);
+	min-width : 3px;
+}
+
+.BIX5__VBrowserScrollBar_Auto {
+	-webkit-overflow-scrolling : auto;
+	min-width : 3px;
+}
+.BIX5__VBrowserScrollBar_Auto::-webkit-scrollbar {
+	-webkit-appearance : none;
+}
+.BIX5__VBrowserScrollBar_Auto::-webkit-scrollbar:vertical {
+	width : 3px;
+}
+.BIX5__VBrowserScrollBar_Auto::-webkit-scrollbar-thumb {
+	border-radius : 1px;
+	background-color : rgba(0, 0, 0, 0.5);
+	min-height : 3px;
+}
+*/
+
+.BIX5__TextInput {
+	padding : 1px;
+	border : #999999 solid 1px;
+}
+
+.BIX5__AutocompleteTextInput {
+	padding : 0;
+}
+
+.BIX5__ContextMenu {
+	font-family : "맑은 고딕", 돋움, Verdana;
+	font-size : 12px;
+	padding : 4px;
+	border: #AAB3B3 solid 1px;
+	cursor : default;
+	background-color : #EEEEEE;
+	color : #31393F;
+	text-align : center;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select : none;
+}
+.BIX5__ContextMenu span {
+	padding : 2px 8px 2px 8px;
+	white-space : nowrap;
+}
+.BIX5__ContextMenu hr {
+	margin : 7px 1px 1px 1px;
+}
+
+.BIX5__Preloader {
+	top : 0;
+	left : 0;
+	z-index : 2;
+	width : 100%;
+	height : 100%;
+	background : url("./loader.gif") 50% 50% no-repeat #FFF;
+
+	opacity : 0.7;
+	filter : progid:DXImageTransform.Microsoft.Alpha(opacity=70);
+}
+
+.BIX5__CalendarLayout {
+	text-align : center;
+	color : #443344;
+	cursor : default;
+	padding : 0;
+	outline : 0;
+	font-weight : normal;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select : none;
+}
+.BIX5__CalendarLayout td {
+	white-space : nowrap;
+}
+.BIX5__CalendarLayout_WeekDay {
+	font-weight : bold;
+}
+.BIX5__CalendarLayout_WeekDay td {
+	padding-left : 3px;
+	padding-right : 3px;
+	font-weight : bold;
+}
+.BIX5__CalendarLayout_Today {
+	color : #9450ff;
+	font-weight : bold;
+	background-color : #EEEEEE;
+}
+.BIX5__CalendarLayout_RollOver {
+	color : #2069f0;
+	font-weight : bold;
+	background-color : #f0f0f0;
+}
+.BIX5__CalendarLayout_Selected {
+	background-color : #9ccb00;
+	color : #fff;
+	font-weight : bold;
+}
+.BIX5__CalendarLayout_Disabled {
+	color : #CCCCCC;
+}
+
+.BIX5__DateChooser {
+	font-family : Tahoma, Arial, Helvetica, sans-serif;
+	font-size : 12px;
+	padding : 3px 3px 0 3px;
+	text-align : center;
+	color : #443344;
+	cursor : default;
+	border-spacing : 0;
+	border : #AAAAAA solid 1px;
+	background-color : #FFFFFF;
+	outline : 0;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select : none;
+}
+.BIX5__DateChooser table {
+	font-size : 12px;
+}
+.BIX5__DateChooser td {
+	white-space : nowrap;
+}
+.BIX5__DateChooser img {
+	cursor : pointer;
+}
+.BIX5__DateChooser_Header {
+}
+.BIX5__DateChooser_Year {
+	color : gray;
+	font-weight : bold;
+	white-space : nowrap;
+}
+.BIX5__DateChooser_Month {
+	color : gray;
+	font-weight : bold;
+	white-space : nowrap;
+}
+.BIX5__DateChooser_Line {
+	border-bottom : gray solid 1px;
+}
+
+.BIX5__DateField {
+	background-color : #FFFFFF;
+}
+
+.BIX5__DateEditor {
+	background-color : #FFFFFF;
+}
+
+.BIX5__ProgressBar {
+	padding : 0;
+	font-weight : bold;
+	position : absolute;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select : none;
+}
+.BIX5__ProgressBar .BIX5__BarDiv {
+	overflow : hidden;
+	position : absolute;
+	border-radius : 5px;
+	border-style : solid;
+	border-width : 4px;
+	border-color : #2a2e32;
+
+	background : -o-linear-gradient(180deg, #2a2e32, #2a2e32);
+	background : -moz-linear-gradient(180deg, #2a2e32, #2a2e32);
+	background : -webkit-gradient(180deg, #2a2e32, #2a2e32);
+	background : -webkit-linear-gradient(180deg, #2a2e32, #2a2e32);
+	background : linear-gradient(180deg, #2a2e32, #2a2e32);
+	filter : progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#2a2e32', EndColorStr='#2a2e32');
+}
+.BIX5__ProgressBar .BIX5__GaugeDiv {
+	-moz-box-sizing : border-box;
+	-webkit-box-sizing : border-box;
+	box-sizing : border-box;
+	position : absolute;
+	border-radius : 4px;
+
+	background : -o-linear-gradient(180deg, #ff4a5c, #ff1842);
+	background : -moz-linear-gradient(180deg, #ff4a5c, #ff1842);
+	background : -webkit-gradient(180deg, #ff4a5c, #ff1842);
+	background : -webkit-linear-gradient(180deg, #ff4a5c, #ff1842);
+	background : linear-gradient(180deg, #ff4a5c, #ff1842);
+	filter : progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#ff4a5c', EndColorStr='#ff1842');
+}
+.BIX5__ProgressBar .BIX5__UITextField {
+	padding : 0;
+	position : absolute;
+	border : solid;
+	border-width : 0;
+	color : #ffffff;
+	font-style : normal;
+	font-family : verdana, Sans-serif;
+	font-size : 13px;
+	font-weight : bold;
+}
+﻿.BIX5__Accordion {
+	background-color : #FFFFFF;
+	border-top : 0;
+	border-left : 1px solid #AAB3B3;
+	border-right : 1px solid #AAB3B3;
+	border-bottom : 1px solid #AAB3B3;
+}
+.BIX5__AccordionHeader {
+	border-top : 1px solid #AAB3B3;
+	border-left : 0;
+	border-right : 0;
+	border-bottom : 1px solid #AAB3B3;
+	cursor : pointer;
+}
+.BIX5__AccordionHeader:hover {
+	background-color : #D1E3FA;
+	color : #BBBBBB;
+}
+.bix5ActiveAccordionStyle {
+	background-color : #5D9CEC;
+	color : #FFFFFF;
+}
+
+.BIX5__ButtonBar {
+	background-color : #FFFFFF;
+	text-align : center;
+	vertical-align : middle;
+}
+.BIX5__ButtonBarButton {
+	font-family : inherit;
+	margin : 0;
+	cursor : pointer;
+	text-align : center;
+}
+.BIX5__ButtonBarButton .BIX5__Table, .BIX5__TabBar .BIX5__Table, .BIX5__Tab .BIX5__Table {
+	display : inline-block;
+}
+.BIX5__ButtonBarButton .BIX5__Label, .BIX5__TabBar .BIX5__Label {
+	white-space : pre;
+	vertical-align : middle;
+}
+
+.BIX5__ToggleButtonBar {
+	background-color : #FFFFFF;
+	border : 1px solid #5D9CEC;
+	font-weight : normal;
+	border-radius : 4px;
+	text-align : center;
+}
+.BIX5__ToggleButtonBar .BIX5__ButtonBarButton {
+	background-color : transparent;
+	font-family : inherit;
+	font-weight : normal;
+	color : #5D9CEC;
+	border : 0 none;
+}
+.BIX5__ToggleButtonBar .BIX5__ButtonBarButton:hover {
+	background-color : #D1E3FA;
+	color : #BBBBBB;
+}
+.BIX5__ToggleButtonBar .BIX5__ButtonBarButton .BIX5__Label {
+	padding-left : 6px;
+	padding-right : 6px;
+}
+.bix5ActiveToggleButton {
+	background-color : #5D9CEC !important;
+	color : #FFFFFF !important;
+}
+
+.BIX5__TabBar {
+	background-color : #FFFFFF;
+	font-weight : normal;
+	text-align : center;
+	vertical-align : top;
+}
+.BIX5__Tab {
+	font-family : inherit;
+	background-color : transparent;
+	cursor : pointer;
+	border-top : 1px solid #5D9CEC;
+	border-left : 1px solid #5D9CEC;
+	border-right : 1px solid #5D9CEC;
+	border-bottom : 0 none;
+	font-weight : normal;
+	color : #5D9CEC;
+	outline : 0;
+}
+.BIX5__Tab:hover {
+	background-color : #D1E3FA;
+	color : #888888;
+}
+.BIX5__Tab .BIX5__Label {
+	white-space : pre;
+	vertical-align : middle;
+	padding : 3px 6px 3px 2px;
+}
+.bix5ActiveTabStyle {
+	background-color : #5D9CEC;
+	color : #FFFFFF;
+}
+
+.BIX5__TabNavigator {
+	background-color : #FFFFFF;
+	font-weight : normal;
+}
+.BIX5__TabNavigator > .BIX5__ContentPane {
+	border : 1px solid #555555;
+}
+.BIX5__TabNavigator .BIX5__Tab {
+	background-color : transparent;
+	border-top : 1px solid #555555;
+	border-left : 1px solid #555555;
+	border-right : 1px solid #555555;
+	border-bottom : 0 none;
+	color : #555555;
+}
+.BIX5__TabNavigator .BIX5__Tab:hover {
+	background-color : #BFBFBF;
+}
+.BIX5__TabNavigator .bix5ActiveTabStyle {
+	background-color : #555555;
+	color : #FFFFFF;
+}
+
+.BIX5__CheckBoxSlideSkin {
+	color:#ffffff;
+	font-weight:bold;
+	background-color:#A6A6A6;
+	transition:background-color 0.5s;
+	border-radius:3px;
+}
+.BIX5__CheckBoxSlideSkin:hover {
+	background-color:#bdbdbd;
+}
+
+.BIX5__Slider, .BIX5__HSlider, .BIX5__VSlider {
+	position : absolute;
+	cursor : default;
+	font-size : 11px;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select : none;
+}
+.BIX5__Slider_Track {
+	width : 200px;
+	height : 4px;
+	border-width : 1px;
+	border-style : inset;
+	border-color : #DDDDDD;
+	position : absolute;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select : none;
+}
+.BIX5__Slider_HighlightTrack {
+	width : 1px;
+	height : 2px;
+	border-width : 1px;
+	border-style : inset;
+	border-color : #FF0000;
+	position : absolute;
+}
+.BIX5__Slider_TrackHitArea {
+	position : absolute;
+}
+.BIX5__Slider_Thumbs {
+}
+.BIX5__Slider_Ticks {
+	position : absolute;
+}
+.BIX5__Slider_Tick {
+	position : absolute;
+	border-width : 1px;
+	border-left-style : solid;
+}
+.BIX5__Slider_Labels .BIX5__Label {
+	position : absolute;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select : none;
+}
+.BIX5__SliderThumb {
+	display : inline-block;
+	position : absolute;
+	width : 12px;
+	height : 12px;
+	background-color : #666666;
+	border-radius : 12px;
+	outline : none;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select : none;
+}
+.BIX5__SliderThumb:hover {
+	background-color : #BBBBBB;
+}
+
+.BIX5__ComboBox2 {
+	background-color:#1a7bb9;
+	border:0px none;
+	border-radius:3px;
+	color:#ffffff;
+	cursor:pointer;
+	transition:background-color 0.2s;
+}
+.BIX5__ComboBox2 :hover {
+	background-color:#1c84c6;
+}
+.BIX5__ComboBox2 .BIX5__Button {
+	color:#ffffff;
+}
+.BIX5__ComboBox2 .BIX5__ComboBox2List {
+	border:1px solid #d7d9df;
+	border-radius:3px;
+	overflow: hidden;
+	background-color:#ffffff;
+	color:#333333;
+}
+.BIX5__ComboBox2 .BIX5__ComboBox2List .BIX5__Label {
+	padding:0px;
+	left:4px;
+}
+.BIX5__ComboBox_Dropdown {
+	border:1px solid #d7d9df;
+	border-radius:3px;
+	overflow: hidden;
+	background-color:#ffffff;
+	color:#333333;
+}
+
+.BIX5__ExComboBox {
+	background-color : #D1E3FA;
+	border : 0 none;
+	position : absolute;
+}
+.BIX5__ExComboBox[disabled] {
+	background-color : #DDDDDD;
+}
+.bix5ComboTextInput {
+	padding-left : 5px;
+	border-top-left-radius : 4px;
+	border-bottom-left-radius : 4px;
+	border-right-style : none;
+}
+.bix5ComboDownArrowButton {
+	background-color : transparent;
+	position : absolute;
+	padding : 0;
+	border : #999999 solid 1px;
+	border-radius : 4px;
+	font-weight : normal;
+	text-align : center;
+}
+.bix5ComboDownArrowButton .BIX5__Label {
+	white-space : pre;
+	vertical-align : middle;
+	padding-bottom : 0;
+}
+.bix5ComboDownArrowButton .BIX5__Table {
+	display : table;
+}
+
+.BIX5__MonthChooser {
+	font-family : Tahoma, Arial, Helvetica, sans-serif;
+	font-size : 12px;
+	font-weight : normal;
+	padding : 3px 3px 0 3px;
+	text-align : center;
+	color : #443344;
+	cursor : default;
+	border-spacing : 0;
+	border : #AAAAAA solid 1px;
+	background-color : #FFFFFF;
+	outline : 0;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select : none;
+}
+.BIX5__MonthChooser td {
+	white-space : nowrap;
+}
+.BIX5__MonthChooser img {
+	cursor : pointer;
+}
+.BIX5__MonthChooser .BIX5__Table {
+	font-size : 12px;
+	padding-bottom: 5px;
+}
+.BIX5__MonthChooser .BIX5__Table td {
+	padding : 5px;
+}
+.BIX5__MonthChooser_ThisMonth {
+	color : #9450ff;
+	font-weight : bold;
+	background-color : #EEEEEE;
+}
+.BIX5__MonthChooser_RollOver {
+	color : #2069f0;
+	font-weight : bold;
+	background-color : #f0f0f0;
+}
+.BIX5__MonthChooser_Selected {
+	background-color : #9ccb00;
+	color : #fff;
+	font-weight : bold;
+}
+.BIX5__MonthChooser_Disabled {
+	color : #CCCCCC;
+}
+.BIX5__MonthChooser_Header {
+}
+.BIX5__MonthChooser_Year {
+	color : gray;
+	font-weight : bold;
+	white-space : nowrap;
+}
+.BIX5__MonthChooser_Month {
+	white-space : nowrap;
+}
+.BIX5__MonthChooser_Line {
+	border-bottom : gray solid 1px;
+}
+
+.BIX5__MonthField {
+	background-color : #FFFFFF;
+}
+
+.BIX5__MonthEditor {
+	background-color : #FFFFFF;
+}
+
+.BIX5__NumericStepper .BIX5__TextInput {
+	padding-left : 3px;
+	border : #AAB3B3 solid 1px;
+	border-top-left-radius : 3px;
+	border-bottom-left-radius : 3px;
+	line-height: 100%;
+}
+.BIX5__NumericStepper .BIX5__UpButton {
+	position : absolute;
+	cursor : pointer;
+	background-color : white;
+	display : inline-block;
+	text-align : center;
+	border-top-right-radius : 3px;
+	border-top:#AAB3B3 solid 1px;
+	border-right:#AAB3B3 solid 1px;
+	border-bottom: none;
+}
+.BIX5__NumericStepper .BIX5__DownButton {
+	position : absolute;
+	cursor : pointer;
+	background-color : white;
+	display : inline-block;
+	text-align : center;
+	border-bottom-right-radius : 3px;
+	border : #AAB3B3 solid 1px;
+	border-left:none;
+}
+.BIX5__NumericStepper .BIX5__UpArrow {
+	display : inline-block;
+	border-style : solid;
+	position : absolute;
+	width : 0;
+	height : 0;
+	border-width : 4px;
+	border-color : transparent transparent #000000 transparent;
+}
+.BIX5__NumericStepper .BIX5__DownArrow {
+	display : inline-block;
+	border-style : solid;
+	position : absolute;
+	width : 0;
+	height : 0;
+	border-width : 4px;
+	border-color : #000000 transparent transparent transparent;
+}
+
+.BIX5__IconContextMenu {
+	position : absolute;
+	padding : 8px;
+	/* margin: 2px 0 0; */
+	font-size : 14px;
+	text-align : left;
+	list-style : none;
+	background-color : #FFFFFF;
+	border : #ccc solid 1px;
+	border : rgba(0,0,0,.15) solid 1px;
+	border-radius : 4px;
+
+	-webkit-background-clip : padding-box;
+	background-clip : padding-box;
+
+	-webkit-box-shadow : 0 6px 12px rgba(0,0,0,.175);
+	-moz-box-shadow : 0 6px 12px rgba(0,0,0,.175);
+	box-shadow : 0 6px 12px rgba(0,0,0,.175);
+}
+
+.BIX5__BoxDivider_Hknob {
+	background : url('h_divider.png') no-repeat 50% 50%;
+}
+
+.BIX5__BoxDivider_Vknob {
+	background : url('v_divider.png') no-repeat 50% 50%;
+}
+
+.BIX5__Grid .BIX5__GridItem {
+ 	padding : 0;
+	border : 0 solid;
+	margin : 0;
+}
+.BIX5__Grid .BIX5__GridRow {
+ 	padding : 0;
+	border : 0 solid;
+	margin : 0;
+}
+.BIX5__Grid .BIX5__Tbody {
+ 	padding : 0;
+	border : 0 solid;
+	margin : 0;
+}
+.BIX5__Grid {
+	position : absolute;
+	border-collapse : separate;
+}
+
+.BIX5__SlideButton {
+	position : absolute;
+	cursor : pointer;
+	padding : 5px;
+	border-radius : 20px;
+	background-color : #00FF00;
+	color : #FFFFFF;
+
+	-webkit-box-shadow : 1px 1px 5px rgba(0,0,0,.25) inset;
+	-moz-box-shadow : 1px 1px 5px rgba(0,0,0,.25) inset;
+	box-shadow : 1px 1px 5px rgba(0,0,0,.25) inset;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select : none;
+}
+.BIX5__SlideButton_Thumb {
+	position : absolute;
+	display : inline-block;
+	border-radius : 20px;
+	background-color : #EEEEEE;
+
+	-webkit-transition : left 0.4s ease;
+	-moz-transition : left 0.4s ease;
+	-o-transition : left 0.4s ease;
+	transition : left 0.4s ease;
+
+	-webkit-box-shadow : 1px 1px 3px rgba(0,0,0,0.4);
+	-moz-box-shadow : 1px 1px 3px rgba(0,0,0,0.4);
+	box-shadow : 1px 1px 3px rgba(0,0,0,0.4);
+}
+
+.BIX5__Menu {
+	position : absolute;
+	text-align : center;
+	background-color : #FFFFFF;
+	border : 1px solid #A6A6A6;
+	vertical-align : top;
+	outline : none;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select: none;
+}
+.BIX5__MenuItemRenderer {
+	cursor : default;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select: none;
+}
+
+.BIX5__ColorPicker {
+	position : absolute;
+	background-color : #FFFFFF;
+	box-shadow : 0 2px 8px #AAAAAA;
+	border-radius : 5px;
+	padding : 5px;
+}
+.BIX5__ColorPicker_UpperDiv {
+	padding : 10px 10px 7px 10px;
+}
+.BIX5__ColorPicker_LowerDiv {
+	padding : 3px 10px 25px 10px;
+}
+.BIX5__ColorPicker_ColorCircleDiv {
+	background-image:url('color_circle.png');
+	background-color : #FFFFFF;
+	background-position : center;
+}
+.BIX5__ColorPicker_DarknessDiv {
+	background-image : url('darkness.png');
+	margin-bottom : 10px;
+}
+.BIX5__ColorPicker_TextInputDiv {
+	width : 95px;
+	height: 22px;
+	border : 1px solid #DDDDDD;
+	border-radius : 2px;
+	float : left;
+}
+.BIX5__ColorPicker_TextInputDiv .BIX5__Label {
+	text-align : center;
+	float : left;
+}
+.BIX5__ColorPicker .BIX5__ColorPickerTextInput {
+	width : 73px; /* 95에서 #추가로 73로 변경 */
+	height : 20px;
+	/*border : 1px solid #DDDDDD;
+	border-radius : 2px;*/
+	text-align : center;
+	float : left;
+	border : none;
+}
+.BIX5__ColorPicker .BIX5__Button {
+	top : 1px;
+	position : relative;
+	padding : 0 8px 0 8px;
+	border : 1px solid #A6A6A6;
+	border-radius : 2px;
+	color : #FFFFFF;
+	font-size : 13px;
+	background-color : #A6A6A6;
+	float : right;
+}
+.BIX5__ColorPicker .BIX5__Button:hover {
+	background-color : #BDBDBD;
+}
+.BIX5__ColorPicker_ColorSelector {
+	position : relative;
+	border-style : solid;
+	border-width : 1px;
+	border-radius : 5px;
+}
+.BIX5__ColorPicker_DarknessSelector {
+	position : relative;
+	background-color : #888888;
+	opacity : 0.9;
+}
+
+.BIX5__ColorPalette_PaletteDiv {
+	position : absolute;
+	background-color : #D3D3D3;
+	border-radius : 5px;
+	overflow : auto;
+	padding : 3px;
+}
+.BIX5__ColorPalette_PaletteItem {
+	float : left;
+	cssFloat : left;
+	margin : 3px;
+	border-radius : 100%;
+	border-color : #FFFF00;
+	border-width : 2px;
+	box-sizing : border-box;
+}
+.BIX5__ColorPalette_PaletteItemDeleteButton {
+	position : relative;
+	background-color : #FFFFFF;
+	background-image : url('palette_item_delete.png');
+	left : 17px;
+	top : -7px;
+	background-color : transparent;
+}
+.BIX5__ColorPalette_Plusitem {
+	float : left;
+	cssFloat : left;
+	margin : 3px;
+	border-radius : 100%;
+	border-color : #FFFF00;
+	border-width : 2px;
+	box-sizing : border-box;
+	background-color : #FFFFFF;
+	background-position : center;
+	border-color : #888888;
+	background-image : url('palette_item_plus.png')
+}
+
+.BIX5__ColorSelector {
+	border: #DDDDDD solid 2px;
+}
+
+.BIX5__ColorField {
+	background-color : #FFFFFF;
+}
+
+.BIX5__Panel {
+}
+.BIX5__PanelSkin {
+	border-style : solid;
+	border-width : 10px 10px 5px 10px;
+	border-top-left-radius : 6px;
+	border-top-right-radius : 6px;
+	border-color : #EEEEEE;
+}
+.bix5PanelStatus {
+	color : #666666;
+	overflow : hidden;
+	cursor : default;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select: none;
+}
+.bix5PanelTitle {
+	font-weight : bold;
+	white-space : nowrap;
+	overflow : hidden;
+	cursor : default;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select: none;
+}
+
+.BIX5__List {
+	position : absolute;
+	text-align : left;
+	background-color : #FFFFFF;
+	border : 1px solid #A6A6A6;
+	vertical-align : top;
+	outline : none;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select: none;
+}
+.BIX5__ListBaseContentHolder {
+	text-align : left;
+}
+.BIX5__ListBaseContentHolder_SelectionLayer .BIX5__HTMLObject {
+	position : absolute;
+}
+.BIX5__ListItemRenderer {
+	cursor : default;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select: none;
+}
+.BIX5__ListItemRenderer .BIX5__UITextField {
+	position : absolute
+}
+
+.BIX5__TileList {
+	position : absolute;
+	text-align : center;
+	background-color : #FFFFFF;
+	border : 1px solid #A6A6A6;
+	vertical-align : top;
+	outline : none;
+}
+.BIX5__TileListItemRenderer {
+	cursor : default;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select: none;
+}
+
+.BIX5__Tree {
+	position : absolute;
+	text-align : left;
+	background-color : #FFFFFF;
+	border : 1px solid #A6A6A6;
+	vertical-align : middle;
+	outline : none;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select : none;
+}
+.BIX5__TreeItemRenderer {
+	cursor : default;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select : none;
+}
+
+.BIX5__MenuBar {
+	position : absolute;
+	text-align : center;
+	background-color : #FFFFFF;
+	border : 1px solid #A6A6A6;
+	vertical-align : top;
+	outline : none;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select: none;
+}
+.BIX5__MenuBarItem {
+	cursor : default;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select: none;
+}
+.BIX5__MenuBarItemUp {
+	background-color : transparent;
+}
+.BIX5__MenuBarItemDown {
+	background-color : #DDDDDD;
+}
+.BIX5__MenuBarItemOver {
+	background-color : #5D9CEC;
+}
+
+.BIX5__PopUp_ModalDiv {
+	left : 0;
+	top : 0;
+	width : 100%;
+	height : 100%;
+	position : fixed;
+	background-color : rgba(0, 0, 0, 0.4);
+}
+
+.BIX5__ImageRadioButton input[type="radio"] {
+	width : 0;
+}
+.BIX5__ImageRadioButton input[type="radio"]:checked + .BIX5__ImageRadioButton_Button {
+	background : url("./radioButtonCheck.png") no-repeat;
+}
+.BIX5__ImageRadioButton input[type="radio"]:disabled + .BIX5__ImageRadioButton_Button {
+	background : url("./radioButtonDisable.png") no-repeat;
+}
+.BIX5__ImageRadioButton input[type="radio"]:disabled ~ .BIX5__ImageRadioButton_Label {
+	color : #dbdbdb;
+}
+.BIX5__ImageRadioButton_Button {
+	width : 19px;
+	height : 19px;
+	display : inline-block;
+	transition : border 0.3s;
+	position : absolute;
+	cursor : pointer;
+	background : url("./radioButtonUnCheck.png") no-repeat;
+}
+.BIX5__ImageRadioButton_Label {
+	position : absolute;
+	cursor : pointer;
+	white-space : nowrap;
+}
+
+.BIX5__ImageCheckBox input[type="checkbox"] {
+	width : 0;
+}
+.BIX5__ImageCheckBox input[type="checkbox"]:checked + .BIX5__ImageCheckBox_Button {
+	background : url("./checkBoxCheck.png") no-repeat;
+}
+.BIX5__ImageCheckBox input[type="checkbox"]:disabled + .BIX5__ImageCheckBox_Button {
+	background : url("./checkBoxDisable.png") no-repeat;
+}
+.BIX5__ImageCheckBox input[type="checkbox"]:disabled ~ .BIX5__ImageCheckBox_Label {
+	color : #dbdbdb;
+}
+.BIX5__ImageCheckBox_Button {
+	width : 21px;
+	height : 19px;
+	display : inline-block;
+	transition : border 0.3s;
+	position : absolute;
+	cursor : pointer;
+	background : url("./checkBoxUnCheck.png") no-repeat;
+}
+.BIX5__ImageCheckBox_Label {
+	position : absolute;
+	cursor : pointer;
+	white-space : nowrap;
+}
+
+
+.BIX5__DataGrid {
+	font-family : "맑은 고딕", 돋움, Verdana;
+	font-size : 13px;
+	background-color : #F2F2F2;
+	border : #DDDDDD solid 1px;
+	border-top-color : #555555;
+	color : #31393F;
+	outline : none;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select: none;
+}
+
+.BIX5__PivotDataGrid {
+	font-family : "맑은 고딕", 돋움, Verdana;
+	font-size : 13px;
+	background-color : #F2F2F2;
+	border : #DDDDDD solid 1px;
+	border-top-color : #555555;
+	color : #31393F;
+	outline : none;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select: none;
+}
+
+.BIX5__DataGridItemRenderer {
+	outline : none;
+}
+
+.BIX5__DataGridHeaderRenderer {
+	cursor : default;
+	padding-left : 3px;
+	padding-right : 3px;
+	white-space : nowrap;
+	vertical-align : middle;
+	outline : none;
+}
+.BIX5__DataGridHeaderRenderer .BIX5__UITextField {
+	overflow : hidden;
+	text-overflow : clip;
+}
+.bix5DataGridHeaderStyles {
+	color : #333333;
+	font-weight : bold;
+}
+
+.BIX5__PivotDataGridHeaderRenderer {
+	cursor : default;
+	padding-left : 3px;
+	padding-right : 3px;
+	white-space : nowrap;
+	vertical-align : middle;
+	outline : none;
+}
+.BIX5__PivotDataGridHeaderRenderer .BIX5__UITextField {
+	overflow : hidden;
+	text-overflow : clip;
+}
+
+.BIX5__DataGridGroupItemRenderer {
+	cursor : default;
+	white-space : nowrap;
+}
+.BIX5__DataGridGroupItemRenderer .BIX5__UITextField {
+	padding-left : 2px;
+	text-overflow : clip;
+}
+
+.BIX5__PivotDataGridGroupRenderer {
+	cursor : default;
+	white-space : nowrap;
+	text-align : center;
+}
+.BIX5__PivotDataGridGroupRenderer .BIX5__UITextField {
+	padding-left : 2px;
+	text-overflow : clip;
+}
+
+.BIX5__DataGridLineH {
+	border-bottom : solid 1px;
+	height : 0;
+	padding : 0;
+	position : absolute;
+	line-height : 0;
+}
+
+.BIX5__DataGridLineV {
+	width : 0;
+	border-right : solid 1px;
+	padding : 0;
+	position : absolute;
+}
+
+.BIX5__DataGridBackground {
+	padding : 0;
+	left : 0;
+	position : absolute;
+}
+
+.BIX5__DataGridHeaderBackgroundSkin {
+	border-top-color : #555555;
+	border-top-style : solid;
+	border-top-width : 1px;
+	border-bottom-color : #999999;
+	border-bottom-style : solid;
+	border-bottom-width : 1px;
+	border-left-style : none;
+	border-right-style : none;
+	left : 0;
+}
+
+.BIX5__DataGridHeaderSeparator {
+	border-right : #AAB3B3 solid 1px;
+	left : 0;
+	position : absolute;
+}
+
+.BIX5__DataGridHeaderHorizontalSeparator {
+	border-left : none;
+	border-bottom : #AAB3B3 solid 1px;
+	line-height : 1px;
+}
+
+.BIX5__DataGridColumnResizeSkin {
+	border : #999999 solid 1px ;
+}
+
+.BIX5__DataGridSortItemRenderer {
+	color : #0B333C;
+	font-size : 9px;
+	text-align : center;
+	font-weight : normal;
+	padding : 0;
+}
+.BIX5__DataGridSortItemRenderer span {
+	position : absolute;
+	left : 2px;
+	top : 0;
+}
+.BIX5__DataGridSortItemRenderer img {
+	position : absolute;
+	width : 7px;
+	height : 7px;
+	left : 10px;
+	top : 3px;
+}
+
+.BIX5__ComboBoxHeaderRenderer {
+	color : #31393F;
+	padding-left : 1px;
+	padding-right : 1px;
+}
+
+.BIX5__DataGridFooter {
+	overflow : hidden;
+	font-weight : bold;
+}
+
+.BIX5__CheckBoxEditor {
+	background-color : #FFFFFF;
+	border : #FFFFFF solid 1px;
+}
+
+.BIX5__ComboBoxEditor {
+	background-color : #FFFFFF;
+	border-top : #999999 solid 1px;
+	border-bottom : #999999 solid 1px;
+	border-left : #999999 solid 0;
+	border-right : #999999 solid 0;
+}
+
+.BIX5__DataGridFilterInput, .BIX5__DataGridFilterList {
+	position : absolute;
+	display : block;
+	border : #AAB3B3 solid 1px;
+	background-color : #FAFAFA;
+}
+
+.BIX5__ExComboBoxEditor {
+	background-color : #D1E3FA;
+	border : 0 none;
+	position : absolute;
+}
+.BIX5__ExComboBoxEditor[disabled] {
+	background-color : #DDDDDD;
+}
+
+.BIX5__FilterList {
+	width : 160px;
+	height : 140px;
+	border : #AAB3B3 solid 1px;
+	background-color : #FFFFFF;
+	outline : none;
+}
+
+.BIX5__FilterListCheckBoxItemRenderer {
+	text-overflow : ellipsis;
+	white-space : nowrap;
+}
+
+.BIX5__ExcelCSVImportUtil {
+	padding : 10px;
+	position : absolute;
+	display : block;
+	border : #AAB3B3 solid 1px;
+	background-color : #FAFAFA;
+	border-radius : 5px;
+
+	-moz-box-sizing : border-box;
+	-webkit-box-sizing : border-box;
+	box-sizing : border-box;
+}
+
+.BIX5__ExcelImportUtil {
+	padding : 10px;
+	position : absolute;
+	display : block;
+	border : #AAB3B3 solid 1px;
+	background-color : #FAFAFA;
+	border-radius : 5px;
+
+	-moz-box-sizing : border-box;
+	-webkit-box-sizing : border-box;
+	box-sizing : border-box;
+}
+
+.BIX5__CopyPanel {
+	width : 310px;
+	height : 90px;
+	padding : 10px;
+	position : absolute;
+	display : block;
+	border : #AAB3B3 solid 1px;
+	background-color : #FAFAFA;
+	border-radius : 5px;
+
+	-moz-box-sizing : border-box;
+	-webkit-box-sizing : border-box;
+	box-sizing : border-box;
+}
+.BIX5__CopyPanel span {
+	width : 290px;
+	left : 20px;
+	top : 30px;
+	position : absolute;
+}
+.BIX5__CopyPanel img {
+	width : 16px;
+	height : 16px;
+	cursor : pointer;
+	float : right;
+}
+.BIX5__CopyPanel textarea {
+	width : 290px;
+	height : 25px;
+	left : 20px;
+	top : 60px;
+	position : absolute;
+}
+
+.BIX5__PastePanel {
+	width : 310px;
+	height : 90px;
+	padding : 10px;
+	position : absolute;
+	display : block;
+	border : #AAB3B3 solid 1px;
+	background-color : #FAFAFA;
+	border-radius : 5px;
+
+	-moz-box-sizing : border-box;
+	-webkit-box-sizing : border-box;
+	box-sizing : border-box;
+}
+.BIX5__PastePanel span {
+	width : 290px;
+	left : 20px;
+	top : 30px;
+	position : absolute;
+}
+.BIX5__PastePanel img {
+	width : 16px;
+	height : 16px;
+	cursor : pointer;
+	float : right;
+}
+.BIX5__PastePanel textarea {
+	width : 290px;
+	height : 25px;
+	left : 20px;
+	top : 60px;
+	position : absolute;
+}
+
+.BIX5__DataGridGroupingPanel {
+	background-color : #111111;
+	border-top : #888888 solid 1px;
+	border-left : #888888 solid 1px;
+	border-right : #888888 solid 1px;
+	color : #CCCCCC;
+	outline : none;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select: none;
+}
+.BIX5__DataGridGroupingPanelIndicator {
+	background-color : #FFFFFF;
+	border : #BBBBBB solid 1px;
+	padding : 2px 6px 4px 6px;
+	text-align : center;
+	color : #31393F;
+	outline : none;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select: none;
+}
+
+.BIX5__TextInput::-ms-clear {
+	display: none;
+}
+
+.BIX5__AutocompleteTextInput::-ms-clear {
+	display: none;
+}
+
+.BIX5__CheckBoxHeaderRenderer .BIX5__CheckBox {
+	white-space : nowrap;
+	overflow : hidden;
+	text-overflow : ellipsis;
+}
+
+.BIX5__CheckBoxHeaderSelector .BIX5__CheckBox {
+	white-space : nowrap;
+	overflow : hidden;
+	text-overflow : ellipsis;
+}
+
+/******************************************************
+ *
+ *			MapChart
+ *
+ *****************************************************/
+
+
+
+
+.BIX5__MapChart {
+	font-family : "맑은 고딕", 돋움, Verdana;
+	font-size : 12px;
+	line-height : normal;
+	overflow:hidden;
+}
+
+/* cursor */
+.BIX5__CursorPointer{
+	cursor:pointer;
+}
+
+/* DataTip */
+.BIX5__DivDataTip {
+	background-opacity: 0.3;
+	background-color: #ffffff;
+	padding : 15px 0px 10px 0px;
+	border : 1px solid #e0e0e0;
+	border-radius: 10px;
+	pointer-events:none;
+	cursor:Default;
+}
+
+/******************************************************
+ *
+ *			MapLegend
+ *
+ *****************************************************/
+
+/* MapLegend */
+.BIX5__MapLegend, .BIX5__SubMapLegend{
+	border:1px solid #ccc;
+	font-size:11px;
+	font-weight:bold;
+	line-height: 1;
+	color:#767676;
+	background-color:#f7f7f7;
+	cursor:default;
+}
+
+/* MapLegend - ContentPane */
+.BIX5__MapLegend .BIX5__ContentPane, .BIX5__SubMapLegend .BIX5__ContentPane{
+	padding:5px;
+}
+
+.BIX5__MapLegendItem, .BIX5__CheckableMapLegendItem{
+	padding-left:0px;
+	padding-top:0px;
+	padding-right:0px;
+	padding-bottom:0px;
+	border:0px none;
+	background-color:rgba(255, 255, 255, 0);
+	white-space:nowrap;
+}
+
+/* unchecked */
+.BIX5__UnChecked{
+	color:#ccc;
+}
+
+/******************************************************
+ *
+ *			MapSelected Items
+ *
+ *****************************************************/
+@keyframes rMateMapChartH5_SelectedMap {
+  0%        {opacity: 0}
+  50% {opacity: 1}
+100% {opacity: 0}
+}
+
+.bix5MapChartH5_SelectedMap {
+  animation: rMateMapChartH5_SelectedMap 1.5s ease infinite;
+}
+
+@keyframes plotMark {
+  0%        {opacity: 0}
+  60%  {opacity: 1}
+  100% {opacity: 0}
+}
+
+#plotMark {
+	animation: plotMark 1.5s ease infinite;
+}
+
+#DataRange_Label {
+	font-family : 맑은 고딕, Arial;
+}
+
+/******************************************************
+ *
+ *			MapChart Text
+ *
+ *****************************************************/
+svg text {
+	letter-spacing: -1px;
+}
+
+/*
+@-webkit-keyframes am-moving-dashes {
+  100% {
+    stroke-dashoffset: -31px;
+  }
+}
+@keyframes am-moving-dashes {
+  100% {
+    stroke-dashoffset: -31px;
+  }
+}
+
+-webkit-animation: am-moving-dashes 1s linear infinite;
+animation: am-moving-dashes 1s linear infinite;
+
+*/
+/******************************************************
+ *
+ *			BIX5 Global
+ *
+ *****************************************************/
+
+.BIX5__Root{
+	color:#000000;
+	font-size:11px;
+	font-style:normal;
+	line-height:normal;
+	font-weight:normal;
+	font-variant:normal;
+	font-stretch:normal;
+	text-decoration:none;
+	font-family:arial, verdana;
+
+	box-sizing : border-box;
+	-moz-box-sizing : border-box;
+	-webkit-box-sizing : border-box;
+
+	width:0px;
+	height:0px;
+}
+
+.BIX5__Root *{
+	box-sizing : border-box;
+	-moz-box-sizing : border-box;
+	-webkit-box-sizing : border-box;
+
+	/* 모바일에서 꾹 누르고 있을 경우 발생하는 회색 박스 삭제 */
+	-webkit-tap-highlight-color : rgba(0, 0, 0, 0);
+}
+
+.BIX5__Main div, .BIX5__Main span, .BIX5__Main canvas, .BIX5__PopUp{
+	position:absolute;
+}
+
+.BIX5__UnAvailableComponent > div{
+	width:90%;
+	height:90%;
+	font-size:15px;
+	border:1px solid #ccc;
+	-webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.5);
+	box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+/******************************************************
+ *
+ *			BIX5
+ *
+ *****************************************************/
+
+.BIX5__BIX5, .BIX5__TrialMarkBox{
+	color:#777777;
+	cursor:default;
+}
+
+.BIX5__BIX5 .center{
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	margin:auto;
+}
+
+/******************************************************
+ *
+ *			Chart Common
+ *
+ *****************************************************/
+
+.BIX5__Main{
+	/* html요소가 드래그 되거나 더블 클릭 등 셀렉트 되었다고 판단 시 나오는 파란 박스 삭제 */
+	user-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+}
+
+.BIX5__Main canvas, .BIX5__Main .pen{
+	pointer-events:none;
+}
+
+.BIX5__BIX5 .cp{
+	cursor:pointer;
+}
+
+/******************************************************
+ *
+ *			Preloader
+ *
+ *****************************************************/
+
+.BIX5__Preloader{
+	top:0px;
+	left:0px;
+	z-index:2;
+	width:100%;
+	height:100%;
+	opacity:0.7;
+	background:url("./loader.gif") 50% 50% no-repeat #FFF;
+}
+
+/******************************************************
+ *
+ *			ContextMenu
+ *
+ *****************************************************/
+
+.BIX5__ContextMenu {
+	padding : 4px;
+	font-size:12px;
+	border: #eee solid 1px;
+	background-color : #fff;
+	color : #999;
+	text-align : center;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select : none;
+
+	-webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.5);
+	box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.BIX5__ContextMenu span{
+	cursor:pointer;
+	position:relative;
+	padding:4px 8px;
+	white-space:nowrap;
+	background-color:#fff;
+	transition:background-color 0.2s;
+}
+
+.BIX5__ContextMenu span:hover{
+	background-color:#eee !important;
+}
+
+.BIX5__ContextMenu span.disabled{
+	color:#cecece;
+}
+
+.BIX5__ContextMenu hr {
+	border:solid 0.5px #ccc;
+	margin:4px 1px;
+}
+
+/******************************************************
+ *
+ *			ScrollBar
+ *
+ *****************************************************/
+
+.BIX5__ScrollBar {
+	background-color:#fff;
+}
+
+.BIX5__HScrollTrack, .BIX5__VScrollTrack {
+	border:1px solid #e6e6e6;
+}
+
+.BIX5__HScrollThumb, .BIX5__VScrollThumb {
+	cursor:pointer;
+	background-color:#e6e6e6;
+	transition:background-color 0.2s;
+}
+
+.BIX5__HScrollThumb:hover, .BIX5__VScrollThumb:hover{
+	background-color:#888888;
+}
+
+.BIX5__HScrollThumbHeader{
+}
+
+.BIX5__HScrollUpArrow {
+	border:1px solid #e6e6e6;
+	cursor:pointer;
+	background:url("./scroll_left_arrow.png") no-repeat 50% 50%;
+}
+
+.BIX5__HScrollDownArrow {
+	border:1px solid #e6e6e6;
+	cursor:pointer;
+	background:url("./scroll_right_arrow.png") no-repeat 50% 50%;
+}
+
+.BIX5__VScrollThumbHeader{
+}
+
+.BIX5__VScrollUpArrow {
+	border:1px solid #e6e6e6;
+	border-right:none;
+	cursor:pointer;
+	background:url("./scroll_up_arrow.png") no-repeat 50% 50%;
+}
+
+.BIX5__VScrollDownArrow {
+	border:1px solid #e6e6e6;
+	border-right:none;
+	cursor:pointer;
+	background:url("./scroll_down_arrow.png") no-repeat 50% 50%;
+}
+
+/******************************************************
+ *
+ *			SymboldDiv
+ *
+ *****************************************************/
+
+ .BIX5__SymbolDiv{
+	cursor:pointer;
+	text-align:center;
+ }
+
+ /******************************************************
+ *
+ *			DataEditor
+ *
+ *****************************************************/
+
+.BIX5__DataEditor{
+	overflow-y:hidden;
+	overflow-x:auto;
+}
+
+.BIX5__DataEditor table{
+	height:100%;
+	border:solid 1px #555555;
+	text-decoration:none;
+	font-style:normal;
+	font-weight:normal;
+	font-size:11px;
+	text-align:center;
+	cursor:default;
+}
+
+/* default th */
+.BIX5__DataEditor th{
+	color:#ffffff;
+	font-weight:bold;
+	font-size:11px;
+	letter-spacing:0;
+	text-align:center;
+	height:22px;
+	padding:2px 4px;
+	background:-ms-linear-gradient(270deg, #6e7376 20%, #6e7376 100%);
+	background:-moz-linear-gradient(270deg, #6e7376 20%, #6e7376 100%);
+	background:-o-linear-gradient(270deg, #6e7376 20%, #6e7376 100%);
+	background:-webkit-linear-gradient(270deg, #6e7376 20%, #6e7376 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff6e7376', endColorstr='#ff6e7376');
+}
+
+.BIX5__DataEditor th.column{
+	border-right:solid 1px #555555;
+}
+
+.BIX5__DataEditor th.row{
+	border-bottom:solid 1px #555555;
+}
+
+.BIX5__DataEditor td{
+	padding:2px 4px;
+}
+
+.BIX5__DataEditor td.column{
+	border-right:solid 1px #555555;
+}
+
+.BIX5__DataEditor td.row{
+	border-bottom:solid 1px #555555;
+}
+
+.BIX5__DataEditor td.oddRow{
+	background-color:#EFEEEE;
+}
+
+.BIX5__DataEditor td.evenRow{
+	background-color:#FFFFFF;
+}
+
+.BIX5__DataEditor td:hover{
+	background-color:#E3FFD6;
+}
+
+.BIX5__DataEditor td:focus{
+	background-color:#D1EBB4;
+	color:#ff0000;
+}
+
+.BIX5__CloseButton{
+	background:url("./close_btn.png") no-repeat;
+	cursor:pointer;
+	position:absolute;
+	width:13px;
+	height:13px;
+}
+
+.BIX5__CloseButton:hover{
+	background:url("./hover_close_btn.png") no-repeat;
+}
+
+ /******************************************************
+ *
+ *			AxisLineLabel
+ *
+ *****************************************************/
+
+ .BIX5__AxisLineLabel{
+	position:absolute;
+	background-color:#fff;
+ }
+
+/******************************************************
+ *
+ *			DrillDownMenu
+ *
+ *****************************************************/
+
+ .BIX5__DrillDownMenu{
+	left:0px;
+	top:0px;
+	position:absolute;
+	text-align:center;
+ }
+
+ .BIX5__DrillDownMenu > .BIX5__DrillDownBackButton, 
+ .BIX5__DrillDownMenu > .BIX5__DrillDownFirstButton{
+ 	position:relative;
+	min-width:83px;
+	min-height:29px;
+	text-align:center;
+	color:#666;
+	background-color:rgba(255, 255, 255, 0.8);
+	transition:box-shadow 0.2s;
+	cursor:pointer;
+	float:left;
+	margin-right:8px;
+	padding:8px;
+
+	-webkit-box-shadow:0px 2px 2px 0px rgba(0,0,0,0.16), 0px 0px 0px 1px rgba(0,0,0,0.08);
+	-moz-box-shadow:0px 2px 2px 0px rgba(0,0,0,0.16), 0px 0px 0px 1px rgba(0,0,0,0.08);
+	box-shadow:0px 2px 2px 0px rgba(0,0,0,0.16), 0px 0px 0px 1px rgba(0,0,0,0.08);
+ }
+
+.BIX5__DrillDownMenu > .BIX5__DrillDownBackButton:hover, 
+.BIX5__DrillDownMenu > .BIX5__DrillDownFirstButton:hover{
+	-webkit-box-shadow:0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
+	-moz-box-shadow:0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
+	box-shadow:0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
+ }
+
+/******************************************************
+ *
+ *			History
+ *
+ *****************************************************/
+
+.BIX5__ChartRangeSelector{
+	pointer-events:auto;
+}
+
+.BIX5__ChartRangeSelector_LeftThumb, .BIX5__ChartRangeSelector_RightThumb{
+	width:10px;
+	height:100%;
+	cursor:col-resize;
+	border-bottom:solid 1px #b5b5b7;
+	background:url("./selector.png") no-repeat 50% 50%;
+	background-color:rgba(236, 240, 241, 0.6);
+}
+
+.BIX5__ChartRangeSelector_Left, .BIX5__ChartRangeSelector_Right{
+	border:solid 1px #eee;
+	border-bottom:solid 1px #b5b5b7;
+	background-color:rgba(236, 240, 241, 0.6);
+}
+
+.BIX5__ChartRangeSelector_Center{
+	cursor:pointer;
+	background-color:rgba(255, 255, 255, 0);
+}
+
+/******************************************************
+ *
+ *			SlideChart
+ *
+ *****************************************************/
+
+.BIX5__SlideController{
+}
+
+.BIX5__PrevCanvas, .BIX5__NextCanvas{
+	position:absolute;
+	z-index:1;
+}
+
+/* 슬라이드 이전 버튼 */
+.BIX5__SlidePrevButton{
+	background:url("./slide_left.png") no-repeat 50% 50%;
+}
+
+/* 슬라이드 다음 버튼 */
+.BIX5__SlideNextButton{
+	background:url("./slide_right.png") no-repeat 50% 50%;
+}
+
+.BIX5__SlidePrevButton, .BIX5__SlideNextButton{
+	width:20px;
+	height:20px;
+}
+
+/* 슬라이드 버튼 */
+.BIX5__SlideButton{
+	width:15px;
+	height:15px;
+	background:url("./slide_button.png") no-repeat 50% 50%;
+}
+
+/* 선택된 슬라이드의 버튼 */
+.BIX5__SlideActiveButton{
+	background:url("./slide_active_button.png") no-repeat 50% 50%;
+}
+
+.BIX5__SlideButton, .BIX5__SlidePrevButton, .BIX5__SlideNextButton{
+	cursor:pointer;
+	position:absolute;
+}
+
+/******************************************************
+ *
+ *			Slider
+ *
+ *****************************************************/
+
+.BIX5__Slider, .BIX5__HSlider, .BIX5__VSlider {
+	position : absolute;
+	cursor : default;
+	font-size : 11px;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select : none;
+}
+.BIX5__Slider_Track {
+	width : 200px;
+	height : 4px;
+	border-width : 1px;
+	border-style : inset;
+	border-color : #DDDDDD;
+	position : absolute;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select : none;
+}
+.BIX5__Slider_HighlightTrack {
+	width : 1px;
+	height : 2px;
+	border-width : 1px;
+	border-style : inset;
+	border-color : #FF0000;
+	position : absolute;
+}
+.BIX5__Slider_TrackHitArea {
+	position : absolute;
+}
+
+.BIX5__Slider_Ticks {
+	position : absolute;
+}
+.BIX5__Slider_Tick {
+	position : absolute;
+	border-width : 1px;
+	border-left-style : solid;
+}
+.BIX5__Slider_Labels .BIX5__Label {
+	position : absolute;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select : none;
+}
+.BIX5__SliderThumb {
+	display : inline-block;
+	position : absolute;
+	width : 16px;
+	height : 16px;
+	background:#f5f5f5;
+	background:linear-gradient(rgb(255, 255, 255), rgb(213, 213, 213));
+	border:solid 1px rgb(200, 200, 200);
+	border-radius : 12px;
+	outline : none;
+
+	-ms-user-select : none;
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	user-select : none;
+}
+
+/******************************************************
+ *
+ *			MotionController
+ *
+ *****************************************************/
+
+.BIX5__MotionController{
+	height:33px;
+	padding:4px 4px 4px 19px;
+	border:solid 1px #dbdbdb;
+	border-radius:3px;
+	background-color:#f5f5f5;
+}
+
+.BIX5__PlayButton{
+	position:absolute;
+	width:11px;
+	height:13px;
+	border-style:none;
+	cursor:pointer;
+	text-align:center;
+	padding-top:5px;
+	background:url(./motion_play_button.png) no-repeat;
+	background-position-x:50%;
+}
+
+.motion_pause{
+	background-position-y:100%;
+}
+
+.BIX5__Pause{
+	background:url("./loader.gif") no-repeat 50% 50%;
+}
+
+.BIX5__MotionController .BIX5__HSlider{
+	height:14px;
+	position:absolute;
+	font-size:1px;
+	cursor:pointer;
+}
+
+.BIX5__MotionController .BIX5__Slider_Track{
+	border-top:solid 2px #cecece;
+	border-bottom:solid 2px #e5e5e5;
+	background-color:#fff;
+	height:10px;
+	border-radius:6px;
+}
+
+.BIX5__MotionController .BIX5__Slider_HighlightTrack{
+	border:none;
+	height:8px;
+	border-radius:6px;
+	border-top:solid 1px #ff9600;
+	border-bottom:solid 1px #fba72d;
+	background:url(./background_highlight_track.png);
+}
+
+.BIX5__MotionController .BIX5__SliderThumb{
+	position:absolute;
+}
+
+/******************************************************
+ *
+ *			Caption, SubCaption
+ *
+ *****************************************************/
+
+.BIX5__Caption{
+	font-size : 14px;
+	color : #333333;
+	text-align : center;
+}
+
+.BIX5__SubCaption{
+	font-size : 11px;
+	color : #999999;
+	text-align : center;
+}
+
+
+/******************************************************
+ *
+ *			Axis2DRenderer
+ *
+ *****************************************************/
+
+.BIX5__Axis2DRenderer{
+}
+
+.BIX5__Axis2DRenderer.horizontal{
+	text-align:center;
+}
+
+.BIX5__Axis2DRenderer.vertical{
+	text-align:right;
+}
+
+
+/******************************************************
+ *
+ *			DataTip, AxisDataTip
+ *
+ *****************************************************/
+
+.BIX5__DataTip{
+	opacity:0;
+	color:#888;
+	font-size:12px;
+	font-style:normal;
+	padding:4px 10px;
+	cursor:default;
+	white-space:nowrap;
+	border:solid 1px #e9e9e9;
+	border-radius:4px;
+	background-color:rgba(255, 255, 255, 0.9);
+	z-index:1;
+
+	transition:left 0.2s, top 0.2s, opacity 0.5s, border 0.5s;
+	-webkit-transition:left 0.2s, top 0.2s, opacity 0.5s, border 0.5s;
+	transition-timing-function:ease-out;
+	-webkit-transition-timing-function:ease-out;
+}
+
+.BIX5__DataTip.axis{
+	color:#fff;
+	background-color:rgba(119, 119, 119, 0.9);
+	transition:left 0.1s, top 0.1s, opacity 0.5s, border 0.5s;
+	-webkit-transition:left 0.1s, top 0.1s, opacity 0.5s, border 0.5s;
+}
+
+.BIX5__DataTip.delay{
+	transition-delay:0.5s;
+}
+
+.BIX5__DataTip.show{
+	opacity:1;
+}
+
+.BIX5__DataTip.hide{
+	opacity:0;
+}
+
+.BIX5__DataTip.mouse{
+	transition:opacity 0.5s, border 0.5s;
+	-webkit-transition:opacity 0.5s, border 0.5s;
+	transition-timing-function:ease-out;
+	-webkit-transition-timing-function:ease-out;
+}
+
+.BIX5__DataTip.transition, .BIX5__AxisDataTip.transition{
+}
+
+.BIX5__DataTip *{
+	color:normal;
+}
+
+.BIX5__DataTip span{
+	position:relative;
+}
+
+.BIX5__DataTipMarker{
+	float:left;
+	width:9px;
+	height:9px;
+	margin-top:3px;
+	border:1px solid #ffffff;
+}
+
+/******************************************************
+ *
+ *			RangeSelector
+ *
+ *****************************************************/
+
+ .BIX5__RangeSelector{
+	position:absolute;
+	border:solid 1px rgb(27, 161, 226);
+	background-color:rgba(27, 161, 226, 0.5);
+ }
+
+
+/******************************************************
+ *
+ *			Legend
+ *
+ *****************************************************/
+
+.BIX5__Legend, .BIX5__SubLegend{
+	color:#888;
+	border:1px solid #e9e9e9;
+	background-color:#ffffff;
+	cursor:default;
+}
+
+.BIX5__Legend .BIX5__ContentPane, .BIX5__SubLegend .BIX5__ContentPane{
+	padding:5px;
+}
+
+.BIX5__LegendItem, .BIX5__CheckableLegendItem{
+	padding:0;
+	border:0px none;
+	background-color:rgba(255, 255, 255, 0);
+	white-space:nowrap;
+}
+
+.BIX5__UnChecked{
+	color:#ccc;
+}
+
+.BIX5__UnFocused{
+	opacity:0.2;
+}
+
+/******************************************************
+ *
+ *			ColorRangeLegend
+ *
+ *****************************************************/
+
+/* ColorRangeLegend */
+.BIX5__ColorRangeLegend{
+	position:absolute;
+	overflow:hidden;
+	font-size:11px;
+	color:#555555;
+	cursor:default;
+}
+
+/* ColorRangeLegend - Label */
+.BIX5__ColorRangeLegend_Label{
+	position:absolute;
+}
+
+/* ColorRangeLegend - Horizontal Arrow */
+.BIX5__ColorRangeLegend_HArrow{
+	width:5px;
+	height:5px;
+	border-top:5px solid #555555;
+	border-left:2.5px solid transparent;
+	border-right:2.5px solid transparent;
+	border-bottom:5px solid transparent;
+	position:absolute;
+	box-sizing:border-box;
+}
+
+/* ColorRangeLegend - Vertical Arrow */
+.BIX5__ColorRangeLegend_VArrow{
+	width:5px;
+	height:5px;
+	border-top:2.5px solid transparent;
+	border-left:5px solid transparent;
+	border-right:5px solid #555555;
+	border-bottom:2.5px solid transparent;
+	position:absolute;
+	box-sizing:border-box;
+}
+
+/*********************************************************
+
+ 	Holder
+
+ *********************************************************/
+
+.BIX5__BackgroundElementHolder,
+.BIX5__AnnotationElementHolder,
+.BIX5__CanvasElementHolder,
+.BIX5__SeriesHolder{
+	width:100%;
+	height:100%;
+}
+
+/*********************************************************
+
+ 	BackgroundElementHolder, AnnotationElemenetHolder
+
+ *********************************************************/
+
+.BIX5__BackgroundElementHolder,
+.BIX5__AnnotationElementHolder{
+	pointer-events:none;
+}
+
+/*********************************************************
+
+ 	SeriesHolder
+
+ *********************************************************/
+
+.BIX5__SeriesHolder *{
+	text-align:center;
+}
+
+/*********************************************************
+
+ 	ColumnSet, BarSet, AreaSet
+
+ *********************************************************/
+
+/*.BIX5__ColumnSet > div, .BIX5__BarSet > div, .BIX5__AreaSet > div, .BIX5__Column .BIX5__WindRoseSet > div{*/
+
+.BIX5__StackedSeries > div{
+	width:100%;
+	height:100%;
+}
+
+/*********************************************************
+
+ 	WindRoseChart
+
+ *********************************************************/
+
+ .BIX5__WindRoseChart{
+	padding-top:20px;
+	padding-bottom:20px;
+ }
+
+/*********************************************************
+
+ 	CrossRangeZoomer
+
+ *********************************************************/
+ 
+.BIX5__CrossRangeZoomer{
+	pointer-events:auto;
+}
+
+.BIX5__CrossRangeZoomer *{
+	pointer-events:none;
+}
+
+.BIX5__CrossHair_Label{
+	color:#ffffff;
+	background-color:#999;
+	border:1px solid #999;
+	padding:2px 4px;
+	text-align:center;
+	visibility:hidden;
+	cursor:default;
+}
+
+.BIX5__CrossRangeZoomer_Restore{
+	top:1px;
+	right:1px;
+	cursor:pointer;
+	font-size:12px;
+	color:#666;
+	text-align:center;
+	padding:8px;
+	min-width:83px;
+	min-height:29px;
+	transition:box-shadow 0.2s;
+	background-color:#fff;
+	background-color:rgba(255, 255, 255, 0.8);
+
+	-webkit-box-shadow:0px 2px 2px 0px rgba(0,0,0,0.16), 0px 0px 0px 1px rgba(0,0,0,0.08);
+	-moz-box-shadow:0px 2px 2px 0px rgba(0,0,0,0.16), 0px 0px 0px 1px rgba(0,0,0,0.08);
+	box-shadow:0px 2px 2px 0px rgba(0,0,0,0.16), 0px 0px 0px 1px rgba(0,0,0,0.08);
+}
+
+.BIX5__CrossRangeZoomer_Restore:hover{
+	-webkit-box-shadow:0px 2px 5px 0px rgba(0,0,0,0.15);
+	-moz-box-shadow:0px 2px 5px 0px rgba(0,0,0,0.15);
+	box-shadow:0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
+}
+
+/******************************************************
+ *
+ *			SlideChart
+ *
+ *****************************************************/
+
+.BIX5__SlideController{
+}
+
+.BIX5__PrevCanvas, .BIX5__NextCanvas{
+	position:absolute;
+	z-index:1;
+}
+
+/* 슬라이드 이전 버튼 */
+.BIX5__SlidePrevButton{
+	background:url("./slide_left.png") no-repeat 50% 50%;
+}
+
+/* 슬라이드 다음 버튼 */
+.BIX5__SlideNextButton{
+	background:url("./slide_right.png") no-repeat 50% 50%;
+}
+
+.BIX5__SlidePrevButton, .BIX5__SlideNextButton{
+	width:20px;
+	height:20px;
+}
+
+/* 슬라이드 버튼 */
+.BIX5__SlideButton{
+	width:15px;
+	height:15px;
+	background:url("./slide_button.png") no-repeat 50% 50%;
+}
+
+/* 선택된 슬라이드의 버튼 */
+.BIX5__SlideActiveButton{
+	background:url("./slide_active_button.png") no-repeat 50% 50%;
+}
+
+.BIX5__SlideButton, .BIX5__SlidePrevButton, .BIX5__SlideNextButton{
+	cursor:pointer;
+	position:absolute;
+}
+
+/******************************************************
+ *
+ *			Line2DSeries DisplayName
+ *
+ *****************************************************/
+
+.BIX5__DisplayName{
+	cursor:default;
+	white-space:nowrap;
+}
+
+/******************************************************
+ *
+ *			UserContent
+ *
+ *****************************************************/
+
+ .BIX5__UserDefineWrapper{
+	left:0;
+	top:0;
+	position:absolute;
+	white-space:nowrap;
+}
+
+.BIX5__UserDefineWrapper > div{
+	position:relative;
+}
+
+/******************************************************
+ *
+ *			PopUp
+ *
+ *****************************************************/
+
+.BIX5__PopUp{
+	width:196px;
+	background-color:#fff;
+}
+
+.BIX5__PopUp div{
+	position:relative;
+	color:#fff;
+}
+
+.BIX5__PopUp .BIX5__Title{
+	width:100%;
+	height:26px;
+	background-color:#4452a8;
+	padding:6px 0 0 10px;
+	border-top-left-radius:6px;
+	border-top-right-radius:6px;
+}
+
+.BIX5__PopUp .BIX5__Content{
+	color:#222;
+	border-left:solid 1px #dbdbdb;
+	border-right:solid 1px #dbdbdb;
+	padding:26px 30px;
+	text-align:center;
+}
+
+.BIX5__PopUp .BIX5__Button{
+	border:solid 1px #dbdbdb;
+	border-top:none;
+	border-bottom-left-radius:6px;
+	border-bottom-right-radius:6px;
+	padding-bottom:12px;
+}
+
+.BIX5__PopUp .BIX5__Button > div{
+	border-radius:10px;
+	width:57px;
+	height:16px;
+	background-color:#c4c5c9;
+	margin:0 auto;
+	text-align:center;
+	transition:background-color 0.2s;
+	cursor:pointer;
+}
+
+
+.BIX5__PopUp .BIX5__Button > div:hover{
+	background-color:#999;
+}
+
+/******************************************************
+ *
+ *			Chart Menu
+ *
+ *****************************************************/
+
+/* Chart Menu */
+.BIX5__ChartMenu{
+	top:4px;
+	right:4px;
+	width:20px;
+	height:20px;
+	font-size:12px;
+	border-radius:1px;
+	border:1px solid #ccc;
+	
+	z-index:1;
+	overflow:hidden;
+	opacity:0;
+	position:absolute;
+	transition:width 0.2s, height 0.2s, opacity 0.2s;
+	background:url(./menu.png) #fff no-repeat 50% 50%;
+	
+	padding-left:18px;
+	padding-top:18px;
+	white-space:nowrap;
+}
+
+/* Chart 영역에 마우스 오버시 ChartMenu */
+.BIX5__chart_menu_hover{
+	opacity:1;
+}
+
+/* ChartMenu에 마우스 오버시 */
+.BIX5__chart_menu_expand{
+	width:70px;
+	height:auto;
+	padding:4px;
+	background-position:-20px -20px;
+}
+
+/* ChartMenu에 붙는 아이템 들 */
+.BIX5__ChartMenuItem{
+	width:60px;
+	padding-left:2px;
+
+	cursor:pointer;
+	background-color:#ffffff;
+	transition:background-color 0.2s;
+	white-space:nowrap;
+}
+
+/* ChartMenuItem에 설정된 img */
+.BIX5__ChartMenuItem_Img{
+	width:12px;
+	height:12px;
+	margin-right:4px;
+}
+
+/* ChartMenuItem 마우스 오버시 */
+.BIX5__ChartMenuItem:hover{
+	background-color:#555555;
+	color:#ffffff;
+}

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.hmns.test.service.TestService;
 
@@ -19,9 +20,21 @@ public class TestController {
 	
 	@RequestMapping( "/test/main.view" )
 	public String main( Model model ) {
-//		model.addAllAttributes( "", )
-//		model.addAttribute( "", "" );
-		return "";
+		return "/pages/main";
+	}
+	
+	@RequestMapping( "/test/mainTest.view" )
+	public ModelAndView mainTest( Model model ) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName( "/pages/main" );
+		return mv;
+	}
+	
+	@RequestMapping( "/test/mainTestList.view" )
+	public ModelAndView mainTestList( Model model ) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject( "RESULT", testService.selectCommonCodeList( new HashMap<>() ) );
+		return mv;
 	}
 	
 	@SuppressWarnings( "rawtypes" )
@@ -30,12 +43,11 @@ public class TestController {
 	public List<HashMap> getCommonCodeList( Model model ) {
 		return testService.selectCommonCodeList( new HashMap<>() );
 	}
-/*
-	@RequestMapping( "/test/test.do" )
-	public ModelAndView getTestList( Map<String, Object> model ) {
-		ModelAndView mv = new ModelAndView();
-		mv.addObject( "RESULT", testService.selectCommonCodeList( new HashMap<>() ) );
-		return mv;
+	
+	@SuppressWarnings( "rawtypes" )
+	@RequestMapping( "/test/getServerResourceList.do" )
+	@ResponseBody
+	public List<HashMap> getServerResourceList( Model model ) {
+		return testService.selectServerResourceList( new HashMap<>() );
 	}
-*/
 }
