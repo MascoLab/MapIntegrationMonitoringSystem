@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hmns.mims.data.mapper.ServerMapper">
+	<select id="selectServerListCnt" resultType="Integer">
+	</select>
+	
+	<select id="selectServerList" resultType="HashMap">
+	</select>
+	
+	<insert id="insertServer">
+	</insert>
+	
+	<update id="updateServer">
+	</update>
+	
+	<delete id="deleteServer">
+	</delete>
+</mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hmns.mims.data.mapper.QueryMapper">
+	<select id="selectQueryListCnt" resultType="Integer">
+	</select>
+	
+	<select id="selectQueryList" resultType="HashMap">
+	</select>
+	
+	<insert id="insertQuery">
+	</insert>
+	
+	<update id="updateQuery">
+	</update>
+	
+	<delete id="deleteQuery">
+	</delete>
+</mapper>
