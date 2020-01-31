@@ -6,14 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hmns.mims.data.mapper.InfoMapper;
+import com.hmns.mims.data.mapper.DataInfoMapper;
 import com.hmns.mims.data.mapper.QueryMapper;
 import com.hmns.mims.data.mapper.ServerMapper;
 
 @Service
 public class DataService {
 	@Autowired
-	private InfoMapper infoMapper;
+	private DataInfoMapper dataInfoMapper;
 	
 	@Autowired
 	private QueryMapper queryMapper;
@@ -26,27 +26,27 @@ public class DataService {
 	////////////////////////////////////////////////////////////
 	@SuppressWarnings( "rawtypes" )
 	public int selectInfoListCnt( HashMap param ) {
-		return infoMapper.selectInfoListCnt( param );
+		return dataInfoMapper.selectInfoListCnt( param );
 	}
 	
 	@SuppressWarnings( "rawtypes" )
 	public List<HashMap> selectInfoList( HashMap param ) {
-		return infoMapper.selectInfoList( param );
+		return dataInfoMapper.selectInfoList( param );
 	}
 	
 	@SuppressWarnings( "rawtypes" )
 	public int insertInfo( HashMap param ) {
-		return infoMapper.insertInfo( param );
+		return dataInfoMapper.insertInfo( param );
 	}
 	
 	@SuppressWarnings( "rawtypes" )
 	public int updateInfo( HashMap param ) {
-		return infoMapper.updateInfo( param );
+		return dataInfoMapper.updateInfo( param );
 	}
 	
 	@SuppressWarnings( "rawtypes" )
 	public int deleteInfo( HashMap param ) {
-		return infoMapper.deleteInfo( param );
+		return dataInfoMapper.deleteInfo( param );
 	}
 	
 	////////////////////////////////////////////////////////////

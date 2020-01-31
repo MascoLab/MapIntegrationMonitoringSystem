@@ -6,7 +6,7 @@ import java.util.List;
 import com.hmns.config.MIMSConnMapper;
 
 @MIMSConnMapper
-public interface InfoMapper {
+public interface WidgetInfoMapper {
 	@SuppressWarnings( "rawtypes" )
 	public int selectInfoListCnt( HashMap param );
 	

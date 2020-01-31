@@ -7,14 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hmns.mims.widget.mapper.BaseMapper;
-import com.hmns.mims.widget.mapper.InfoMapper;
+import com.hmns.mims.widget.mapper.WidgetInfoMapper;
 import com.hmns.mims.widget.mapper.LocationMapper;
 import com.hmns.mims.widget.mapper.TabMapper;
 
 @Service
 public class WidgetService {
 	@Autowired
-	private InfoMapper infoMapper;
+	private WidgetInfoMapper widgetInfoMapper;
 	
 	@Autowired
 	private TabMapper tabMapper;
@@ -30,27 +30,27 @@ public class WidgetService {
 	////////////////////////////////////////////////////////////
 	@SuppressWarnings( "rawtypes" )
 	public int selectInfoListCnt( HashMap param ) {
-		return infoMapper.selectInfoListCnt( param );
+		return widgetInfoMapper.selectInfoListCnt( param );
 	}
 	
 	@SuppressWarnings( "rawtypes" )
 	public List<HashMap> selectInfoList( HashMap param ) {
-		return infoMapper.selectInfoList( param );
+		return widgetInfoMapper.selectInfoList( param );
 	}
 	
 	@SuppressWarnings( "rawtypes" )
 	public int insertInfo( HashMap param ) {
-		return infoMapper.insertInfo( param );
+		return widgetInfoMapper.insertInfo( param );
 	}
 	
 	@SuppressWarnings( "rawtypes" )
 	public int updateInfo( HashMap param ) {
-		return infoMapper.updateInfo( param );
+		return widgetInfoMapper.updateInfo( param );
 	}
 	
 	@SuppressWarnings( "rawtypes" )
 	public int deleteInfo( HashMap param ) {
-		return infoMapper.deleteInfo( param );
+		return widgetInfoMapper.deleteInfo( param );
 	}
 	
 	////////////////////////////////////////////////////////////
