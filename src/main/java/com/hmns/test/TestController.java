@@ -37,7 +37,7 @@ public class TestController {
 	
 	@RequestMapping( "/test/mainTestList.view" )
 	public ModelAndView mainTestList( Model model ) {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView( new MappingJackson2JsonView() );
 		mv.addObject( "RESULT", testService.selectCommonCodeList( new HashMap<>() ) );
 		return mv;
 	}
