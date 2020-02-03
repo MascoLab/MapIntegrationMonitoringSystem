@@ -31,7 +31,7 @@ public class TestController {
 	@RequestMapping( "/test/mainTest.view" )
 	public ModelAndView mainTest( Model model ) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName( "/pages/main" );
+		mv.setViewName( "/product" ); ///pages/main
 		return mv;
 	}
 	

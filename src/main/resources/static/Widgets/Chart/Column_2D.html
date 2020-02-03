@@ -1,0 +1,11 @@
+<script type="text/javascript">
+	widget.componentReadyHandler = function(componentId){
+		document.getElementById(componentId).setLayoutURL("./Widgets/Chart/layout/Column_2D.xml");
+		document.getElementById(componentId).setDataType("json");
+		document.getElementById(componentId).setDataURL("./Widgets/Chart/data/Column_2D.json");
+	}
+	
+	widget.chartItemClickHandler = function(seriesId, displayText, index, data, values){
+		alert("Country : "+data.Country+'\n'+"GDP : "+data.GDP);
+	}
+</script>

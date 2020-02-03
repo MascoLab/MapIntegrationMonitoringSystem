@@ -1,0 +1,111 @@
+[{
+        "Month" : "Jan",
+        "Profit" : 700,
+        "Cost" : 1000,
+        "Revenue" : 2300,
+        "Profit2" : 800,
+        "Cost2" : 900,
+        "Revenue2" : 2200,
+        "Profit3" : 1200,
+        "Cost3" : 1401,
+        "Revenue3" : 2300
+},{
+        "Month" : "Feb",
+        "Profit" : 2000,
+        "Cost" : 1200,
+        "Revenue" : 1200,
+        "Profit2" : 1200,
+        "Cost2" : 1200,
+        "Revenue2" : 2230,
+        "Profit3" : 1200,
+        "Cost3" : 1800,
+        "Revenue3" : 1900
+},{
+        "Month" : "Mar",
+        "Profit" : 800,
+        "Cost" : 1600,
+        "Revenue" : 1600,
+        "Profit2" : 1700,
+        "Cost2" : 1300,
+        "Revenue2" : 1300,
+        "Profit3" : 1200,
+        "Cost3" : 2500,
+        "Revenue3" : 300
+},{
+        "Month" : "Apr",
+        "Profit" : 1500,
+        "Cost" : 1700,
+        "Revenue" : 1300,
+        "Profit2" : 750,
+        "Cost2" : 1100,
+        "Revenue2" : 300,
+        "Profit3" : 100,
+        "Cost3" : 680,
+        "Revenue3" : 770
+},{
+        "Month" : "May",
+        "Profit" : 2000,
+        "Cost" : 2400,
+        "Revenue" : 1000,
+        "Profit2" : 1200,
+        "Cost2" : 1800,
+        "Revenue2" : 1300,
+        "Profit3" : 90,
+        "Cost3" : 1000,
+        "Revenue3" : 1300
+},{
+        "Month" : "Jun",
+        "Profit" : 1800,
+        "Cost" : 1300,
+        "Revenue" : 1200,
+        "Profit2" : 2100,
+        "Cost2" : 2200,
+        "Revenue2" : 300,
+        "Profit3" : 1770,
+        "Cost3" : 1600,
+        "Revenue3" : 1300
+},{
+        "Month" : "Jul",
+        "Profit" : 600,
+        "Cost" : 1000,
+        "Revenue" : 1000,
+        "Profit2" : 1400,
+        "Cost2" : 1400,
+        "Revenue2" : 2000,
+        "Profit3" : 1000,
+        "Cost3" : 2500,
+        "Revenue3" : 1300
+},{
+        "Month" : "Aug",
+        "Profit" : 1100,
+        "Cost" : 1500,
+        "Revenue" : 1600,
+        "Profit2" : 1800,
+        "Cost2" : 1800,
+        "Revenue2" : 1100,
+        "Profit3" : 900,
+        "Cost3" : 700,
+        "Revenue3" : 660
+},{
+        "Month" : "Sep",
+        "Profit" : 1800,
+        "Cost" : 1600,
+        "Revenue" : 1200,
+        "Profit2" : 1200,
+        "Cost2" : 1300,
+        "Revenue2" : 990,
+        "Profit3" : 1400,
+        "Cost3" : 500,
+        "Revenue3" : 300
+},{
+        "Month" : "Oct",
+        "Profit" : 1000,
+        "Cost" : 900,
+        "Revenue" : 1000,
+        "Profit2" : 600,
+        "Cost2" : 1200,
+        "Revenue2" : 500,
+        "Profit3" : 200,
+        "Cost3" : 1200,
+        "Revenue3" : 200
+}]

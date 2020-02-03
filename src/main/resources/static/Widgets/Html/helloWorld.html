@@ -1,0 +1,16 @@
+<h1>Hello World</h1>
+
+<script>
+	widget.componentReadyHandler = function() {
+		//console.log("widget ready");
+	}
+	widget.closeHandler = function() {
+		return confirm("위젯을 닫으시겠습니까?");
+	}
+	widget.resizeHandler = function(w, h){
+		//console.log("resize");
+	}
+	widget.maximizeHandler = function(type, w, h){
+		//console.log(type);
+	}
+</script>

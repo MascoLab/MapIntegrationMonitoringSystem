@@ -1,0 +1,13 @@
+<script type="text/javascript">
+	widget.componentReadyHandler = function(componentId){
+		var mapDataBaseURL = "../MapChart/MapDataBaseXml/Design/World_Design_03.xml";
+		var sourceURL = "../MapChart/MapSource/Design/World_Design_03.svg";							
+		var layoutURL = "./Widgets/MapChart/layout/DesignMap_World.xml";
+		var dataURL = "./Widgets/MapChart/data/DesignMap_World.txt";
+		
+		document.getElementById(componentId).setLayoutURLEx(layoutURL);
+		document.getElementById(componentId).setDataURLEx(dataURL);
+		document.getElementById(componentId).setMapDataBaseURLEx(mapDataBaseURL);
+		document.getElementById(componentId).setSourceURLEx(sourceURL);
+	}
+</script>

@@ -1,0 +1,57 @@
+[{
+        "Month" : "Jan",
+        "service" : 8,
+        "goods" : 10,
+        "income" : 8,
+        "payments" : 16,
+        "trade" : 8,
+        "capital" : 12
+},{
+        "Month" : "Feb",
+        "service" : 18,
+        "goods" : 20,
+        "income" : 18,
+        "payments" : 17,
+        "trade" : 12,
+        "capital" : 13
+},{
+        "Month" : "Mar",
+        "service" : 16,
+        "goods" : 15,
+        "income" : 15,
+        "payments" : 22,
+        "trade" : 17,
+        "capital" : 17
+},{
+        "Month" : "Apr",
+        "service" : 36,
+        "goods" : 24,
+        "income" : 20,
+        "payments" : 21,
+        "trade" : 20,
+        "capital" : 19
+},{
+        "Month" : "May",
+        "service" : 21,
+        "goods" : 19,
+        "income" : 19,
+        "payments" : 16,
+        "trade" : 10,
+        "capital" : 15
+},{
+        "Month" : "Jun",
+        "service" : 12,
+        "goods" : 12,
+        "income" : 13,
+        "payments" : 16,
+        "trade" : 16,
+        "capital" : 13
+},{
+        "Month" : "Jul",
+        "service" : 12,
+        "goods" : 13,
+        "income" : 12,
+        "payments" : 9,
+        "trade" : 8,
+        "capital" : 9
+}]

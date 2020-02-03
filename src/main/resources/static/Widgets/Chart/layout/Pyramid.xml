@@ -1,0 +1,18 @@
+<BIX5 backgroundColor="#FFFFFF"  borderStyle="none" paddingTop="14">
+    <Pyramid2DChart showDataTips="true">
+        <series>
+            <Pyramid2DSeries weightField="data" nameField="label" labelPosition="inside" leftBottomRatio="0.7" rightBottomRatio="0.7" color="#666" fontFamily="맑은 고딕" fontSize="11" labelYOffset="-2">
+                <showDataEffect>
+                    <SeriesInterpolate duration="1000"/>
+                </showDataEffect>
+                <fills>
+                    <SolidColor color="#FBB44F"/>
+                    <SolidColor color="#89D1CF"/>
+                    <SolidColor color="#00B2B3"/>
+                    <SolidColor color="#0095D8"/>
+                    <SolidColor color="#3C3C7F"/>
+                </fills>
+            </Pyramid2DSeries>
+        </series>
+    </Pyramid2DChart>
+</BIX5>

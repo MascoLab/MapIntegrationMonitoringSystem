@@ -1,0 +1,12 @@
+<script type="text/javascript">
+	widget.componentReadyHandler = function(componentId){
+		document.getElementById(componentId).setLayoutURLEx("./Widgets/Grid/layout/basicGrid.xml");
+		document.getElementById(componentId).setDataType("json");
+		document.getElementById(componentId).setDataURLEx("./Widgets/Grid/data/basicGrid.json");
+	}
+	
+	widget.convertFrom = function(item, value, column) {
+	    var result = item['From']+" test";
+	    return result;
+	}
+</script>

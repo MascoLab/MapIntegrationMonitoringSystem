@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Mustache Example</title>
+<!-- Kakao MAP API -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2b5eb1bcff1c99beefe2d379fb6bde15"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2b5eb1bcff1c99beefe2d379fb6bde15&libraries=LIBRARY"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2b5eb1bcff1c99beefe2d379fb6bde15&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2b5eb1bcff1c99beefe2d379fb6bde15&libraries=services,clusterer,drawing"></script>
+
+<!-- BIX5 -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<link rel="stylesheet" type="text/css" href="/BIX5/Assets/BIX5.css" />
+<link rel="stylesheet" type="text/css"
+	href="/BIX5/Assets/BIX5Dashboard.css" />
+<script language="javascript" type="text/javascript"
+	src="/LicenseKey/BIX5License.js"></script>
+<script language="javascript" type="text/javascript"
+	src="/BIX5/JS/BIX5.js"></script>
+
+<script type="text/javascript">
+	BIX5.dashboard.create("dashboard1", "dashboardHolder", function(dashboard) {
+		var slides = [ {
+			slideName : "slide1",
+			widgets : [ {
+				id : "chart1",
+				x : 200,
+				y : 0,
+				width : 550,
+				height : 300,
+				contentUrl : "/WIDGET/chart/chartEx.html",
+				type : "chart",
+				title : "chart1"
+			},
+/* 			{
+				id : "graph1",
+				x : 850,
+				y : 0,
+				width : 550,
+				height : 300,
+				contentUrl : "/WIDGET/chart/graphEx.html",
+				type : "chart",
+				title : "graph1"
+			}, */
+			{
+				id : "mapAPI",
+				x : 850,
+				y : 0,
+				width : 550,
+				height : 300,
+				contentUrl : "/WIDGET/MapAPI/testMapAPI.html",
+				type : "map",
+				title : "mapAPI"
+			},
+			{
+				id : "grid1",
+				x : 200,
+				y : 330,
+				width : 1200,
+				height : 300,
+				contentUrl : "/WIDGET/grid/gridEx.html",
+				/* options:{border:true}, */
+				type : "grid",
+				title : "grid1"
+			} ]
+		} ];
+		dashboard.setData(slides);
+		dashboard.setSlideWidth(1400);
+		dashboard.setSlideHeight(700);
+
+		var items = [ {
+			label : "Chart Widget",
+			children : [ {
+				label : "ChartExample",
+				title : "ChartExample",
+				type : "chart",
+				contentUrl : "/WIDGET/chart/chartEx.html",
+				options : {
+					border : true
+				}
+			}, {
+				label : "graphExample",
+				title : "graphExample",
+				type : "chart",
+				contentUrl : "/WIDGET/chart/graphEx.html",
+				options : {
+					border : true
+				}
+			} ]
+		}, {
+			label : "Grid Widget",
+			children : [ {
+				label : "GridExample",
+				title : "GridExample",
+				type : "grid",
+				contentUrl : "/WIDGET/grid/gridEx.html",
+				options : {
+					border : true
+				}
+			} ]
+		}, {
+			label : "blank",
+			type : "blank",
+			options : {
+				"border" : true,
+				"borderColor" : "#a6a6a6",
+				"borderWidth" : "1px"
+			}
+		} ];
+		dashboard.setWidgetPool(items);
+		dashboard.setEnabled(false); //대쉬보드 연결시 위젯위치 변동 및 수정 가능
+	}, "100%", "100%", { /* "100%", "100%",  */
+		enabled : true
+	});
+</script>
+
+<style>
+.content {
+	height: 708px;
+}
+
+.BIX5__UIElement {
+	display: none;
+}
+</style>
+
+</head>
+<body>
+	{{>header}}
+	<br>
+	<br>
+
+	<div class="container">
+	
+	<form action="/test/insertInfo.do">
+	<input type="hidden" name="id" value="aa"/><br>
+	<input type="hidden" name="content" value="bb"/><br>
+	<input type="submit" value="저장">
+	</form>
+	<form action="/test/mainTestList.view">
+	<input type="submit" value="조회">	
+	</form>
+	
+		<br>
+		<div class="content">
+			<div id="dashboardHolder" style="width: 1800px; height: 400px;">
+				<!-- 대시보드 위젯 부분 div -->
+				<span class="BIX5__UIElement"></span>
+				<!-- 대시보드의 슬라이더 부분 -->
+			</div>
+		</div>
+
+	</div>
+
+	{{>footer}}
+
+</body>
+</html>

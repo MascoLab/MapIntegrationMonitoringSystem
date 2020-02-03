@@ -1,0 +1,32 @@
+[{
+		"name":"ColorAxis",
+		"items": [{
+				"name": "ColorAxis1",
+				"items" : [
+					{"Month":"Jan", "Vancouver":215},
+					{"Month":"Feb", "Vancouver":300},
+					{"Month":"Mar", "Vancouver":383},
+					{"Month":"Apr", "Vancouver":81},
+					{"Month":"Test text width", "Vancouver":109},
+					{"Month":"Jun", "Vancouver":189},
+					{"Month":"Jul", "Vancouver":146},
+					{"Month":"Aug", "Vancouver":192},
+					{"Month":"Sep", "Vancouver":138},
+					{"Month":"Oct", "Vancouver":114},
+					{"Month":"Nov", "Vancouver":87},
+					{"Month":"Dec", "Vancouver":50}
+				]
+			},{
+				"name" : "ColorAxis2",
+				"items" : [
+					{"Month":"Jun", "Vancouver":389},
+					{"Month":"Jul", "Vancouver":286},
+					{"Month":"Aug", "Vancouver":192},
+					{"Month":"Sep", "Vancouver":188},
+					{"Month":"Oct", "Vancouver":124},
+					{"Month":"Nov", "Vancouver":87},
+					{"Month":"Dec", "Vancouver":59}
+				]
+			}
+		]
+	}]

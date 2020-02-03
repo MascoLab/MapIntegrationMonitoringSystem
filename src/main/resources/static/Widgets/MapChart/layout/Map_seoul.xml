@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <BIX5 horizontalAlign="center">
+        <MapChart id="mainMap" drillDownEnabled="true" showDataTips="true" rootCode="900" scaleMode="manual" chartScaleX="0.9" chartScaleY="0.9">
+            <series>
+                <MapSeries id="mapseries" interactive="false" localFill="#62bfea">
+                    <stroke>
+                        <Stroke color="#BBE1EA" weight="0.8" alpha="1"/>
+                    </stroke>
+                </MapSeries>
+                <MapPlotSeries id="plot1" areaCodeField="codeA" labelField="branchName" horizontalCenterGapField="h" verticalCenterGapField="v" adjustedRadius="8" fill="#2d7ecd" labelPositionField="lapos" color="#ffffff" fontWeight="bold" labelPosition="bottom" displayName="아파트">
+                    <stroke>
+                        <Stroke color="#2d7ecd" weight="0.8" alpha="1"/>
+                    </stroke>
+                </MapPlotSeries>
+                <MapPlotSeries id="plot2" areaCodeField="codeB" labelField="branchName" horizontalCenterGapField="h" verticalCenterGapField="v" adjustedRadius="5" fill="#c5e75d" labelPositionField="lapos" color="#ffffff" fontWeight="bold" labelPosition="bottom" itemRenderer="DiamondItemRenderer" displayName="빌라">
+                    <stroke>
+                        <Stroke color="#c5e75d" weight="0.8" alpha="1"/>
+                    </stroke>
+                </MapPlotSeries>
+                <MapPlotSeries id="plot3" areaCodeField="codeC" labelField="branchName" horizontalCenterGapField="h" verticalCenterGapField="v" adjustedRadius="5" fill="#ff9700" labelPositionField="lapos" color="#ffffff" fontWeight="bold" labelPosition="bottom" itemRenderer="TriangleItemRenderer" displayName="단독주택">
+                    <stroke>
+                        <Stroke color="#ff9700" weight="0.8" alpha="1"/>
+                    </stroke>
+                </MapPlotSeries>
+            </series>
+        </MapChart>
+    </BIX5>

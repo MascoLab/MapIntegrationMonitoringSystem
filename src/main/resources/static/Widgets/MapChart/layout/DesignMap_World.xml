@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <BIX5>
+        <MapChart id="mainMap1" showDataTips="true" dataTipType="Type1" scaleMode="manual" chartScaleX="0.5" chartScaleY="0.5" dataTipFill="#34667f">
+            <series>
+                <MapSeries id="mapseries" dataTipFill="#34667f" dataTipBorderColor="#34667f" dataTipAlpha="1" dataTipColor="#ffffff" interactive="true" selectionMarking="color" color="#777777" labelPosition="none" displayName="Map" selectionStrokeAlpha="0" rollOverFill="#c8dc00" >
+                    <selectionFill>
+                        <SolidColor color="#c8dc00" />
+                    </selectionFill>
+                    <selectionStroke>
+                        <Stroke color="#ffffff" weight="0" alpha="1"/>
+                    </selectionStroke>
+                    <rollOverStroke>
+                        <Stroke color="#ffffff" weight="0" alpha="1"/>
+                    </rollOverStroke>
+                    <showDataEffect>
+                        <SeriesInterpolate duration="1000"/>
+                    </showDataEffect>
+                </MapSeries>
+            </series>
+        </MapChart>
+    </BIX5>

@@ -1,0 +1,16 @@
+<BIX5 backgroundColor="#FFFFFF"  borderStyle="none">
+    <Options>
+        <Caption text="Annual Report"/>
+        <Legend useVisibleCheck="true"/>
+    </Options>
+    <CurrencyFormatter id="numFmt" currencySymbol="$" alignSymbol="left"/>
+    <Pie2DChart showDataTips="true">
+        <series>
+            <Pie2DSeries nameField="Month" field="Profit" perWedgeExplodeRadius="[0,0,0.1,0,0]" labelPosition="inside" formatter="{numFmt}" color="#ffffff" renderDirection="counterClockwise" startAngle="90">
+                <showDataEffect>
+                    <SeriesInterpolate/>
+                </showDataEffect>
+            </Pie2DSeries>
+        </series>
+    </Pie2DChart>
+</BIX5>

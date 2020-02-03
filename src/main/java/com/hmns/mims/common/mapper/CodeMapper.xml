@@ -21,6 +21,9 @@
 		<if test="codeDesc != null">
 			AND CODE_DESC LIKE '%' + #{codeDesc} + '%'
 		</if>
+		<if test="codeOrder != null">
+			AND CODE_ORDER = #{codeOrder}
+		</if>
 		<if test="useYN != null">
 			AND USE_YN = #{useYN}
 		</if>
@@ -42,7 +45,7 @@
 				UPDATE_USER, 
 				CONVERT( CHAR(19), UPDATE_DATE, 120 ) AS UPDATE_DATE
 			FROM
-				COMMON_CODE_INFO
+				COMMON_CODE
 			WHERE
 				1 = 1
 				<include refid="codeWhere"></include> ) T1
@@ -64,7 +67,7 @@
 				UPDATE_USER, 
 				CONVERT( CHAR(19), UPDATE_DATE, 120 ) AS UPDATE_DATE
 			FROM
-				COMMON_CODE_INFO
+				COMMON_CODE
 			WHERE
 				1 = 1
 				<include refid="codeWhere"></include> ) T1
@@ -76,28 +79,28 @@
 	
 	<insert id="insertCode">
 		<selectKey keyProperty="code" resultType="string" order="BEFORE">
-			<if test="precedeCode != null">
+			<if test="parentCode != null">
 				SELECT 
 					ISNULL( 
 						RIGHT( '00000' + CONVERT( VARCHAR, ( CONVERT( INT, MAX( CODE ) ) + 1 ) ), 10 ), 
 						RIGHT( '00000' + CONVERT( VARCHAR, ( CONVERT( INT, #{parentCode} ) + 1 ) ), 10 ) 
 					) AS attrCode
 				FROM
-					COMMON_CODE_INFO
+					COMMON_CODE
 				WHERE
 					PARENT_CODE = #{parentCode}
 			</if>
-			<if test="precedeCode == null">
+			<if test="parentCode == null">
 				SELECT
 					RIGHT( '00000' + CONVERT( VARCHAR, ( CONVERT( INT, LEFT( MAX( CODE ), 5 ) ) + 1 ) ) + '00000', 10 )
 				FROM
-					COMMON_CODE_INFO
+					COMMON_CODE
 				WHERE
 					PARENT_CODE = ''
 			</if>
 		</selectKey>
 		
-		INSERT INTO COMMON_CODE_INFO
+		INSERT INTO COMMON_CODE
 			( 	CODE, PARENT_CODE, CODE_NAME, CODE_DESC, CODE_ORDER, 
 				USE_YN, INSERT_USER, INSERT_DATE )
 		VALUES
@@ -107,7 +110,7 @@
 	
 	<update id="updateCode">
 		UPDATE 
-			COMMON_CODE_INFO
+			COMMON_CODE
 		SET
 			<if test="parentCode != null">
 				PARENT_CODE = #{parentCode},
@@ -138,7 +141,7 @@
 	<delete id="deleteCode">		
 		DELETE 
 		FROM
-			COMMON_CODE_INFO
+			COMMON_CODE
 		WHERE
 			CODE = #{code}
 	</delete>

@@ -1,0 +1,23 @@
+<script type="text/javascript">
+	widget.componentReadyHandler = function(componentId){
+		var mapDataBaseURL = "../MapChart/MapDataBaseXml/WorldCountry.xml";
+		var sourceURL = "../MapChart/MapSource/WorldCountry.svg";							
+		var layoutURL = "./Widgets/MapChart/layout/worldCountry.xml";
+		
+		document.getElementById(componentId).setLayoutURLEx(layoutURL);
+		document.getElementById(componentId).setMapDataBaseURLEx(mapDataBaseURL);
+		document.getElementById(componentId).setSourceURLEx(sourceURL);
+	}
+	
+	widget.colorFunction = function(code, label, data){
+// 			   if ( codes[code]){
+// 			      return "#62bfea";
+// 			   } else if ( code > 90000 ) {
+// 			     if ( code%100 == 0 )
+// 			            return "#62bfea";
+// 			       else
+			            return "#ccbca5";
+// 			   } else
+// 			      return "#62bfea";
+	}
+</script>

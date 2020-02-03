@@ -1,0 +1,58 @@
+<BIX5 backgroundColor="#FFFFFF" borderStyle="none" >
+    <Options>
+        <Caption text="Balance on Current Account"/>
+        <SubCaption text="( billion $ )" textAlign="right" />
+        <Legend defaultMouseOverAction="false" />
+    </Options>
+    <NumberFormatter id="numfmt" useThousandsSeparator="true"/>
+    <Column2DChart showDataTips="true">
+        <horizontalAxis>
+            <CategoryAxis categoryField="Month"/>
+        </horizontalAxis>
+        <verticalAxis>
+            <LinearAxis formatter="{numfmt}" maximum="100" interval="10"/>
+        </verticalAxis>
+        <series>
+            <Column2DSet type="stacked" showTotalLabel="true" totalLabelJsFunction="totalFunc" labelYOffset="-5">
+                <series>
+                    <Column2DSeries labelPosition="inside" yField="goods" displayName="goods" styleName="seriesLabel" showValueLabels="[3]">
+                        <showDataEffect>
+                            <SeriesInterpolate/>
+                        </showDataEffect>
+                    </Column2DSeries>
+                    <Column2DSeries labelPosition="inside" yField="income" displayName="income" styleName="seriesLabel" showValueLabels="[3]">
+                        <showDataEffect>
+                            <SeriesInterpolate/>
+                        </showDataEffect>
+                    </Column2DSeries>
+                    <Column2DSeries labelPosition="inside" yField="service" displayName="service" styleName="seriesLabel" showValueLabels="[3]">
+                        <showDataEffect>
+                            <SeriesInterpolate/>
+                        </showDataEffect>
+                    </Column2DSeries>
+                </series>
+            </Column2DSet>
+            <Column2DSet type="stacked" showTotalLabel="true" totalLabelJsFunction="totalFunc" labelYOffset="-5">
+                <series>
+                    <Column2DSeries labelPosition="inside" yField="trade" displayName="trade" styleName="seriesLabel" showValueLabels="[3]">
+                        <showDataEffect>
+                            <SeriesInterpolate/>
+                        </showDataEffect>
+                    </Column2DSeries>
+                    <Column2DSeries labelPosition="inside" yField="capital" displayName="capital" styleName="seriesLabel" showValueLabels="[3]">
+                        <showDataEffect>
+                            <SeriesInterpolate/>
+                        </showDataEffect>
+                    </Column2DSeries>
+                    <Column2DSeries labelPosition="inside" yField="payments" displayName="payments" styleName="seriesLabel" showValueLabels="[3]">
+                        <showDataEffect>
+                            <SeriesInterpolate/>
+                        </showDataEffect>
+                    </Column2DSeries>
+                </series>
+            </Column2DSet>
+        </series>
+    </Column2DChart>
+    <Style>.seriesLabel{fontSize:11;color:#ffffff;fontWeight:bold;}
+    </Style>
+</BIX5>

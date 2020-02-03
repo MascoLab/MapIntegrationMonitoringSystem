@@ -1,0 +1,33 @@
+<BIX5 backgroundColor="#FFFFFF" >
+    <Options>
+        <Caption text="전년 대비 금년 기부금 추이" fontFamily="맑은 고딕" paddingBottom="15"/>
+        <Legend fontFamily="맑은 고딕"/>
+    </Options>
+    <Box width="100%" direction="horizontal" fontSize="12" fontFamily="맑은 고딕" fontWeight="bold" color="#555">
+        <Label width="100%" height="19" text="전년"/>
+        <Label width="100%" height="19" text="금년"/>
+    </Box>
+    <Bar2DWingChart showDataTips="true" type="stacked" fontFamily="맑은 고딕" paddingTop="10">
+        <verticalAxis>
+            <CategoryAxis categoryField="Month"/>
+        </verticalAxis>
+        <series>
+            <Bar2DWingSeries xField="Profit" xFieldOpp="Profit2" labelPosition="inside" lineToEachItems="true" displayName="단체" showValueLabels="[4,5]" showValueLabelsOpp="[4,5]" color="#ffffff">
+                <fill>
+                    <SolidColor color="#5587a2"/>
+                </fill>
+                <showDataEffect>
+                    <WingSeriesInterpolate duration="1000"/>
+                </showDataEffect>
+            </Bar2DWingSeries>
+            <Bar2DWingSeries xField="Cost" xFieldOpp="Cost2" labelPosition="inside" lineToEachItems="true" displayName="개인" showValueLabels="[4,5]" showValueLabelsOpp="[4,5]" color="#ffffff">
+                <fill>
+                    <SolidColor color="#88ba4b"/>
+                </fill>
+                <showDataEffect>
+                    <WingSeriesInterpolate duration="1000"/>
+                </showDataEffect>
+            </Bar2DWingSeries>
+        </series>
+    </Bar2DWingChart>
+</BIX5>

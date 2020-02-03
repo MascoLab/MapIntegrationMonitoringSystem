@@ -1,0 +1,32 @@
+<BIX5 backgroundColor="#FFFFFF"  borderStyle="none">
+    <Options>
+        <Caption text="Balance on Current Account"/>
+        <SubCaption text="( billion $ )" textAlign="right" />
+        <Legend defaultMouseOverAction="false" useVisibleCheck="true"/>
+    </Options>
+    <Line2DChart showDataTips="true" paddingTop="0">
+        <horizontalAxis>
+            <CategoryAxis categoryField="Month" padding="1"/>
+        </horizontalAxis>
+        <verticalAxis>
+            <LinearAxis maximum="100" interval="10"/>
+        </verticalAxis>
+        <series>
+            <Line2DSeries radius="5" yField="goods" lineStyle="dashLine" dashLinePattern="3" itemRenderer="CircleItemRenderer" displayName="goods">
+                <showDataEffect>
+                    <SeriesInterpolate/>
+                </showDataEffect>
+            </Line2DSeries>
+            <Line2DSeries radius="5" yField="income" lineStyle="dashLine" dashLinePattern="3" itemRenderer="CircleItemRenderer" displayName="income">
+                <showDataEffect>
+                    <SeriesInterpolate/>
+                </showDataEffect>
+            </Line2DSeries>
+            <Line2DSeries radius="5" yField="service" lineStyle="dashLine" dashLinePattern="3" itemRenderer="CircleItemRenderer" displayName="service">
+                <showDataEffect>
+                    <SeriesInterpolate/>
+                </showDataEffect>
+            </Line2DSeries>
+        </series>
+    </Line2DChart>
+</BIX5>

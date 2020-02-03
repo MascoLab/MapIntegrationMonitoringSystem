@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BIX5>
+    <MapChart id="mainMap" drillDownEnabled="false" showDataTips="false" showDataTipTargets="false" dataTipType="Type3" dataTipFill="#307fc8" dataTipColor="#ffffff">
+        <series>
+            <MapSeries id="mapseries" interactive="false">
+                <showDataEffect>
+                    <SeriesInterpolate duration="1000"/>
+                </showDataEffect>
+                <localFill>
+                    <SolidColor color="#ebf0f4"/>
+                </localFill>
+                <stroke>
+                    <Stroke color="#CAD7E0" weight="0.8" alpha="1"/>
+                </stroke>
+            </MapSeries>
+            <MapPanelSeries id="panel" titleField="label" bodyTextField="label" horizontalCenterGapField="h" verticalCenterGapField="v" color="#555555" horizontalAlign="center" paddingLeft="2" panelWidth="50" displayName="도시" showHeader="false" itemRenderer="HPanelItemRenderer" selectedCircle="false" rollOverFill="#95DCF2">
+                <showDataEffect>
+                    <SeriesInterpolate duration="1000"/>
+                </showDataEffect>
+            </MapPanelSeries>
+        </series>
+    </MapChart>
+</BIX5>

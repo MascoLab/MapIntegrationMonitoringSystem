@@ -1,0 +1,35 @@
+<BIX5 backgroundColor="#FFFFFF"  borderStyle="none">
+    <Options>
+        <Caption text="회사 지점별 식품 등급" fontFamily="맑은 고딕"/>
+        <Legend defaultMouseOverAction="true" fontFamily="맑은 고딕"/>
+    </Options>
+    <SeriesSlide id="ss"/>
+    <Matrix2DChart showDataTips="true" type="fill"  legendOver="true" dataTipJsFunction="tipFunc" fontFamily="맑은 고딕">
+        <backgroundElements>
+            <GridLines direction="horizontal" horizontalChangeCount="2">
+                <horizontalStroke>
+                    <Stroke color="#000000"/>
+                </horizontalStroke>
+            </GridLines>
+        </backgroundElements>
+        <verticalAxis>
+            <LinearAxis id="vAxis" interval="0.5" maximum="5" labelJsFunction="vertiJsFunc"/>
+        </verticalAxis>
+        <horizontalAxis>
+            <LinearAxis id="hAxis" interval="0.5" maximum="4" labelJsFunction="horiJsFunc"/>
+        </horizontalAxis>
+        <series>
+            <Matrix2DSeries xField="Data1_x" yField="Data1_y" zField="Data1" renderer="rectangle" showDataEffect="{ss}" labelPosition="inside" displayName="A 식품" insideLabelJsFunction="labelJsFunc" styleName="seriesFont"/>
+            <Matrix2DSeries xField="Data2_x" yField="Data2_y" zField="Data2" renderer="rectangle" showDataEffect="{ss}" labelPosition="inside" displayName="B 식품" insideLabelJsFunction="labelJsFunc" styleName="seriesFont"/>
+            <Matrix2DSeries xField="Data3_x" yField="Data3_y" zField="Data3" renderer="rectangle" showDataEffect="{ss}" labelPosition="inside" displayName="C 식품" insideLabelJsFunction="labelJsFunc" styleName="seriesFont"/>
+        </series>
+        <verticalAxisRenderers>
+            <Axis2DRenderer axis="{vAxis}" tickPlacement="none" styleName="font" minorTickPlacement="none"/>
+        </verticalAxisRenderers>
+        <horizontalAxisRenderers>
+            <Axis2DRenderer axis="{hAxis}" tickPlacement="none" styleName="font" minorTickPlacement="none" showLine="true"/>
+        </horizontalAxisRenderers>
+    </Matrix2DChart>
+    <Style>.font{fontFamily:"맑은 고딕";fontSize:11;}.seriesFont{fontSize:11;}
+    </Style>
+</BIX5>

@@ -1,0 +1,36 @@
+<BIX5 frameColor="#EEEEEE"  borderStyle="none">
+    <Options>
+        <Caption text="게이지 - Notice" fontFamily="맑은 고딕"/>
+    </Options>
+    <NumberFormatter id="numFmt" precision="0"/>
+    <HalfCircularGauge frameType="flat" minimumAngle="180" maximumAngle="360" minimum="0" maximum="100" interval="25" minorInterval="5" formatter="{numFmt}" padding="0" labelGap="-10" valueXOffset="0" valueYOffset="0" tickLabelStyleName="tickLabelStyle" valueLabelStyleName="valueLabelStyle" dataTipJsFunction="dataTipFunction" tickGap="-40" editMode="true" liveDragging="true" showDataTip="true" needleCoverRadius="25" needleThickness="16" pointThickness="0" needleLengthRatio="0.85" needlePointStyle="steeple" needleBackLengthRatio="0" tickLabelPlacement="outside" showTrackColor="true" trackColors="[#05c1b0,#f7b642,#f48a40,#e14159]" trackAlphas="[1,1,1,1,1]" trackValues="[0,25,50,75,100]" trackLabels="[보통,주의,경고,위험]" trackLabelsXOffset="[-0.3,0.2,-0.2,0.3]" trackLabelsYOffset="[0.1,-0.3,-0.3,0.1]" trackLabelStyleName="trackLabelStyle" trackOuterRadius="1.06" trackInnerRadius="0" minorTickRadius="3" showValueLabel="true" isValueTop="true" tickRadius="0" bounceAnimating="true">
+        <frameStroke>
+            <Stroke color="#5e4e3e" weight="10"/>
+        </frameStroke>
+        <frameFill>
+            <SolidColor alpha="0"/>
+        </frameFill>
+        <needleFill>
+            <SolidColor color="#5e4e3e"/>
+        </needleFill>
+        <needleStroke>
+            <Stroke color="#5e4e3e"/>
+        </needleStroke>
+        <needleCoverFill>
+            <SolidColor color="#5e4e3e"/>
+        </needleCoverFill>
+        <needleCoverStroke>
+            <Stroke color="#5e4e3e"/>
+        </needleCoverStroke>
+        <minorTickFill>
+            <SolidColor color="#555555"/>
+        </minorTickFill>
+        <minorTickStroke>
+            <Stroke color="#555555"/>
+        </minorTickStroke>
+    </HalfCircularGauge>
+    <Style>
+    .tickLabelStyle{
+    	color:#555555;fontSize:14;fontWeight:bold;}.valueLabelStyle{borderStyle:none;backgroundAlpha:0;color:#ffffff;fontSize:18;textAlign:center;}.trackLabelStyle{fontSize:20;fontWeight:bold;color:#ffffff;}
+    </Style>
+</BIX5>

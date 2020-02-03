@@ -1,0 +1,20 @@
+<BIX5>
+    <Options>
+        <ColorRangeLegend axis="{colorAxis}" width="300"/>
+    </Options>
+    <TreeMapChart dataTipDisplayMode="mouse" showDataTips="true" buttonMode="true" selectionMode="single" paddingBottom="10">
+        <colorAxis>
+            <ColorAxis id="colorAxis" maximum="400" minimum="0" interval="100" colors="[#fcd26b,#cc3635]"/>
+        </colorAxis>
+        <series>
+            <TreeMapSeries weightField="Vancouver" showGroupHeader="true" groupField="items" displayName="tree" groupHeaderFontColor="#555555" groupNameField="name" color="#ffffff" nameField="Month" labelPosition="inside">
+                <groupHeaderColor>
+                    <SolidColor color="#eeeeee"/>
+                </groupHeaderColor>
+                <showDataEffect>
+                    <SeriesZoom relativeTo="chart" horizontalFocus="center" verticalFocus="middle" duration="1000"/>
+                </showDataEffect>
+            </TreeMapSeries>
+        </series>
+    </TreeMapChart>
+</BIX5>

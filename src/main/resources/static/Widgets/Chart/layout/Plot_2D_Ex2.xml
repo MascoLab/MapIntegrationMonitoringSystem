@@ -1,0 +1,54 @@
+<BIX5 backgroundColor="#FFFFFF"  borderStyle="none">
+    <Options>
+        <Caption text="Annual Report"/>
+        <Legend useVisibleCheck="true"/>
+    </Options>
+    <NumberFormatter id="numFmt" precision="0"/>
+    <Plot2DChart showDataTips="true">
+        <verticalAxis>
+            <LinearAxis maximum="3200" interval="400" formatter="{numFmt}"/>
+        </verticalAxis>
+        <horizontalAxis>
+            <LinearAxis maximum="3200" interval="400" formatter="{numFmt}" padding="90"/>
+        </horizontalAxis>
+        <backgroundElements>
+            <GridLines horizontalShowCenterLine="true" verticalShowCenterLine="true">
+                <horizontalCenterStroke>
+                    <Stroke color="#c5c5c5"/>
+                </horizontalCenterStroke>
+                <verticalCenterStroke>
+                    <Stroke color="#c5c5c5"/>
+                </verticalCenterStroke>
+            </GridLines>
+        </backgroundElements>
+        <series>
+            <Plot2DSeries xField="Cost" yField="Profit" radius="2.5" displayName="Cost/Profit">
+                <fill>
+                    <SolidColor color="#ffbb05"/>
+                </fill>
+                <showDataEffect>
+                    <SeriesZoom   relativeTo="series"/>
+                </showDataEffect>
+            </Plot2DSeries>
+            <Plot2DSeries xField="Revenue" yField="Profit" radius="2.5" displayName="Revenue/Profit">
+                <fill>
+                    <SolidColor color="#40b2e6"/>
+                </fill>
+                <showDataEffect>
+                    <SeriesZoom   relativeTo="series"/>
+                </showDataEffect>
+            </Plot2DSeries>
+            <Plot2DSeries xField="Cost" yField="Revenue" radius="2.5" displayName="Cost/Revenue">
+                <fill>
+                    <SolidColor color="#00b6aa"/>
+                </fill>
+                <showDataEffect>
+                    <SeriesZoom   relativeTo="series"/>
+                </showDataEffect>
+            </Plot2DSeries>
+        </series>
+        <annotationElements>
+            <CrossRangeZoomer zoomType="both" enableZooming="false" verticalLabelFormatter="{numFmt}" horizontalLabelFormatter="{numFmt}"/>
+        </annotationElements>
+    </Plot2DChart>
+</BIX5>

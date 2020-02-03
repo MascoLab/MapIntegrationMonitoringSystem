@@ -1,0 +1,53 @@
+<BIX5 backgroundColor="#FFFFFF"  borderStyle="none">
+    <Options>
+        <Caption text="RealTime Chart"/>
+        <SubCaption text="매 1초 단위로 최근 1분의 데이터를 표현합니다.(데이터는 랜덤)" fontSize="11" fontFamily="맑은 고딕"/>
+        <Legend useVisibleCheck="true"/>
+    </Options>
+    <DateFormatter id="dateFmt" formatString="HH:NN:SS"/>
+    <NumberFormatter id="numFmt"/>
+    <RealTimeChart id="chart" dataDisplayType="time" timePeriod="60" interval="1" showDataTips="true">
+        <horizontalAxis>
+            <DateTimeAxis dataUnits="seconds" labelUnits="seconds" dataInterval="1" interval="5" formatter="{dateFmt}" displayLocalTime="true" padding="2"/>
+        </horizontalAxis>
+        <verticalAxis>
+            <LinearAxis id="vAxis" minimum="0" maximum="100" interval="10" formatter="{numFmt}"/>
+        </verticalAxis>
+        <series>
+            <Line2DSeries xField="Time" yField="P1" displayName="Process 1" radius="4" itemRenderer="CircleItemRenderer" htmlJsFunction="@widget.userFunction">
+                <lineStroke>
+                    <Stroke color="#40b1e6" weight="2"/>
+                </lineStroke>
+            </Line2DSeries>
+            <Line2DSeries xField="Time" yField="P2" displayName="Process 2" radius="4" itemRenderer="CircleItemRenderer">
+                <lineStroke>
+                    <Stroke color="#21cbc0" weight="2"/>
+                </lineStroke>
+            </Line2DSeries>
+        </series>
+        <annotationElements>
+            <AxisMarker>
+                <lines>
+                    <AxisLine value="80" label="High" labelAlign="left" fontSize="12" color="#ee3334">
+                        <stroke>
+                            <Stroke color="#ef3334" weight="1"/>
+                        </stroke>
+                    </AxisLine>
+                    <AxisLine value="20" label="Low" labelUpDown="down" labelAlign="left" fontSize="12" color="#555555">
+                        <stroke>
+                            <Stroke color="#888888" weight="1"/>
+                        </stroke>
+                    </AxisLine>
+                </lines>
+                <ranges>
+                    <AxisRange startValue="20" endValue="80">
+                        <fill>
+                            <SolidColor color="#eeeeee" alpha="0.4"/>
+                        </fill>
+                    </AxisRange>
+                </ranges>
+            </AxisMarker>
+        </annotationElements>
+    </RealTimeChart>
+    <HttpServiceRepeater url="http://demo.bix5.net/SDK/RealtimeServerSamples/process3Data.jsp" target="{chart}" interval="3" method="get"/>
+</BIX5>

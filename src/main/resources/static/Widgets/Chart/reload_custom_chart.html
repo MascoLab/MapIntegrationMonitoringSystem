@@ -1,0 +1,48 @@
+<script>
+	widget.componentReadyHandler = function(componentId){
+		widget.componentId = componentId;
+		document.getElementById(componentId).setLayoutURL("./Widgets/Chart/layout/Image_single_ratio.xml");
+		document.getElementById(componentId).setDataType("json");
+		document.getElementById(componentId).setDataURL("./Widgets/Chart/data/Image_single_ratio.json");
+	}
+	
+	widget.reload = function(){
+		alert("위젯 새로고침");
+		document.getElementById(widget.componentId).setData(widget.createData());
+	}
+	
+	widget.createData = function(){
+		return [{
+		        "Year" : 2012,
+		        "Data1" : widget.randomData(),
+		        "Data2" : widget.randomData()
+		},{
+		        "Year" : 2013,
+		        "Data1" : widget.randomData(),
+		        "Data2" : widget.randomData()
+		},{
+		        "Year" : 2014,
+		        "Data1" : widget.randomData(),
+		        "Data2" : widget.randomData()
+		},{
+		        "Year" : 2015,
+		        "Data1" : widget.randomData(),
+		        "Data2" : widget.randomData()
+		},{
+		        "Year" : 2016,
+		        "Data1" : widget.randomData(),
+		        "Data2" : widget.randomData()
+		},{
+		        "Year" : 2017,
+		        "Data1" : widget.randomData(),
+		        "Data2" : widget.randomData()
+		}];
+	}
+	
+	widget.randomData = function(){
+		var min = 100;
+		var max = 2000;
+		
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+</script>

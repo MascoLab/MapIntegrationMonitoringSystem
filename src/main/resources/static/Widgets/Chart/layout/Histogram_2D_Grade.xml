@@ -1,0 +1,36 @@
+<BIX5 backgroundColor="0xFFFFFF"  borderStyle="none">
+    <Options>
+        <Caption text="한 학급의 수능성적 히스토그램" />
+        <SubCaption text="( 명 )" textAlign="right"/>
+    </Options>
+    <Histogram2DChart showDataTips="true" binRange="[270,280,290,300,310,320,330,340,350,360,370,380]" >
+        <horizontalAxis>
+            <HistogramCategoryAxis id="hAxis" categoryField="histogramXField"/>
+        </horizontalAxis>
+        <series>
+            <Histogram2DSeries labelPosition="inside" yField="grade" displayName="인원 수" itemRenderer="BoxItemRenderer" labelAlign="bottom" insideLabelYOffset="-6" color="#ffffff">
+                <fills>
+                    <SolidColor color="#3d3c80"/>
+                    <SolidColor color="#5587a2"/>
+                    <SolidColor color="#1a9bae"/>
+                    <SolidColor color="#3dbab4"/>
+                    <SolidColor color="#8cd2d0"/>
+                    <SolidColor color="#72a34a"/>
+                    <SolidColor color="#93ce94"/>
+                    <SolidColor color="#a09f20"/>
+                    <SolidColor color="#cfb81d"/>
+                    <SolidColor color="#f2c454"/>
+                    <SolidColor color="#fca148"/>
+                    <SolidColor color="#f36f40"/>
+                    <SolidColor color="#d84f2b"/>
+                </fills>
+                <showDataEffect>
+                    <SeriesInterpolate/>
+                </showDataEffect>
+            </Histogram2DSeries>
+        </series>
+        <horizontalAxisRenderers>
+            <HistogramAxis2DRenderer axis="{hAxis}"/>
+        </horizontalAxisRenderers>
+    </Histogram2DChart>
+</BIX5>

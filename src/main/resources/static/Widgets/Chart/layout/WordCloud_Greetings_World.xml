@@ -1,0 +1,19 @@
+<BIX5 borderStyle="none">
+    <WordCloudChart showDataTips="true">
+        <series>
+            <WordCloudSeries textField="text" weightField="value">
+                <showDataEffect>
+                    <SeriesInterpolate duration="1000"/>
+                </showDataEffect>
+                <fills>
+                    <SolidColor color="#52bb9d"/>
+                    <SolidColor color="#727b84"/>
+                    <SolidColor color="#ed527c"/>
+                    <SolidColor color="#f6a33d"/>
+                    <SolidColor color="#ed527a"/>
+                    <SolidColor color="#90d5c2"/>
+                </fills>
+            </WordCloudSeries>
+        </series>
+    </WordCloudChart>
+</BIX5>

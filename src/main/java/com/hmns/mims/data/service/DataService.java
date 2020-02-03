@@ -28,7 +28,7 @@ public class DataService {
 	public int selectInfoListCnt( HashMap param ) {
 		return dataInfoMapper.selectInfoListCnt( param );
 	}
-	
+
 	@SuppressWarnings( "rawtypes" )
 	public List<HashMap> selectInfoList( HashMap param ) {
 		return dataInfoMapper.selectInfoList( param );

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <BIX5>
+        <NumberFormatter id="numfmt" useThousandsSeparator="true"/>
+        <DataGrid id="dg1" horizontalScrollPolicy="auto" verticalAlign="middle" textAlign="center">
+            <columns>
+                <DataGridColumn dataField="From" width="110" labelJsFunction="@widget.convertFrom"/>
+                <DataGridColumn dataField="Subject" width="140"/>
+                <DataGridColumn dataField="ReceiveDate" headerText="Date"/>
+                <DataGridColumn dataField="CC"/>
+                <DataGridColumn dataField="Level"/>
+                <DataGridColumn dataField="Length" textAlign="right" formatter="{numfmt}"/>
+                <DataGridColumn dataField="AttachCount" textAlign="right"/>
+            </columns>
+        </DataGrid>
+    </BIX5>

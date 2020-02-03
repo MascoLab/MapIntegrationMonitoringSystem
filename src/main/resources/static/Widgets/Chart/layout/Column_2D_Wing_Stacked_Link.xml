@@ -1,0 +1,43 @@
+<BIX5 backgroundColor="#FFFFFF" >
+    <Options>
+        <Caption text="월별 전기 사용량" fontFamily="맑은 고딕"/>
+        <Legend fontFamily="맑은 고딕"/>
+    </Options>
+    <Box width="100%" height="100%" direction="horizontal">
+        <Box height="100%" direction="vertical">
+            <Label height="100%" text="강북" styleName="labelStyle"/>
+            <Label height="100%" text="강남" styleName="labelStyle"/>
+        </Box>
+        <Column2DWingChart showDataTips="true" type="stacked" columnWidthRatio="0.54">
+            <horizontalAxis>
+                <CategoryAxis categoryField="Month" padding="1"/>
+            </horizontalAxis>
+            <verticalAxis>
+                <LinearAxis maximum="5000" interval="1000"/>
+            </verticalAxis>
+            <verticalAxisOpp>
+                <LinearAxis maximum="5000" interval="1000"/>
+            </verticalAxisOpp>
+            <series>
+                <Column2DWingSeries yField="Profit" yFieldOpp="Profit2" labelPosition="inside" lineToEachItems="false" displayName="주택" color="#ffffff" showValueLabels="[]" showValueLabelsOpp="[]">
+                    <fill>
+                        <SolidColor color="#88ba4b"/>
+                    </fill>
+                    <showDataEffect>
+                        <WingSeriesInterpolate duration="1000"/>
+                    </showDataEffect>
+                </Column2DWingSeries>
+                <Column2DWingSeries yField="Cost" yFieldOpp="Cost2" labelPosition="inside" lineToEachItems="false" displayName="회사" color="#ffffff" showValueLabels="[]" showValueLabelsOpp="[]">
+                    <fill>
+                        <SolidColor color="#5587a2"/>
+                    </fill>
+                    <showDataEffect>
+                        <WingSeriesInterpolate duration="1000"/>
+                    </showDataEffect>
+                </Column2DWingSeries>
+            </series>
+        </Column2DWingChart>
+    </Box>
+    <Style>.labelStyle{fontSize:12;fontWeight:bold;fontFamily:"맑은 고딕";color:#555;}
+    </Style>
+</BIX5>

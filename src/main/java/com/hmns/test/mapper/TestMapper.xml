@@ -6,6 +6,6 @@
 		SELECT 
 			*
 		FROM
-			COMMON_CODE_INFO
+			COMMON_CODE
 	</select>
 </mapper>

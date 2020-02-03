@@ -1,0 +1,39 @@
+<BIX5 backgroundColor="#FFFFFF"  borderStyle="none">
+    <Options>
+        <Caption text="A 학교 성적 분포도" fontFamily="맑은 고딕"/>
+    </Options>
+    <SeriesSlide id="ss" duration="1000" elementOffset="0"/>
+    <Matrix2DChart showDataTips="true" type="fill" dataTipJsFunction="@widget.tipFunc" fontFamily="맑은 고딕">
+        <backgroundElements>
+            <GridLines direction="horizontal" horizontalChangeCount="2">
+                <horizontalStroke>
+                    <Stroke color="#f1f1f1"/>
+                </horizontalStroke>
+            </GridLines>
+        </backgroundElements>
+        <verticalAxis>
+            <LinearAxis id="vAxis" interval="0.5" maximum="7" minimum="2" labelJsFunction="@widget.vertiJsFunc"/>
+        </verticalAxis>
+        <horizontalAxis>
+            <LinearAxis id="hAxis" interval="0.5" maximum="7" labelJsFunction="@widget.horiJsFunc"/>
+        </horizontalAxis>
+        <series>
+            <Matrix2DSeries xField="Data_x" yField="Data_y" zField="Data" showDataEffect="{ss}" labelPosition="inside" fillJsFunction="@widget.fillJsFunc" insideLabelJsFunction="@widget.labelJsFunc" styleName="seriesFont"/>
+        </series>
+        <verticalAxisRenderers>
+            <Axis2DRenderer axis="{vAxis}" tickPlacement="none" styleName="font" minorTickPlacement="none"/>
+        </verticalAxisRenderers>
+        <horizontalAxisRenderers>
+            <Axis2DRenderer axis="{hAxis}" tickPlacement="none" styleName="font" minorTickPlacement="none" showLine="true"/>
+        </horizontalAxisRenderers>
+    </Matrix2DChart>
+    <Box width="100%" horizontalAlign="center">
+        <SubLegend borderStyle="solid" markerWidth="15" markerHeight="10" direction="horizontal" fontFamily="맑은 고딕">
+            <LegendItem label="0 ~ 10" fill="#a8c2d3"/>
+            <LegendItem label="10 ~ 20" fill="#bde3f6"/>
+            <LegendItem label="20 ~ " fill="#ecdcbb"/>
+        </SubLegend>
+    </Box>
+    <Style>.font{fontFamily:"맑은 고딕";fontSize:11;}.seriesFont{color:#777;fontFamily:"맑은 고딕";fontSize:12;}
+    </Style>
+</BIX5>

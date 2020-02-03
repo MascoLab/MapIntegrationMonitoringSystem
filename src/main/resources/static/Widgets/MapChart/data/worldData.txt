@@ -1,0 +1,12 @@
+﻿[
+{ "code":301, "id":"w01", "label":"Mexico City Airport", "flightRoute":"MexicoCity - Incheon", "distance":10, "imgurl":"./Images/plane2.png", "v":-15, "h":-10, "fc":603, "curve":0, "rotate":270},
+{ "code":101, "id":"w02", "label":"NewYork Airport", "flightRoute":"NewYork - Incheon", "distance":10, "imgurl":"./Images/plane2.png", "v":-15, "h":35, "th":60, "tv":-10, "fc":603, "curve":-3, "rotate":270},
+{ "code":201, "id":"w03", "label":"Brazilia Airport", "flightRoute":"Brazilia - Incheon", "distance":10, "imgurl":"./Images/plane2.png", "v":-15, "h":-10, "fc":603, "curve":-30, "rotate":270},
+{ "code":601, "id":"w04", "label":"Chengdu Airport", "flightRoute":"Chengdu - Incheon", "distance":10, "imgurl":"./Images/plane2.png", "v":-15, "h":-10, "fc":603, "curve":0, "rotate":90},
+{ "code":632, "id":"w05", "label":"Ataturk Airport", "flightRoute":"Ataturk - Incheon", "distance":10, "imgurl":"./Images/plane3.png", "v":-15, "h":-10, "fc":603, "curve":0, "rotate":90},
+{ "code":401, "id":"w06", "label":"London City Airport", "flightRoute":"LondonCity - Incheon", "distance":10, "imgurl":"./Images/plane3.png", "v":-15, "h":-10, "fc":603, "curve":0, "rotate":100},
+{ "code":529, "id":"w07", "label":"Johannesburg Airport", "flightRoute":"Johannesburg - Incheon", "distance":10, "imgurl":"./Images/plane3.png", "v":-15, "h":-10, "fc":603, "curve":30, "rotate":85},
+{ "code":701, "id":"w08", "label":"Brisbane Airport", "flightRoute":"Brisbane - Incheon", "distance":10, "imgurl":"./Images/plane3.png", "v":-15, "h":-10, "fc":603, "curve":0, "rotate":350},
+{ "code":430, "id":"w08", "label":"Helsinki Airport", "flightRoute":"Helsinki - Incheon", "distance":10, "imgurl":"./Images/plane3.png", "v":-15, "h":-10, "fc":603, "curve":30, "rotate":90},
+{ "code":603, "id":"w08", "label":"Incheon Airport", "flightRoute":"Incheon", "distance":10, "imgurl":"./Images/plane3.png", "v":-15, "h":-10}
+]

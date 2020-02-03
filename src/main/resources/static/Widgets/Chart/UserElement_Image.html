@@ -1,0 +1,38 @@
+<script type="text/javascript">
+	widget.chartData = [{
+		        "Month" : "Jan",
+		        "Data" : 20
+		},{
+		        "Month" : "Feb",
+		        "Data" : 30
+		},{
+		        "Month" : "Mar",
+		        "Data" : 33
+		},{
+		        "Month" : "Apr",
+		        "Data" : 51
+		},{
+		        "Month" : "May",
+		        "Data" : 47
+		},{
+		        "Month" : "Jun",
+		        "Data" : 39
+		},{
+		        "Month" : "Jul",
+		        "Data" : 26
+		},{
+		        "Month" : "Aug",
+		        "Data" : 42
+		},{
+		        "Month" : "Sep",
+		        "Data" : 77
+		},{
+		        "Month" : "Oct",
+		        "Data" : 68
+		}]
+
+	widget.componentReadyHandler = function(componentId){
+		document.getElementById(componentId).setLayoutURL("./Widgets/Chart/layout/UserElement_Image.xml");
+		document.getElementById(componentId).setData(widget.chartData);
+	}
+</script>

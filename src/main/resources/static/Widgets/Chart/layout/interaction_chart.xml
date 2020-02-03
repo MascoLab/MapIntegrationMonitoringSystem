@@ -1,0 +1,19 @@
+<BIX5 backgroundColor="#FFFFFF"  borderStyle="none">
+     <Options>
+      <Caption text="World Top 10 - Fastest Growing Economies (2017)" />
+      <SubCaption text="GDP Growth (In %)" textAlign="center" />
+  </Options>
+  <SeriesInterpolate id="ss"/>
+    <Column2DChart showDataTips="true" selectionMode="multiple" columnWidthRatio="0.48" itemClickJsFunction="@widget.itemClickJs" paddingRight="10">
+        <horizontalAxis>
+            <CategoryAxis categoryField="Country"/>
+         </horizontalAxis>
+       <verticalAxis>
+          <LinearAxis maximum="100" interval="10"/>
+       </verticalAxis>
+         <series>
+            <Column2DSeries yField="GDP" displayName="GDP Growth (In %)" showDataEffect="{ss}">
+           </Column2DSeries>
+       </series>
+   </Column2DChart>
+</BIX5>

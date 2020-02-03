@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BIX5 backgroundColor="#FFFFFF">
+    <MapChart id="mainMap1" showDataTips="true" dataTipType="Type4" dataTipFill="#fff0f0" dataTipBorderColor="#fff0f0" dataTipColor="#ffffff" dataTipAlpha="1">
+        <series>
+            <MapSeries id="mapseries" interactive="true" selectionMarking="line" color="#777777" labelPosition="none" displayName="Map" useGis="true" dataTipFill="#ff007e" dataTipBorderColor="#ff007e" dataTipColor="#ffffff" dataTipAlpha="1">
+                <showDataEffect>
+                    <SeriesInterpolate duration="1000"/>
+                </showDataEffect>
+                <stroke>
+                    <Stroke color="#CAD7E0" weight="0.5" alpha="1"/>
+                </stroke>
+                <rollOverStroke>
+                    <Stroke color="#CAD7E0" weight="0.5" alpha="1"/>
+                </rollOverStroke>
+            </MapSeries>
+            <MapPlotSeries id="plot1" areaCodeField="code" labelField="address" horizontalCenterGapField="h" verticalCenterGapField="v" adjustedRadius="5" fill="#ff007e" color="#888888" fontWeight="bold" labelPosition="bottom" displayName="지점" rangeLegendDataField="value" useGis="true" itemRenderer="DiamondItemRenderer">
+                <showDataEffect>
+                    <SeriesZoom duration="1000" />
+                </showDataEffect>
+                <stroke>
+                    <Stroke color="#ff007e" weight="0" alpha="1"/>
+                </stroke>
+            </MapPlotSeries>
+        </series>
+    </MapChart>
+</BIX5>

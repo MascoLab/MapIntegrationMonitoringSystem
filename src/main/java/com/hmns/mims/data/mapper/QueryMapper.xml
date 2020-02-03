@@ -1,18 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hmns.mims.data.mapper.QueryMapper">
+
+	<sql id="queryWhere">
+		<if test="querySeq != null">
+			AND QUERY_SEQ = #{querySeq}
+		</if>
+		<if test="queryName != null">
+			AND QUERY_NAME LIKE '%' + #{queryName} + '%'
+		</if>
+		<if test="queryExec != null">
+			AND QUERY_EXEC = #{queryExec}
+		</if>
+		<if test="dataTypeCode != null">
+			AND DATA_TYPE_CODE = #{dataTypeCode}
+		</if>
+		<if test="queryDesc != null">
+			AND QUERY_DESC LIKE '%' + #{queryDesc} + '%'
+		</if>
+		<if test="useuserID">
+			AND USE_USER_ID = #{useuserID}
+		</if>
+	</sql>
+
 	<select id="selectQueryListCnt" resultType="Integer">
+		SELECT COUNT(*)
+		FROM
+		(	SELECT
+				ROW_NUMBER() OVER (ORDER BY QUERY_SEQ ASC) AS rownum,
+				QUERY_SEQ,
+				QUERY_NAME,
+				QUERY_EXEC,
+				DATA_TYPE_CODE,
+				QUERY_DESC,
+				USE_USER_ID,
+				CONVERT( CHAR(19), INSERT_DATE, 120 ) AS INSERT_DATE,
+				CONVERT( CHAR(19), INSERT_DATE, 120 ) AS UPDATE_DATE
+			FROM
+				DATA_QUERY
+			WHERE
+				1 = 1	
+				<include refid="queryWhere"></include>	
+		) T1
 	</select>
 	
 	<select id="selectQueryList" resultType="HashMap">
+		SELECT *
+		FROM
+		(	SELECT
+				ROW_NUMBER() OVER (ORDER BY QUERY_SEQ ASC) AS rownum,
+				QUERY_SEQ,
+				QUERY_NAME,
+				QUERY_EXEC,
+				DATA_TYPE_CODE,
+				QUERY_DESC,
+				USE_USER_ID,
+				CONVERT( CHAR(19), INSERT_DATE, 120 ) AS INSERT_DATE,
+				CONVERT( CHAR(19), INSERT_DATE, 120 ) AS UPDATE_DATE
+			FROM
+				DATA_QUERY
+			WHERE
+				1 = 1	
+				<include refid="queryWhere"></include>	
+		) T1
+		<if test="start != '' and start !=null">
+		WHERE
+			rownum BETWEEN ${start} + 1 AND ${start} + ${limit}
+		</if>
 	</select>
 	
 	<insert id="insertQuery">
+		INSERT INTO DATA_QUERY
+		( QUERY_SEQ, QUERY_NAME, QUERY_EXEC, DATA_TYPE_CODE, QUERY_DESC, USE_USER_ID, INSERT_DATE )
+		VALUES
+		( #{querySeq}, #{queryName}, #{queryExec}, #{dataTypeCode}, #{queryDesc}, #{useuserID}, GETDATE() )
 	</insert>
 	
 	<update id="updateQuery">
+		UPDATE
+			DATA_QUERY
+		SET
+			<if test="queryName != null">
+				QUERY_NAME = #{queryName},
+			</if>
+			<if test="queryExec != null">
+				QUERY_EXEC = #{queryExec},
+			</if>
+			<if test="DATA_TYPE_CODE != null">
+				DATA_TYPE_CODE = #{DATA_TYPE_CODE},
+			</if>
+			<choose>
+				<when test="queryDesc != null">
+					QUERY_DESC = #{queryDesc},
+				</when>
+				<otherwise>
+					QUERY_DESC = '',
+				</otherwise>
+			</choose>
+			<if test="useuserID != null">
+				USE_USER_ID = #{useuserID},
+			</if>
+			UPDATE_DATE = GETDATE()
+		WHERE
+			QUERY_SEQ = #{querySeq}
 	</update>
 	
 	<delete id="deleteQuery">
+		DELETE
+		FROM
+			DATA_QUERY
+		WHERE
+			QUERY_SEQ = #{querySeq}
 	</delete>
 </mapper>

@@ -1,18 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hmns.mims.widget.mapper.WidgetInfoMapper">
+	
+	<sql id="widgetInfoWhere">
+		<if test ="widgetSeq != null">
+			AND WIDGET_SEQ = #{widgetSeq}
+		</if>
+		<if test = "baseWidgetSeq != null">
+			AND BASE_WIDGET_SEQ = #{baseWidgetSeq}
+		</if>
+		<if test ="dataSeq != null">
+			AND DATA_SEQ = #{dataSeq}
+		</if>
+		<if test ="widgetName != null">
+			AND WIDGET_NAME LIKE '%' + #{widgetName} + '%'
+		</if>
+		<if test ="widgetUrl != null">
+			AND WIDGET_URL LIKE '%' + #{widgetUrl} + '%'
+		</if>
+		<if test="useuserID != null">
+			AND USE_USER_ID = #{useuserID}
+		</if>
+	</sql>
+
 	<select id="selectInfoListCnt" resultType="Integer">
+		SELECT COUNT(*)
+		FROM
+		(
+			SELECT 
+				ROW_NUMBER() OVER (ORDER BY WIDGET_SEQ ASC) AS rownum,
+				WIDGET_SEQ,
+				BASE_WIDGET_SEQ,
+				DATA_SEQ,
+				WIDGET_NAME,
+				WIDGET_URL,
+				USE_USER_ID,
+				CONVERT( CHAR(19), INSERT_DATE, 120 ) AS INSERT_DATE,
+				CONVERT( CHAR(19), INSERT_DATE, 120 ) AS UPDATE_DATE
+			FROM
+				WIDGET_INFO
+			WHERE
+				1 = 1
+				<include refid="widgetInfoWhere"></include>
+		) T1
 	</select>
 	
 	<select id="selectInfoList" resultType="HashMap">
+		SELECT *
+		FROM
+		(
+			SELECT 
+				ROW_NUMBER() OVER (ORDER BY WIDGET_SEQ ASC) AS rownum,
+				WIDGET_SEQ,
+				BASE_WIDGET_SEQ,
+				DATA_SEQ,
+				WIDGET_NAME,
+				WIDGET_URL,
+				USE_USER_ID,
+				CONVERT( CHAR(19), INSERT_DATE, 120 ) AS INSERT_DATE,
+				CONVERT( CHAR(19), INSERT_DATE, 120 ) AS UPDATE_DATE
+			FROM
+				WIDGET_INFO
+			WHERE
+				1 = 1
+				<include refid="widgetInfoWhere"></include>
+		) T1
+		<if test="start != '' and start != null">
+			WHERE
+				rownum BETWEEN ${start} + 1 AND ${start} + ${limit}
+		</if>
 	</select>
 	
 	<insert id="insertInfo">
+		INSERT INTO WIDGET_INFO
+		( WIDGET_SEQ, BASE_WIDGET_SEQ, DATA_SEQ, WIDGET_NAME, WIDGET_URL, USE_USER_ID, INSERT_DATE )
+		VALUES
+		( #{widgetSeq}, #{baseWidgetSeq}, #{dataSeq}, #{widgetName}, #{widgetUrl}, #{useuserID}, GETDATE() )
 	</insert>
 	
 	<update id="updateInfo">
+		UPDATE WIDGET_INFO
+		SET
+			<if test="baseWidgetSeq != null">
+				BASE_WIDGET_SEQ = #{baseWidgetSeq},
+			</if>
+			<if test="dataSeq != null">
+				DATA_SEQ = #{dataSeq},
+			</if>
+			<if test="widgetName != null">
+				WIDGET_NAME = #{widgetName},
+			</if>
+			<if test="widgetUrl != null">
+				WIDGET_URL = #{widgetUrl},
+			</if>
+			<if test="useuserID != null">
+				USE_USER_ID = #{useuserID},
+			</if>
+			UPDATE_DATE = GETDATE()
+		WHERE
+			WIDGET_SEQ = #{widgetSeq}
 	</update>
 	
 	<delete id="deleteInfo">
+		DELETE FROM
+			WIDGET_INFO
+		WHERE
+			WIDGET_SEQ = #{widgetSeq}
 	</delete>
 </mapper>

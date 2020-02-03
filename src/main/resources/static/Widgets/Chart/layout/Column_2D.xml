@@ -1,0 +1,21 @@
+<BIX5 backgroundColor="#FFFFFF" borderStyle="none">
+    <Options>
+        <Caption text="World Top 10 - Fastest Growing Economies" />
+        <SubCaption text="GDP Growth (In %)" textAlign="center" />
+    </Options>
+    <Column2DChart showDataTips="true" itemClickJsFunction="@widget.chartItemClickHandler">
+        <horizontalAxis>
+            <CategoryAxis categoryField="Country"/>
+        </horizontalAxis>
+        <verticalAxis>
+            <LinearAxis maximum="100" interval="10"/>
+        </verticalAxis>
+        <series>
+            <Column2DSeries labelPosition="outside" yField="GDP" displayName="GDP Growth (In %)">
+            	<fills>
+            		<SolidColor color="#ff9700"></SolidColor>
+            	</fills>
+            </Column2DSeries>
+        </series>
+    </Column2DChart>
+</BIX5>

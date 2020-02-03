@@ -1,0 +1,53 @@
+<script type="text/javascript">
+	widget.componentReadyHandler = function(componentId){
+		widget.componentId = componentId;
+		widget.gridApp = document.getElementById(componentId);	// 그리드를 포함하는 div 객체
+		widget.gridRoot = widget.gridApp.getRoot();	// 데이터와 그리드를 포함하는 객체
+	
+		widget.gridApp.setLayoutURLEx("./Widgets/Grid/layout/interaction_grid.xml");
+		widget.gridApp.setDataType("json");
+		widget.gridApp.setDataURLEx("./Widgets/Chart/data/interaction_chart.json");
+	
+		widget.layoutCompleteHandler = function(event) {
+			widget.dataGrid = widget.gridRoot.getDataGrid();	// 그리드 객체
+			widget.dataGrid.addEventListener("itemClick", widget.itemClickHandler);
+			widget.getSlide().addEventListener("chartItemClick", widget.chartItemClickHandler);
+		}
+		
+		widget.itemClickHandler = function(event){
+			var slide = widget.getSlide();
+			var evt = BIX5.dashboard.createEvent("gridItemClick");
+			var detail = {};
+			
+			detail.widgetId = widget.id;
+			detail.componentId = widget.componentId;
+			detail.index = event.rowIndex;
+			
+			evt.detail = detail;
+			
+			slide.dispatchEvent(evt);
+		}
+		
+		widget.chartItemClickHandler = function(event){
+			var selectedIdx = event.detail.index;
+			var dataGrid = widget.dataGrid;
+			var rowCount = dataGrid.getRowCount();
+			var startRowIdx = Math.floor(selectedIdx / rowCount) * rowCount;
+			
+			dataGrid.setVerticalScrollPosition(startRowIdx);
+			dataGrid.setSelectedIndex(selectedIdx);
+		}
+	
+		widget.gridRoot.addEventListener("layoutComplete", widget.layoutCompleteHandler);
+	}
+	
+	widget.componentRemoveHandler = function(){
+		widget.gridRoot.removeEventListener("layoutComplete", widget.layoutCompleteHandler);
+	}
+	
+	widget.contentRemoveHandler = function(){
+		widget.dataGrid = null;
+		widget.gridRoot = null;
+		widget.gridApp = null;
+	}
+</script>

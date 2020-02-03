@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+  <title>Bootstrap Example</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+<style>
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 10px;
+  font-size: 15px;
+  width: 15%;
+}
+ 
+.tabcontent {
+  color: white;
+  display: none;
+  padding: 1px;
+  text-align: center;
+}
+
+#Tab1 {background-color:gray; height:100px;}
+#Tab2 {background-color:gray; height:100px;}
+#Tab3 {background-color:gray; height:100px;}
+</style>
+</head>
+
+
+<body marginheight="0px" marginwidth="0px">
+
+
+<div id="Tab1" class="tabcontent">
+	<h1>HMNS</h1>  
+</div>
+
+<div id="Tab2" class="tabcontent">
+	<h1>HMNS</h1>
+</div>
+
+<div id="Tab3" class="tabcontent">
+	<h1>HMNS</h1>
+</div>
+
+{{>left}}
+
+<button class="tablink" onclick="TabEvent('Tab1')" id="defaultOpen">Tab1</button>
+<button class="tablink" onclick="TabEvent('Tab2')">Tab2</button>
+<button class="tablink" onclick="TabEvent('Tab3')">Tab3</button>
+
+<script>
+function TabEvent(TabName,elmnt,color) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+  document.getElementById(TabName).style.display = "block";
+  elmnt.style.backgroundColor = color;
+
+}
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+
+</body>
+</html>

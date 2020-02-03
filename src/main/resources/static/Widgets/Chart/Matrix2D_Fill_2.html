@@ -1,0 +1,64 @@
+<script type="text/javascript">
+	widget.componentReadyHandler = function(componentId){
+		document.getElementById(componentId).setLayoutURL("./Widgets/Chart/layout/Matrix2D_Fill_2.xml");
+		document.getElementById(componentId).setDataType("json");
+		document.getElementById(componentId).setDataURL("./Widgets/Chart/data/Matrix2D_Fill_2.json");
+	}
+	
+	widget.vertiJsFunc = function (id, value){
+	    var grade;
+	    if(value==2.5)
+	        grade = "F";
+	      else if(value==3.5)
+	       grade = "D";
+	      else if(value==4.5)
+	       grade = "C";
+	      else if(value==5.5)
+	       grade = "B";
+	      else if(value==6.5)
+	       grade = "A";
+	      else
+	          return "";
+	    return grade + "등급";
+	  }
+	
+	widget.horiJsFunc = function(id, value)
+	{
+	   if(value==0.5)
+	      return "국어";
+	    else if(value==1.5)
+	     return "수학";
+	    else if(value==2.5)
+	     return "물리";
+	    else if(value==3.5)
+	     return "국사";
+	    else if(value==4.5)
+	     return "영어";
+	    else if(value==5.5)
+	     return "생물";
+	    else if(value==6.5)
+	     return "체육";
+	    else
+	        return "";
+	}
+	
+	widget.fillJsFunc = function(seriesId, index, param, values)
+	{
+	    if(values[2] < 10)
+	       return "#a8c2d3";
+	   else if(values[2] >= 10 && values[2] <20)
+	     return "#bde3f6";
+	   else if(values[2] >= 20)
+	     return "#ecdcbb";
+	}
+	
+	widget.labelJsFunc = function(seriesId, index, data, values)
+	{
+	    return values[2]+" 명";
+	}
+	
+	widget.tipFunc = function(seriesId, seriesName, index, xName, yName, data, values)
+	{
+	   return "x : " + widget.horiJsFunc(seriesId,values[0]) + " y : " + widget.vertiJsFunc(seriesId,values[1]) + " value : " + values[2];
+	}
+</script>

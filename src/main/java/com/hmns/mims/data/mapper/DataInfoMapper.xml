@@ -1,18 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hmns.mims.data.mapper.DataInfoMapper">
+
+	<sql id="datainfoWhere">
+		<if test="dataSeq != null">
+			AND DATA_SEQ = #{dataSeq}
+		</if>
+		<if test="serverSeq != null">
+			AND SERVER_SEQ = #{serverSeq}
+		</if>
+		<if test="querySeq != null">
+			AND QUERY_SEQ = #{querySeq}
+		</if>
+		<if test="dataName != null">
+			AND DATA_NAME LIKE '%' + #{dataName} + '%'
+		</if>
+		<if test="dataDesc != null">
+			AND DATA_DESC LIKE '%' + #{dataDesc} +'%'
+		</if>
+		<if test="useuserID != null">
+			AND USE_USER_ID = #{useuserID}
+		</if>
+	</sql>
+
+
 	<select id="selectInfoListCnt" resultType="Integer">
+		SELECT COUNT(*)
+		FROM
+			( SELECT
+				ROW_NUMBER() OVER (ORDER BY DATA_SEQ ASC) AS rownum,
+				DATA_SEQ,
+				SERVER_SEQ,
+				QUERY_SEQ,
+				DATA_NAME,
+				DATA_DESC,
+				USE_USER_ID,
+				CONVERT( CHAR(19), INSERT_DATE, 120 ) AS INSERT_DATE,
+				CONVERT( CHAR(19), INSERT_DATE, 120 ) AS UPDATE_DATE
+			FROM
+				DATA_INFO
+			WHERE
+				1 = 1
+		<include refid="datainfoWhere"></include> ) T1
 	</select>
-	
+
 	<select id="selectInfoList" resultType="HashMap">
+		SELECT *
+		FROM
+			( SELECT
+				ROW_NUMBER() OVER (ORDER BY DATA_SEQ ASC) AS rownum,
+				DATA_SEQ,
+				SERVER_SEQ,
+				QUERY_SEQ,
+				DATA_NAME,
+				DATA_DESC,
+				USE_USER_ID,
+				CONVERT( CHAR(19), INSERT_DATE, 120 ) AS INSERT_DATE,
+				CONVERT( CHAR(19), INSERT_DATE, 120 ) AS UPDATE_DATE
+			FROM
+				DATA_INFO
+			WHERE
+			1 = 1
+			<include refid="datainfoWhere"></include> ) T1
+		<if test="start != '' and start != null">
+			WHERE
+				rownum BETWEEN ${start} + 1 AND ${start} + ${limit}
+		</if>
 	</select>
-	
+
 	<insert id="insertInfo">
+		INSERT INTO DATA_INFO
+		( DATA_SEQ, SERVER_SEQ,
+		QUERY_SEQ, DATA_NAME, DATA_DESC, USE_USER_ID, INSERT_DATE )
+		VALUES
+		(
+		#{dataSeq}, #{serverSeq}, #{querySeq}, #{dataName}, #{dataDesc},
+		#{useuserID}, GETDATE() )
 	</insert>
-	
+
 	<update id="updateInfo">
+		UPDATE
+		DATA_INFO
+		SET
+		<if test="serverSeq != null">
+			SERVER_SEQ = #{serverSeq},
+		</if>
+		<if test="querySeq != null">
+			QUERY_SEQ = #{querySeq},
+		</if>
+		<if test="dataName != null">
+			DATA_NAME = #{dataName},
+		</if>
+		<choose>
+			<when test="dataDesc != null">
+				DATA_DESC = #{dataDesc},
+			</when>
+			<otherwise>
+				DATA_DESC = '',
+			</otherwise>
+		</choose>
+		<if test="useuserID != null">
+			USE_USER_ID = #{useuserID},
+		</if>
+		UPDATE_DATE GETDATE()
+		WHERE
+			DATA_SEQ = #{dataSeq}
 	</update>
-	
+
 	<delete id="deleteInfo">
+		DELETE
+		FROM 
+			DATA_INFO
+		WHERE 
+			DATA_SEQ = #{dataSeq}
 	</delete>
 </mapper>
