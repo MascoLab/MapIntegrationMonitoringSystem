@@ -1,9 +1,0 @@
-﻿[{
-        "code" : 600,
-        "label" : "ASIA",
-        "v" : -70,
-        "h" : -90,
-        "lapos" : "bottom",
-        "popu" : "Singapore",
-        "data" : "100"
-}]

@@ -1,57 +1,272 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>BIX5 | Dashboard Demo</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="description" content="BIX5 Dashboard, BIX5 Chart, BIX5 Grid, BIX5 MapChart, BIXsoft 2017">
-	<meta name="keywords" content="HTML5,Chart,JavaScript,CSS,Ajax,Graph,BIX5Chart">
-	<script type="text/javascript" src="/js/jquery-1.12.4.min.js"></script>
-	<script>
-/*	
-	$(document).ready(function(){
-		var product;
-		if("" == getParameterByName("product")){
-			if("" == getParameterByName("Product")){
-				product = "Dashboard";
-			} else {
-				product = getParameterByName("Product");
-			}
-		} else {
-			product = getParameterByName("product");
-		}
-		
-		if("Mapchart" == getParameterByName("product") || "Mapchart"==getParameterByName("Product")){
-			product = "MapChart";
-		} 
-		
-		var tab = getParameterByName("tab");
-		var page = "" == getParameterByName("page") ? "Web/Overview" : getParameterByName("page");
+{{>layout/header}}
 
-		$("#topFrame").attr("src", "./Samples/"+product+"/Web/Top.html");
-		$("#menuFrame").attr("src", "./Samples/"+product+"/Web/LeftMenu.html?tab="+tab+"&page="+page);
-		$("#sampleFrame").attr("src", "./Samples/"+product+"/"+page+".html");		
-	});
-*/	
-	function getParameterByName(name) {
-		name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-		var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-			results = regex.exec(location.search);
-		return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-	}
-	</script>
-</head>
+<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="./css/pages/main.css">
 
-<frameset rows="80px,100%" frameborder="1" border="1px" BORDERCOLOR="#00619d">
-	<frame scrolling="no" rows="100%" name="topFrame" id="topFrame" noresize>
-		<frameset cols="320px,100%" frameborder="0">
-			<frame scrolling="no" rows="100%" noresize name="menuFrame" id="menuFrame" frameborder="0" marginwidth="0">
-			<frameset rows="100%">
-				<frame scrolling="yes" noresize name="sampleFrame" id="sampleFrame" frameborder="0">
-			</frameset>
-		</frameSet>
-	</frame>
-</frameSet>
+<script type="text/javascript" src="./js/bootstrap.js"></script>
+<script type="text/javascript" src="./js/pages/main.js"></script>
 
-</html>
+{{>layout/left_menu}}
+
+<div id="body">
+	<ul class="nav nav-tabs" role="tablist">
+		<li class="active"><a href="#contact_01" data-toggle="tab">ADAS</a><span>x</span></li>
+		<li><a href="#contact_02" data-toggle="tab">변화정보</a><span>x</span></li>
+		<li><a href="#" class="add-contact">+ 위젯 추가</a></li>
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="contact_01">
+			<div class="gGrid1">
+				<!-- grid -->
+				<div class="mGrid1">
+					<!-- row -->
+					<div class="row">
+						<!-- col -->
+						<div class="col">
+							<div class="mBox1 h1">
+								<div class="tit">
+									<div class="ti">메인컨텐츠</div>
+									<div class="rt">
+										<a href="###" class="iRefresh">새로고립</a>
+										<a href="###" class="iSet2">세팅</a>
+									</div>
+								</div>
+								<div class="con">
+									<div class="co">
+										<div class="txt">컨텐츠영역</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- //col -->
+						<!-- col -->
+						<div class="col">
+							<div class="mBox1 h1">
+								<div class="tit">
+									<div class="ti">메인컨텐츠</div>
+									<div class="rt">
+										<a href="###" class="iRefresh">새로고립</a>
+										<a href="###" class="iSet2">세팅</a>
+									</div>
+								</div>
+								<div class="con">
+									<div class="co">
+										<!-- flex -->
+										<div class="mFlex1">
+											<div class="flexRow">
+												<div class="flexCol">
+													<div class="mBox2">
+														<div class="txt">COCONUT</div>
+														<a href="#jsLayer1" class="iSet2 jsBtnShow1">세팅</a>
+													</div>
+												</div>
+												<div class="flexCol">
+													<div class="mBox2">
+														<div class="txt">KAIROS<br> CONVERTER</div>
+														<a href="#jsLayer1" class="iSet2 jsBtnShow1">세팅</a>
+													</div>
+												</div>
+											</div>
+											<div class="flexRow">
+												<div class="flexCol">
+													<div class="mBox2">
+														<div class="txt">KAIROS<br> CONVERTER</div>
+														<a href="#jsLayer1" class="iSet2 jsBtnShow1">세팅</a>
+													</div>
+												</div>
+												<div class="flexCol">
+													<div class="mBox2">
+														<div class="txt">ExtraDB<br> Manager</div>
+														<a href="#jsLayer1" class="iSet2 jsBtnShow1">세팅</a>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- //flex -->
+										<!-- layer -->
+										<div id="jsLayer1" class="lLayer1">
+											<div class="layerCon">
+												<div class="layerList">
+													<dl>
+													<dt>명칭</dt>
+													<dd>
+														<div class="gIt"><input type="text" class="it" title="명칭" value="OBN"></div>
+													</dd>
+													<dt>URL</dt>
+													<dd>
+														<div class="gIt"><input type="text" class="it" title="URL" value="\\Cp-ks20\oem\00_EMUL\OBN"></div>
+													</dd>
+													</dl>
+												</div>
+												<div class="button">
+													<a href="###">저장</a>
+													<a href="#jsLayer1" class="gray jsBtnClose1">닫기</a>
+												</div>
+											</div>
+										</div>
+										<!-- //layer -->
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- //col -->
+						<!-- col -->
+						<div class="col">
+							<div class="mBox1 h1">
+								<div class="tit">
+									<div class="ti">메인컨텐츠</div>
+									<div class="rt">
+										<a href="###" class="iRefresh">새로고립</a>
+										<a href="###" class="iSet2">세팅</a>
+									</div>
+								</div>
+								<div class="con">
+									<div class="co">
+										<!-- flex -->
+										<div class="mFlex1">
+											<div class="flexRow">
+												<div class="flexCol">
+													<div class="mBox2 green h1">
+														<div class="txt">OBN</div>
+														<a href="#jsLayer2" class="iSet2 jsBtnShow1">세팅</a>
+													</div>
+												</div>
+												<div class="flexCol">
+													<div class="mBox2 green h1">
+														<div class="txt">OEM<br> GEN4</div>
+														<a href="#jsLayer2" class="iSet2 jsBtnShow1">세팅</a>
+													</div>
+												</div>
+											</div>
+											<div class="flexRow">
+												<div class="flexCol">
+													<div class="mBox2 green h1">
+														<div class="txt">OEM<br> GEN5</div>
+														<a href="#jsLayer2" class="iSet2 jsBtnShow1">세팅</a>
+													</div>
+												</div>
+												<div class="flexCol">
+													<div class="mBox2 green h1">
+														<div class="txt">OEM<br> PRM2</div>
+														<a href="#jsLayer2" class="iSet2 jsBtnShow1">세팅</a>
+													</div>
+												</div>
+											</div>
+											<div class="flexRow">
+												<div class="flexCol">
+													<div class="mBox2 green h1">
+														<div class="txt">AM<br> GINI2D</div>
+														<a href="#jsLayer2" class="iSet2 jsBtnShow1">세팅</a>
+													</div>
+												</div>
+												<div class="flexCol">
+													<div class="mBox2 green h1">
+														<div class="txt">AM<br> GINI3D</div>
+														<a href="#jsLayer2" class="iSet2 jsBtnShow1">세팅</a>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- //flex -->
+										<!-- layer -->
+										<div id="jsLayer2" class="lLayer1" style="display:block;">
+											<div class="layerCon">
+												<div class="layerList">
+													<dl>
+													<dt>명칭</dt>
+													<dd>
+														<div class="gIt"><input type="text" class="it" title="명칭" value="OBN"></div>
+													</dd>
+													<dt>URL</dt>
+													<dd>
+														<div class="gIt"><input type="text" class="it" title="URL" value="\\Cp-ks20\oem\00_EMUL\OBN"></div>
+													</dd>
+													</dl>
+												</div>
+												<div class="button">
+													<a href="###">저장</a>
+													<a href="#jsLayer2" class="gray jsBtnClose1">닫기</a>
+												</div>
+											</div>
+										</div>
+										<!-- //layer -->
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- //col -->
+					</div>
+					<!-- //row -->
+					<!-- row -->
+					<div class="row">
+						<!-- col -->
+						<div class="col">
+							<div class="mBox1 h1">
+								<div class="tit">
+									<div class="ti">메인컨텐츠</div>
+									<div class="rt">
+										<a href="###" class="iRefresh">새로고립</a>
+										<a href="###" class="iSet2">세팅</a>
+									</div>
+								</div>
+								<div class="con">
+									<div class="co">
+										<div class="txt">컨텐츠영역</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- //col -->
+						<!-- col -->
+						<div class="col">
+							<div class="mBox1 h1">
+								<div class="tit">
+									<div class="ti">메인컨텐츠</div>
+									<div class="rt">
+										<a href="###" class="iRefresh">새로고립</a>
+										<a href="###" class="iSet2">세팅</a>
+									</div>
+								</div>
+								<div class="con">
+									<div class="co">
+										<div class="txt">컨텐츠영역</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- //col -->
+					</div>
+					<!-- //row -->
+					<!-- row -->
+					<div class="row">
+						<!-- col -->
+						<div class="col">
+							<div class="mBox1 h1">
+								<div class="tit">
+									<div class="ti">메인컨텐츠</div>
+									<div class="rt">
+										<a href="###" class="iRefresh">새로고립</a>
+										<a href="###" class="iSet2">세팅</a>
+									</div>
+								</div>
+								<div class="con">
+									<div class="co">
+										<div class="txt">컨텐츠영역</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- //col -->
+					</div>
+					<!-- //row -->
+				</div>
+				<!-- //grid -->
+			</div>
+		</div>
+		<div class="tab-pane" id="contact_02">
+
+		</div>
+	</div>
+</div>
+
+{{>layout/bottom}}

@@ -25,7 +25,7 @@ public class TestController {
 	
 	@RequestMapping( "/test/main.view" )
 	public String main( Model model ) {
-		return "/pages/main";
+		return "/pages/test";
 	}
 	
 	@RequestMapping( "/test/mainTest.view" )
