@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.hmns.mims.widget.service.WidgetService;
 
@@ -15,6 +17,13 @@ import com.hmns.mims.widget.service.WidgetService;
 public class WidgetController {
 	@Autowired
 	private WidgetService widgetService;
+	
+	@RequestMapping( "/widget/getBaseWidget.view" )
+	public ModelAndView getBaseWidget( @RequestParam( name = "widgetType" ) String widgetType, @RequestParam( name = "widgetName" ) String widgetName  ) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName( "/pages/widgets/base/" + widgetType + "/" + widgetName );
+		return mv;
+	}
 	
 	// WIDGET_INFO
 	/**
