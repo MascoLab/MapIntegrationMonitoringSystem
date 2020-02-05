@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="robots" content="noindex, nofollow" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta http-equiv="Content-Style-Type" content="text/css"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+<title></title>
+
+<link rel="stylesheet" type="text/css" href="../css/pages/common.css">			<!-- 공통 스타일 -->
+<link rel="stylesheet" type="text/css" href="../BIX5/Assets/BIX5.css"/>			<!-- BIX5 스타일 -->  
+<link rel="stylesheet" type="text/css" href="../BIX5/Assets/BIX5Dashboard.css"/>	<!-- BIX5 Dashboard 스타일 --> 
+
+<script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>		<!-- jQeury 라이브러리 -->
+<script type="text/javascript" src="../BIX5/JS/BIX5.js" ></script> 				<!-- BIX5 라이브러리 -->
+<script type="text/javascript" src="../BIX5/LicenseKey/BIX5License.js"></script>	<!-- BIX5 라이선스 -->
+
+
+
+<script type="text/javascript">
+// -----------------------차트 설정 시작-----------------------
+
+// BIX5Chart 를 생성합니다.
+// 파라메터 (순서대로) 
+//  1. 차트의 id ( 임의로 지정하십시오. ) 
+//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+BIX5.chart.create("chart1", "chartHolder1", "", "100%", "100%");
+BIX5.chart.create("chart2", "chartHolder2", "", "100%", "100%");
+BIX5.chart.create("chart3", "chartHolder3", "", "100%", "100%");
+
+// 스트링 형식으로 레이아웃 정의.
+var layoutStr1 = 
+	'<BIX5>'
+		+'<CurrencyFormatter id="cft" currencySymbol="%" alignSymbol="right" precision="0"/>'
+		/**
+		 * minimum : 최소 값
+		 * maximum : 최대 값
+		 * showDataTip : 툴팁의 출력 여부 default true
+		 * targetValue : 목표치 값
+		 * showTargetLine : 목표치의 출력 여부 default false
+		 * direction : 출력 방향 default vertical
+		 * duration : 이펙트 출력 시간 default 800
+		 * showValueLabel : 수치 라벨 출력 여부 default true
+		 * showAnimation : 이펙트 출력 여부 default true
+		 * valueChangeFunction : 데이터 변경될 시 호출될 콜백 함수
+		 * labelJsFunction : 수치 라벨 사용자 정의 함수
+		 * fillJsFunction : 색상 사용자 정의 함수
+		 * formatter : 포맷터 default NumberFormatter
+		 * bounceAnimating : 이펙트 튕김 효과 설정 여부 default true
+		 * backgroundColor : 배경 색상 default #ffffff
+		 * backgroundAlpha : 배경 색상 투명도 default 1
+		 * backgroundStroke : 배경 테두리 선 
+		 * foregroundColor : 게이지 채워지는 영역 색상 default #33eeff
+		 * foreLineStroke : 게이지 채워지는 영역 테두리 선
+		 * horizontalRatio : 게이지 수평 출력 비율 default 0.6
+		 * verticalRatio : 게이지 수평 출력 비율 default 0.8
+		 * valueLabelHorizontalRatio : 수치 라벨 수평 위치 비율 default 0.5
+		 * valueLabelVerticalRatio : 수치 라벨 수직 위치 비율 default 0.5
+		 * leftTopBorderRadius : 위 왼쪽 보더 값 default 0
+		 * rightTopBorderRadius : 위 오른쪽 보더 값 default 0
+		 * leftBottomRadius : 아래 왼쪽 보더 값 default 0
+		 * rightBottomRadius : 아래 오른쪽 보더 값 default 0
+		 */
+		+'<LinearGauge direction="horizontal" verticalRatio="0.5" fontSize="20" labelJsFunction="colorLabelFunc" valueChangeFunction="changeFunction1" formatter="{cft}" foregroundColor="#20cbc2" color="#ffffff" fontWeight="bold" width="818">'
+			+'<backgroundStroke>'
+				+'<Stroke color="#20cbc2" weight="3"/>'
+			+'</backgroundStroke>'
+		+'</LinearGauge>'
+	+'</BIX5>';
+
+// 스트링 형식으로 레이아웃 정의.
+var layoutStr2 =
+	'<BIX5 backgroundColor="#FFFFFF" paddingTop="50" horizontalAlign="center" verticalScrollPolicy="off" verticalAlign="middle" borderStyle="none">'
+		+'<CurrencyFormatter id="cmt" precision="0" currencySymbol="%" alignSymbol="right"/>'
+		+'<HLinearGauge width="500" height="150" minimum="0" maximum="100" labels="[0,20,40,60,80,100]" tickInterval="20" formatter="{cmt}" targetMark="60" '
+		+'targetMarkColor="[#ff842e,#ff842e,#ff842e]" targetMarkAlpha="[1,1,1]" targetMarkRatio="[0,125,255]" targetMarkThickness="5" targetMarkBorderColor="#ff842e" '
+		+'linearAlpha="[1,1,1]" linearColor="[#1bcfc6,#34d9d5,#1a97d1]" linearRatio="[0,90,255]" linearBorderColor="#1a97d1" labelJsFunction="labelFunc" '
+		+'linearBgAlpha="[1,1,1]" linearBgColor="[#555555,#555555,#555555]" linearBgRatio="[0,125,255]" '
+		+'valueLabelStyleName="valueLabel" valueChangeFunction="changeFunction2"/>'
+		+'<Style>'
+			+'.valueLabel{fontSize:20;color:0xffffff;fontWeight:bold;}'
+		+'</Style>'
+	+'</BIX5>';
+
+// 스트링 형식으로 레이아웃 정의.
+var layoutStr3 = 
+	'<BIX5 backgroundColor="#FFFFFF" paddingTop="50"  horizontalAlign="center" verticalScrollPolicy="off" verticalAlign="middle" borderStyle="none">'
+		+'<CurrencyFormatter id="cmt" precision="0" currencySymbol="%" alignSymbol="right"/>'
+		+'<HCylinderGauge width="500" height="150" minimum="0" maximum="100" labels="[0,20,40,60,80,100]" tickInterval="20" targetMark="60" '
+		+'cylinderColor="[#25cdc0,#3bd4cf,#27a2ce]" cylinderAlpha="[1,1,1]" cylinderRatio="[0, 100, 255]" formatter="{cmt}" '
+		+'labelJsFunction="labelFunc" valueLabelStyleName="valueLabel" valueChangeFunction="changeFunction3"/>'
+		+'<Style>'
+			+'.valueLabel{color:#ffffff;fontSize:20;fontWeight:bold;}'
+		+'</Style>'
+	+'</BIX5>';
+
+// 게이지 데이터
+var chartData = [80];
+
+// BIX5.chart.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+//
+// argument 1 - BIX5.chart.create시 설정한 차트 객체 아이디 값
+// argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+// 
+// 아래 내용은 
+// 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+// 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+BIX5.chart.calls("chart1", {
+	"setLayout" : layoutStr1,
+	"setData" : chartData
+});
+
+BIX5.chart.calls("chart2", {
+	"setLayout" : layoutStr2,
+	"setData" : chartData
+});
+
+BIX5.chart.calls("chart3", {
+	"setLayout" : layoutStr3,
+	"setData" : chartData
+});
+
+//게이지 값 랜덤 변경 함수
+function changeValue(){
+	// 게이지의 값을 변경할려면 setData 함수를 사용하세요.
+	document.getElementById("chart1").setData([parseInt(Math.random()*100)]);
+	document.getElementById("chart2").setData([parseInt(Math.random()*100)]);
+	document.getElementById("chart3").setData([parseInt(Math.random()*100)]);
+}
+
+// 게이지 값 보관.
+var gaugeValue1, gaugeValue2, gaugeValue3;
+
+// 게이지 value change 이벤트 핸들러 함수.
+function changeFunction1(value){
+	gaugeValue1 = value;
+}
+
+function changeFunction2(value){
+	gaugeValue2 = value;
+}
+
+function changeFunction3(value){
+	gaugeValue3 = value;
+}
+
+// 확인
+function commitValue(){
+	alert("chart1 : " + gaugeValue1 + "\nchart2 : " + gaugeValue2 + "\nchart3 : " + gaugeValue3);
+}
+
+function labelFunc(value){
+	return value+"%";
+}
+
+function colorLabelFunc(value){
+	var color = "#ffffff";
+	if(value <= 55)
+		color = "#555555";
+
+	return "<font color='" + color + "'>" + Math.floor(value) + "</font>";
+}
+	
+
+
+// -----------------------차트 설정 끝 -----------------------
+
+</script>
+<!-- 샘플 작동을 위한 css와 js -->
+<!-- 
+<script type="text/javascript" src="./Web/JS/common.js"></script>
+<script type="text/javascript" src="./Web/JS/sample_util.js"></script>
+<link rel="stylesheet" type="text/css" href="./Web/sample.css"/>
+-->
+<!-- SyntaxHighlighter -->
+<!-- 
+<script type="text/javascript" src="./Web/syntax/shCore.js"></script>
+<script type="text/javascript" src="./Web/syntax/shBrushJScript.js"></script>
+<link type="text/css" rel="stylesheet" href="./Web/syntax/shCoreDefault.css"/>
+-->
+</head>
+<body>
+	<div class="wrapper">
+		<div id="content" style="height:390px;">
+			<!-- 차트가 삽입될 DIV -->
+			<div id="chartHolder1" class="chartHolder" style="height:130px;"></div>
+			<div id="chartHolder2" class="chartHolder" style="height:130px;"></div>
+			<div id="chartHolder3" class="chartHolder" style="height:130px;"></div>
+		</div>
+	</div>
+</body>
+</html>

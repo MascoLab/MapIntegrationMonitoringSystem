@@ -19,3 +19,8 @@
 .nav-tabs > li:hover > span {
     display: inline-block;
 }
+
+/** BIX5 배경 설정**/
+.BIX5__Slide {
+    background:url(../../images/k_body.png) 0 0 repeat;
+}

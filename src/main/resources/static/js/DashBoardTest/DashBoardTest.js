@@ -1,64 +1,11 @@
-     // 대시보드 생성 전  BIX5 제품의 Assets 경로를 설정합니다. 
-	BIX5.setAssetsPath("./BIX5/Assets/");
+    
 	
  	var $ = jQuery.noConflict();
 
- 	var loadData = null;
 	$(function(){
-		
-		var chkId = "admin2";
-		// insert click event
-     	$("#save").click(function(){
-     		console.log("click!이벤트 발생!");
-     		
-     		var id = "admin1";
-     	    var dashboard = BIX5.dashboard.get("dashboard1");
-     	    var data = dashboard.getData();
-     	    var dataStr = JSON.stringify(data);
-     	    /*
-     	    JSON.parse() : JSON to javascript
-     	    JSON.stringify() : javascript object to JSON
-     	    */
-     	    //var key = checkUrl(location.href);
-     	 	
-     	    //localStorage.setItem(key, dataStr);
-     	    console.log("dash",dashboard);
-     	    console.log("data",data);
-     	    console.log("dataStr",dataStr);
-     		
-     	    // Dash는 javascript 객체
-     	    /*var Dash = {
-     	    		id : id,
-     	    		content : dataStr
- 	    			};
-     		
-     		$.ajax({
-     			url : "/insertDash",
-     			data : Dash,
-     			 data : {
-     				id : id,
-     				value : dataStr
-     			}, 
-     			method : "POST",
-     			dataType : "JSON",
-     			success: function(data){
-     				console.log("ajax 호출 성공!");
-     				console.log(data);
-     			},
-     			error : function(request, status, error){
-     				console.log("error 발생!");
-     			}
-     			
-     		});*/
-     		
-     		//save();
-     	    //location.reload();
-     	});	// save click event end
-     	
-	 });     	// jQuery document onready End
- 	
- 	
- 	 //대시보드를 생성합니다.
+		 // 대시보드 생성 전  BIX5 제품의 Assets 경로를 설정합니다. 
+	BIX5.setAssetsPath("./BIX5/Assets/");
+		//대시보드를 생성합니다.
 	 //파라메터
 	 // 1. 대시보드의 id (자바스크립트의 변수 규칙을 따릅니다.)
 	 // 2. 대시보드가 위치할 div의 id ( 대시보드의 부모 div의 id입니다. )
@@ -72,7 +19,7 @@
 	 // type : "blank"로 지정하면 blank widget 호출
 	 
  	 BIX5.dashboard.create("dashboard1", "dashboardHolder", function(dashboard){
- 		 var slides =  [{slideName:"slide1", 
+ 		 var slides = [{slideName:"slide1", 
  			 widgets:[
  				 /*
 	        	 		{id:"daumMap", x:10,y:10,width:500,height:300, type:"blank", 
@@ -90,20 +37,45 @@
 	         			*/
  				 		{
  				 			id:"chart1", 
- 				 			x:530,
- 				 			y:10,width:500,height:300, layoutType:"headless", type:"chart", 
+ 				 			x:0,
+							y:0,
+							width:500,height:300, type:"chart", layoutType:"window", title:"테스트 위젯", 
  				 			contentUrl:"./widget/getBaseWidget.view?widgetType=Chart&widgetName=Area_2D_MS", 
  				 			options:{
  				 				border:true, borderColor:"#ccc", borderWidth:"2px"
  				 			}
-	 				 	}
+						}, {
+							id:"iframe1", 
+							x:510,
+							y:0,
+							width:500,height:500, type:"iframe", layoutType:"headless", title:"IFRAME 위젯",
+							contentsOptions:{
+								url:"./widget/getCustomWidget.view?widgetType=test&widgetName=server_status"
+							}
+						}
 		         	]
 	               }]
  		 dashboard.setData(slides);
-	     dashboard.setSlideWidth(1750);
-	     dashboard.setSlideHeight(720);
+//	     dashboard.setSlideWidth( 1024 );
+//	     dashboard.setSlideHeight( 500 );
+
+	     dashboard.setSlideWidth( $( "#dashboardHolder" ).width() );
+	     dashboard.setSlideHeight( $( window ).height() - 70 );
 	     // slide 크기는 지정해서 넣는 수 밖에 없음
-	     
+
+//		dashboard.setSlideWidth( $( "#dashboardHolder" ).width() );
+//		dashboard.setSlideHeight( $( "#dashboardHolder" ).height() );
+
+//		$( "#dashboardHolder" ).resize( function() {
+
+		$( window ).resize( function() {
+/*
+			dashboard.setSlideWidth( $( "#dashboardHolder" ).width() );
+			dashboard.setSlideHeight( $( window ).height() - 70 );
+*/
+//			BIX5.dashboard.resize();
+		});
+
 	     // 오른쪽 BIX5 sidebar 내용
 	     var items = [
 	    	 {label:"Chart Widget", 
@@ -134,3 +106,10 @@
 	     
 	}, "100%", "100%", {enabled:false, gridlines:false});
  	 // DashBoard : enabled : 수정여부 / gridlines : 격자선 여부
+	 });     	// jQuery document onready End
+ 	
+ 	
+ 	 
+
+
+	

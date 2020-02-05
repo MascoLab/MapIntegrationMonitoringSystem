@@ -25,6 +25,13 @@ public class WidgetController {
 		return mv;
 	}
 	
+	@RequestMapping( "/widget/getCustomWidget.view" )
+	public ModelAndView getCustomWidget( @RequestParam( name = "widgetType" ) String widgetType, @RequestParam( name = "widgetName" ) String widgetName  ) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName( "/pages/widgets/custom/" + widgetType + "/" + widgetName );
+		return mv;
+	}
+	
 	// WIDGET_INFO
 	/**
 	 * WIDGET_INFO 파라미터 정보
