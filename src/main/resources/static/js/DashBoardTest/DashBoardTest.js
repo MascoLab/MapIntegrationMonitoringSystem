@@ -48,9 +48,17 @@
 							id:"iframe1", 
 							x:510,
 							y:0,
-							width:500,height:500, type:"iframe", layoutType:"headless", title:"IFRAME 위젯",
+							width:500,height:500, type:"iframe", layoutType:"window", title:"IFRAME 위젯",
 							contentsOptions:{
 								url:"./widget/getCustomWidget.view?widgetType=test&widgetName=server_status"
+							}
+						}, {
+							id:"layout1", 
+							x : 0,
+							y : 310,
+							width:500,height:500, type:"iframe", layoutType:"headless", title:"IFRAME 위젯",
+							contentsOptions:{
+								url:"./widget/getCustomWidget.view?widgetType=test&widgetName=layout"
 							}
 						}
 		         	]
