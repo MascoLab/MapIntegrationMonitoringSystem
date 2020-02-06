@@ -1,7 +1,7 @@
 <BIX5 backgroundColor="#FFFFFF"  borderStyle="none">
     <Options>
-        <Caption text="Balance on Current Account"/>
-        <SubCaption text="( billion $ )" textAlign="right" />
+        <Caption text="월별 과금형카메라 변경 현황"/>
+        <!-- <SubCaption text="( billion $ )" textAlign="right" /> -->
         <Legend defaultMouseOverAction="false"/>
     </Options>
     <Area2DChart showDataTips="true" dataTipDisplayMode="axis">

@@ -1,0 +1,84 @@
+<BIX5 backgroundColor="#FFFFFF" borderStyle="none">
+	<Options>
+		<Caption text="서버 현황 정보"/>
+	</Options>
+	<NumberFormatter id="numfmt" useThousandsSeparator="true"/>
+	<NumberFormatter id="dataTipFmt" precision="4"/>
+	<HistoryChart>
+		<displayerChart>
+			<Displayer id="chart1" showDataTips="true" dataTipFormatter="{dataTipFmt}" width="100%" height="100%" dataTipDisplayMode="axis">
+				<horizontalAxis>
+					<CategoryAxis id="mainHAxis" categoryField="Date" ticksBetweenLabels="false" padding="0.5"/>
+				</horizontalAxis>
+				<verticalAxis>
+					<LinearAxis  formatter="{numfmt}"/>
+				</verticalAxis>
+					<series>
+						<Line2DSeries id="lineSeris" yField="ADAS" radius="4" form="segment" displayName="ADAS" itemRenderer="CircleItemRenderer">
+							<showDataEffect>
+								<SeriesInterpolate duration="1000"/>
+							</showDataEffect>
+						</Line2DSeries>
+						<Line2DSeries id="lineSeris" yField="HD" radius="4" form="segment" displayName="HD" itemRenderer="CircleItemRenderer">
+							<showDataEffect>
+								<SeriesInterpolate duration="1000"/>
+							</showDataEffect>
+						</Line2DSeries>
+						<Line2DSeries id="lineSeris" yField="POI" radius="4" form="segment" displayName="POI" itemRenderer="CircleItemRenderer">
+							<showDataEffect>
+								<SeriesInterpolate duration="1000"/>
+							</showDataEffect>
+						</Line2DSeries>
+						<Line2DSeries id="lineSeris" yField="SAFE" radius="4" form="segment" displayName="SAFE" itemRenderer="CircleItemRenderer">
+							<showDataEffect>
+								<SeriesInterpolate duration="1000"/>
+							</showDataEffect>
+						</Line2DSeries>
+						<Line2DSeries id="lineSeris" yField="SD" radius="4" form="segment" displayName="SD" itemRenderer="CircleItemRenderer">
+							<showDataEffect>
+								<SeriesInterpolate duration="1000"/>
+							</showDataEffect>
+						</Line2DSeries>
+						<Line2DSeries id="lineSeris" yField="road" radius="4" form="segment" displayName="road" itemRenderer="CircleItemRenderer">
+							<showDataEffect>
+								<SeriesInterpolate duration="1000"/>
+							</showDataEffect>
+						</Line2DSeries>
+						<Line2DSeries id="lineSeris" yField="gw" radius="4" form="segment" displayName="gw" itemRenderer="CircleItemRenderer">
+							<showDataEffect>
+								<SeriesInterpolate duration="1000"/>
+							</showDataEffect>
+						</Line2DSeries>
+					</series>
+				</Displayer>
+			</displayerChart>
+		<navigator>
+			<Navigator id="navi" width="100%"  height="80" gutterLeft="0" paddingLeft="30" paddingRight="30">
+				<horizontalAxis>
+					<CategoryAxis categoryField="index" id="naviHAxis"  padding="0"/>
+				</horizontalAxis>
+				<horizontalAxisRenderers>
+					<Axis2DRenderer axis="{naviHAxis}" visible="false"/>
+				</horizontalAxisRenderers>
+				<verticalAxis>
+					<LinearAxis id="vAxis"/>
+				</verticalAxis>
+				<verticalAxisRenderers>
+					<Axis2DRenderer axis="{vAxis}" visible="false"/>
+				</verticalAxisRenderers>
+				<backgroundElements>
+					<GridLines direction="horizontal"/>
+				</backgroundElements>
+				<series>
+					<Column2DSeries yField="ADAS"/>
+				</series>
+			</Navigator>
+		</navigator>
+		<selector>
+			<HistoryRangeSelector width="100%" startingRange="right" visibleItemSize="30" unSelectedRangeAreaStyleName="unSelectedRangeAreaStyle"/>
+		</selector>
+	</HistoryChart>
+	<Style>
+		.unSelectedRangeAreaStyle{backgroundColor:#50a800;backgroundAlpha:0.1;borderStyle:solid;borderWeight:1;borderColor:#50a800;}
+	</Style>
+</BIX5>

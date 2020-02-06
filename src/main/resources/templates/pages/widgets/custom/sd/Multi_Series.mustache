@@ -24,11 +24,6 @@ BIX5.chart.create("chart1", "chartHolder1", "", "100%", "100%");
 
 var layoutStr =
            '<BIX5 backgroundColor="#FFFFFF" borderStyle="none">'
-             +'<Options>'
-                  +'<Caption text="GDP Growth of the BRICS Countries"/>'
-                    +'<SubCaption text="From 2011 To 2013 (Annual %)" textAlign="center" />'
-                  +'<Legend defaultMouseOverAction="false" />'
-              +'</Options>'
              +'<Column2DChart showDataTips="true" columnWidthRatio="0.55" selectionMode="single">'
                  +'<horizontalAxis>'
                        +'<CategoryAxis categoryField="Month"/>'
@@ -71,42 +66,23 @@ BIX5.chart.calls("chart1", {
 </script>
 
 </head>
+
 <body>
-
-	<div class="gGrid1">
-		<!-- grid -->
-		<div class="mGrid1">
-			<!-- row -->
-			<div class="row">
-				<!-- col -->
-				<div class="col">
-					<div class="mBox1 h1">
-						<div class="tit">
-							<div class="ti">자동차전용도로 연장</div>
-							<div class="rt">
-								<a href="###" class="iRefresh">새로고립</a>
-								<a href="###" class="iSet2">세팅</a>
-							</div>
-						</div>
-						<div class="con">
-							<div class="co">
-								<div class="txt">
-
-									<div class="wrapper">		
-										<div id="content" style="height:280px;">
-										<div id="chartHolder1" class="chartHolder" style="height:230px;"></div>
-											</div>
-										</div>
-	
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+	<div class="mBox1 h1">
+		<div class="tit">
+			<div class="ti">자동차전용도로 연장</div>
+			<div class="rt">
+				<a href="###" class="iRefresh">새로고립</a>
+				<a href="###" class="iSet2">세팅</a>
 			</div>
 		</div>
-
+		<div class="con">
+			<div class="co">
+				<div id="chartHolder1" class="chartHolder" style="height:270px;"></div>
+			</div>
+		</div>
+	</div>
 </body>
+
 </html> 
 

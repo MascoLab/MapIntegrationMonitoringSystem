@@ -31,11 +31,6 @@ function chartReadyHandler(id) {
  
 var layoutStr =
  '<BIX5 backgroundColor="#FFFFFF" borderStyle="none">'
-     +'<Options>'
-          +'<Caption text="Sales by Month"/>'
-           +'<SubCaption text="( $M )" textAlign="right" />'
-         +'<Legend useVisibleCheck="true" defaultMouseOverAction="false" />'
-       +'</Options>'
      +'<Column2DChart showDataTips="true" columnWidthRatio="0.4">'
          +'<horizontalAxis>'
                +'<CategoryAxis categoryField="Month"/>'
@@ -116,45 +111,22 @@ function strokeFunction(id, index, data, values){
 </script>
 
 </head>
+
 <body>
-
-
-
-	<div class="gGrid1">
-		<!-- grid -->
-		<div class="mGrid1">
-			<!-- row -->
-			<div class="row">
-				<!-- col -->
-				<div class="col">
-					<div class="mBox1 h1">
-						<div class="tit">
-							<div class="ti">월별 과금형카메라 변경 현황</div>
-							<div class="rt">
-								<a href="###" class="iRefresh">새로고립</a>
-								<a href="###" class="iSet2">세팅</a>
-							</div>
-						</div>
-						<div class="con">
-							<div class="co">
-								<div class="txt">
-								
-									<div class="wrapper">
-										<div id="content" style="height:270px;">
-												<div id="chartHolder1" class="chartHolder" style="height:230px;"></div>
-											</div>
-										</div>
-										
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+	<div class="mBox1 h1">
+		<div class="tit">
+			<div class="ti">월별 과금형카메라 변경 현황</div>
+			<div class="rt">
+				<a href="###" class="iRefresh">새로고립</a>
+				<a href="###" class="iSet2">세팅</a>
 			</div>
 		</div>
-
-
+		<div class="con">
+			<div class="co">
+				<div id="chartHolder1" class="chartHolder" style="height:270px;"></div>
+			</div>
+		</div>
+	</div>
 </body>
 </html> 
 

@@ -1,14 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<meta name="robots" content="noindex, nofollow" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<meta http-equiv="Content-Script-Type" content="text/javascript"/>
-<meta http-equiv="Content-Style-Type" content="text/css"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-
-<title></title>
+<title>HYUNDAI MnSOFT</title>
 
 <link rel="stylesheet" type="text/css" href="../css/pages/common.css">			<!-- 공통 스타일 -->
 <link rel="stylesheet" type="text/css" href="../BIX5/Assets/BIX5.css"/>			<!-- BIX5 스타일 -->  
@@ -18,180 +14,278 @@
 <script type="text/javascript" src="../BIX5/JS/BIX5.js" ></script> 				<!-- BIX5 라이브러리 -->
 <script type="text/javascript" src="../BIX5/LicenseKey/BIX5License.js"></script>	<!-- BIX5 라이선스 -->
 
-
-
 <script type="text/javascript">
-// -----------------------차트 설정 시작-----------------------
+//-----------------------차트 설정 시작-----------------------
 
-// BIX5Chart 를 생성합니다.
-// 파라메터 (순서대로) 
-//  1. 차트의 id ( 임의로 지정하십시오. ) 
-//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
-//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
-//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
-//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
-BIX5.chart.create("chart1", "chartHolder1", "", "100%", "100%");
-BIX5.chart.create("chart2", "chartHolder2", "", "100%", "100%");
-BIX5.chart.create("chart3", "chartHolder3", "", "100%", "100%");
+//BIX5Chart 를 생성합니다.
+//파라메터 (순서대로)
+//1. 차트의 id ( 임의로 지정하십시오. )
+//2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+//3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+//4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+//5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+BIX5.chart.create("chart1", "chartHolder", "", "100%", "100%"); 
 
-// 스트링 형식으로 레이아웃 정의.
-var layoutStr1 = 
+//스트링 형식으로 레이아웃 정의.
+var layoutStr =
 	'<BIX5>'
-		+'<CurrencyFormatter id="cft" currencySymbol="%" alignSymbol="right" precision="0"/>'
 		/**
-		 * minimum : 최소 값
-		 * maximum : 최대 값
-		 * showDataTip : 툴팁의 출력 여부 default true
-		 * targetValue : 목표치 값
-		 * showTargetLine : 목표치의 출력 여부 default false
-		 * direction : 출력 방향 default vertical
-		 * duration : 이펙트 출력 시간 default 800
-		 * showValueLabel : 수치 라벨 출력 여부 default true
-		 * showAnimation : 이펙트 출력 여부 default true
-		 * valueChangeFunction : 데이터 변경될 시 호출될 콜백 함수
-		 * labelJsFunction : 수치 라벨 사용자 정의 함수
-		 * fillJsFunction : 색상 사용자 정의 함수
-		 * formatter : 포맷터 default NumberFormatter
-		 * bounceAnimating : 이펙트 튕김 효과 설정 여부 default true
-		 * backgroundColor : 배경 색상 default #ffffff
-		 * backgroundAlpha : 배경 색상 투명도 default 1
-		 * backgroundStroke : 배경 테두리 선 
-		 * foregroundColor : 게이지 채워지는 영역 색상 default #33eeff
-		 * foreLineStroke : 게이지 채워지는 영역 테두리 선
-		 * horizontalRatio : 게이지 수평 출력 비율 default 0.6
-		 * verticalRatio : 게이지 수평 출력 비율 default 0.8
-		 * valueLabelHorizontalRatio : 수치 라벨 수평 위치 비율 default 0.5
-		 * valueLabelVerticalRatio : 수치 라벨 수직 위치 비율 default 0.5
-		 * leftTopBorderRadius : 위 왼쪽 보더 값 default 0
-		 * rightTopBorderRadius : 위 오른쪽 보더 값 default 0
-		 * leftBottomRadius : 아래 왼쪽 보더 값 default 0
-		 * rightBottomRadius : 아래 오른쪽 보더 값 default 0
+		 * showDataTip : 툴팁 출력 설정
+		 * minimum : 게이지 최소 값
+		 * maximum : 게이지 최대 값
+		 * startAngle : 시작 각도
+		 * minimumAngle : 게이지 최소 각도
+		 * maximumAngle : 게이지 최대 각도
+		 * gaugeWidth : 게이지 가로 크기
+		 * gaugeHeight : 게이지 세로 크기
+		 * innerRatio : 안쪽 영역 비율 값, 유효 값 0 ~ 1
+		 * outerRatio : 바깥쪽 영역 비율 값, 유효 값 0 ~ 1
+		 * circleOffset : 값이 여러개일 경우 원 형태 간의 여백을 설정합니다.
+		 * horizontalOriginRatio : 게이지 출력 수평위치를 설정합니다.
+		 * verticalOriginRatio : 게이지 출력 수직위치를 설정합니다.
+		 * valueChangeFunction : 데이터가 변경 될 경우 호출될 사용자 정의 함수를 설정합니다
+		 * fillJsFunction : 데이터의 값에 따른 색상 값을 설정하는 사용자 정의 함수를 설정합니다.
+		 * duration : 이펙트 출력시간을 설정합니다. default 800
+		 * bounceAnimating : 튕김 이펙트를 설정합니다. deafult true
+		 * showValueLabel : 수치 라벨을 출력할지 설정합니다. default true
+		 * valueField : 여러 데이터를 출력 할 경우 차트 데이터의 필드 명을 설정합니다.
+		 * nameField : 여러 데이터 출력 시 해당 데이터에 대한 이름을 출력할 필드 명을 설정합니다.
+		 * backgroundColors : 게이지가 출력되는 영역의 배경 색상을 설정합니다. default [#e2eaf3]
+		 * backgroundStrokes : 게이지가 출력되는 영역의 배경 테두리 색상을 설정합니다.
+		 * foregroundColors : 게이지가 출력되는 영역의 색상을 설정합니다. default [#51c0ee]
+		 * foregroundStrokes : 게이지가 출력되는 영역의 테두리 색상을 설정합니다.
 		 */
-		+'<LinearGauge direction="horizontal" verticalRatio="0.5" fontSize="20" labelJsFunction="colorLabelFunc" valueChangeFunction="changeFunction1" formatter="{cft}" foregroundColor="#20cbc2" color="#ffffff" fontWeight="bold" width="818">'
-			+'<backgroundStroke>'
-				+'<Stroke color="#20cbc2" weight="3"/>'
-			+'</backgroundStroke>'
-		+'</LinearGauge>'
+		 +'<Gauge innerRatio="0.5" nameField="name" valueField="value" backgroundColors="[#f0f0f0]" foregroundColors="[#5587a2,#20cbc2,#f6a54c]" minimum="0" maximum="100" startAngle="-90" minimumAngle="0" maximumAngle="360" valueChangeFunction="changeFunction" color="#ffffff" fontSize="20" fontWeight="bold" labelYOffset="2">'
+		 +'<backgroundElements>'
+				+'<Box width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">'
+					+'<SubLegend direction="vertical" fontSize="13" color="#666666" borderStyle="none">'
+						+'<LegendItem label="CPU">'
+							+'<fill>'
+								+'<SolidColor color="#5587a2"/>'
+							+'</fill>'
+						+'</LegendItem>'
+						+'<LegendItem label="Memory">'
+							+'<fill>'
+								+'<SolidColor color="#20cbc2"/>'
+							+'</fill>'
+						+'</LegendItem>'
+					+'</SubLegend>'
+				+'</Box>'
+	         +'</backgroundElements>'
+		+'</Gauge>'
 	+'</BIX5>';
 
-// 스트링 형식으로 레이아웃 정의.
-var layoutStr2 =
-	'<BIX5 backgroundColor="#FFFFFF" paddingTop="50" horizontalAlign="center" verticalScrollPolicy="off" verticalAlign="middle" borderStyle="none">'
-		+'<CurrencyFormatter id="cmt" precision="0" currencySymbol="%" alignSymbol="right"/>'
-		+'<HLinearGauge width="500" height="150" minimum="0" maximum="100" labels="[0,20,40,60,80,100]" tickInterval="20" formatter="{cmt}" targetMark="60" '
-		+'targetMarkColor="[#ff842e,#ff842e,#ff842e]" targetMarkAlpha="[1,1,1]" targetMarkRatio="[0,125,255]" targetMarkThickness="5" targetMarkBorderColor="#ff842e" '
-		+'linearAlpha="[1,1,1]" linearColor="[#1bcfc6,#34d9d5,#1a97d1]" linearRatio="[0,90,255]" linearBorderColor="#1a97d1" labelJsFunction="labelFunc" '
-		+'linearBgAlpha="[1,1,1]" linearBgColor="[#555555,#555555,#555555]" linearBgRatio="[0,125,255]" '
-		+'valueLabelStyleName="valueLabel" valueChangeFunction="changeFunction2"/>'
-		+'<Style>'
-			+'.valueLabel{fontSize:20;color:0xffffff;fontWeight:bold;}'
-		+'</Style>'
-	+'</BIX5>';
+//게이지 데이터
+var chartData = [
+	{"name" : "CPU", "value" : 74},
+	{"name" : "Memory", "value" : 82}
+];
 
-// 스트링 형식으로 레이아웃 정의.
-var layoutStr3 = 
-	'<BIX5 backgroundColor="#FFFFFF" paddingTop="50"  horizontalAlign="center" verticalScrollPolicy="off" verticalAlign="middle" borderStyle="none">'
-		+'<CurrencyFormatter id="cmt" precision="0" currencySymbol="%" alignSymbol="right"/>'
-		+'<HCylinderGauge width="500" height="150" minimum="0" maximum="100" labels="[0,20,40,60,80,100]" tickInterval="20" targetMark="60" '
-		+'cylinderColor="[#25cdc0,#3bd4cf,#27a2ce]" cylinderAlpha="[1,1,1]" cylinderRatio="[0, 100, 255]" formatter="{cmt}" '
-		+'labelJsFunction="labelFunc" valueLabelStyleName="valueLabel" valueChangeFunction="changeFunction3"/>'
-		+'<Style>'
-			+'.valueLabel{color:#ffffff;fontSize:20;fontWeight:bold;}'
-		+'</Style>'
-	+'</BIX5>';
+//BIX5.chart.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+//
+//argument 1 - BIX5.chart.create시 설정한 차트 객체 아이디 값
+//argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+//
+//아래 내용은 
+//1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+//2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+BIX5.chart.calls("chart1", {
+	"setLayout" : layoutStr,
+	"setData" : chartData
+});
+
+
+
+
+
+BIX5.chart.create("chart01", "chartHolder01", "", "100%", "100%");
+BIX5.chart.create("chart02", "chartHolder02", "", "100%", "100%");
+
+var layoutStr01 =
+	   '<BIX5 backgroundColor="#FFFFFF" paddingTop="50" horizontalAlign="center" verticalScrollPolicy="off" verticalAlign="middle" borderStyle="none">'
+	      +'<CurrencyFormatter id="cmt" precision="0" currencySymbol="%" alignSymbol="right"/>'
+	     +'<HLinearGauge width="300" height="110" minimum="0" maximum="100" labels="[0,20,40,60,80,100]" tickInterval="20" formatter="{cmt}" targetMark="60" '
+	        +'targetMarkColor="[#ff842e,#ff842e,#ff842e]" targetMarkAlpha="[1,1,1]" targetMarkRatio="[0,125,255]" targetMarkThickness="5" targetMarkBorderColor="#ff842e" '
+	     +'linearAlpha="[1,1,1]" linearColor="[#1bcfc6,#34d9d5,#1a97d1]" linearRatio="[0,90,255]" linearBorderColor="#1a97d1" labelJsFunction="labelFunc" '
+	      +'linearBgAlpha="[1,1,1]" linearBgColor="[#555555,#555555,#555555]" linearBgRatio="[0,125,255]" '
+	       +'valueLabelStyleName="valueLabel" valueChangeFunction="changeFunction2"/>'
+	      +'<Style>'
+	            +'.valueLabel{fontSize:20;color:0xffffff;fontWeight:bold;}'
+	     +'</Style>'
+	   +'</BIX5>';
+	   
+var layoutStr02 =
+	   '<BIX5 backgroundColor="#FFFFFF" paddingTop="50" horizontalAlign="center" verticalScrollPolicy="off" verticalAlign="middle" borderStyle="none">'
+	      +'<CurrencyFormatter id="cmt" precision="0" currencySymbol="%" alignSymbol="right"/>'
+	     +'<HLinearGauge width="300" height="110" minimum="0" maximum="100" labels="[0,20,40,60,80,100]" tickInterval="20" formatter="{cmt}" targetMark="60" '
+	        +'targetMarkColor="[#ff842e,#ff842e,#ff842e]" targetMarkAlpha="[1,1,1]" targetMarkRatio="[0,125,255]" targetMarkThickness="5" targetMarkBorderColor="#ff842e" '
+	     +'linearAlpha="[1,1,1]" linearColor="[#1bcfc6,#34d9d5,#1a97d1]" linearRatio="[0,90,255]" linearBorderColor="#1a97d1" labelJsFunction="labelFunc" '
+	      +'linearBgAlpha="[1,1,1]" linearBgColor="[#555555,#555555,#555555]" linearBgRatio="[0,125,255]" '
+	       +'valueLabelStyleName="valueLabel" valueChangeFunction="changeFunction2"/>'
+	      +'<Style>'
+	            +'.valueLabel{fontSize:20;color:0xffffff;fontWeight:bold;}'
+	     +'</Style>'
+	   +'</BIX5>';
 
 // 게이지 데이터
-var chartData = [80];
-
-// BIX5.chart.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
-//
-// argument 1 - BIX5.chart.create시 설정한 차트 객체 아이디 값
-// argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
-// 
-// 아래 내용은 
-// 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
-// 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
-BIX5.chart.calls("chart1", {
-	"setLayout" : layoutStr1,
-	"setData" : chartData
-});
-
-BIX5.chart.calls("chart2", {
-	"setLayout" : layoutStr2,
-	"setData" : chartData
-});
-
-BIX5.chart.calls("chart3", {
-	"setLayout" : layoutStr3,
-	"setData" : chartData
-});
-
-//게이지 값 랜덤 변경 함수
-function changeValue(){
-	// 게이지의 값을 변경할려면 setData 함수를 사용하세요.
-	document.getElementById("chart1").setData([parseInt(Math.random()*100)]);
-	document.getElementById("chart2").setData([parseInt(Math.random()*100)]);
-	document.getElementById("chart3").setData([parseInt(Math.random()*100)]);
-}
-
-// 게이지 값 보관.
-var gaugeValue1, gaugeValue2, gaugeValue3;
-
-// 게이지 value change 이벤트 핸들러 함수.
-function changeFunction1(value){
-	gaugeValue1 = value;
-}
-
-function changeFunction2(value){
-	gaugeValue2 = value;
-}
-
-function changeFunction3(value){
-	gaugeValue3 = value;
-}
-
-// 확인
-function commitValue(){
-	alert("chart1 : " + gaugeValue1 + "\nchart2 : " + gaugeValue2 + "\nchart3 : " + gaugeValue3);
-}
-
-function labelFunc(value){
-	return value+"%";
-}
-
-function colorLabelFunc(value){
-	var color = "#ffffff";
-	if(value <= 55)
-		color = "#555555";
-
-	return "<font color='" + color + "'>" + Math.floor(value) + "</font>";
-}
+var gageData = [80];
 	
+BIX5.chart.calls("chart01", {
+   "setLayout" : layoutStr01,
+   "setData" : gageData
+});
+ 
+BIX5.chart.calls("chart02", {
+    "setLayout" : layoutStr02,
+   "setData" : gageData
+});
 
+//게이지 값 보관.
+var gaugeValue1, gaugeValue2, gaugeValue3;
+ 
+function changeFunction2(value){
+   gaugeValue2 = value;
+}
 
-// -----------------------차트 설정 끝 -----------------------
+/*
+//게이지 값 랜덤 변경 함수
+function changeValue()
+{
+	var data, newData = [];
+
+	for(var i = 0, n = chartData.length ; i < n ; i += 1){
+		data = {};
+		data.name = chartData[i].name;
+		data.value = parseInt(Math.random() * 100);
+		newData.push(data);
+	}
+
+	// 게이지의 값을 변경할려면 setData 함수를 사용하세요.
+	document.getElementById("chart1").setData(newData);
+}
+*/
+//게이지 값 보관.
+var gaugeValue;
+
+//게이지 value change 이벤트 핸들러 함수.
+function changeFunction(value)
+{
+	gaugeValue = value;
+}
+/*
+//확인
+function commitValue()
+{
+	var i, n = gaugeValue.length, str = "";
+	for(i = 0 ; i < n ; i += 1)
+		str += gaugeValue[i].name + " : " + gaugeValue[i].value + "\n";
+	alert(str);
+}
+
+//색상값을 반환하는 사용자 정의 함수 입니다.
+function fillFunc(value){
+	if(0 <= value && value < 30)
+		return "#82f9b7";
+	else if(30 <= value && value < 60)
+		return "#6dd6dd";
+	else if(60 <= value && value < 90)
+		return "#54bd54";
+	else
+		return "#329632";
+}
+*/
+//-----------------------차트 설정 끝 -----------------------
+
+var jsVars = "BIX5OnLoadCallFunction=gridReadyHandler";
+BIX5.grid.create("grid1", "gridHolder", jsVars, "100%", "100%");
+
+var gridLayout = '<BIX5><NumberFormatter id="numfmt" useThousandsSeparator="true"/><PercentFormatter id="percfmt" useThousandsSeparator="true"/><CurrencyFormatter id="currencyfmt" useThousandsSeparator="true" currencySymbol="원" alignSymbol="right"/><DataGrid id="dg1" horizontalScrollPolicy="off" textAlign="right" verticalAlign="middle"><columns><DataGridColumn id="dg1col1" dataField="Year" textAlign="center" width="80"/><DataGridColumn id="dg1col2" dataField="Quarter" textAlign="center" width="120" color="#315cc9" labelJsFunction="convertQuarter"/>' +
+					'<DataGridColumn id="dg1col4" dataField="Seoul" formatter="{numfmt}"/><DataGridColumn id="dg1col5" dataField="Busan" formatter="{numfmt}"/><DataGridColumn id="dg1col6" dataField="Incheon" formatter="{currencyfmt}"/><DataGridColumn id="dg1col7" dataField="NewYork" headerText="New York"/><DataGridColumn id="dg1col8" dataField="LA" headerText="L.A." visible="false"/><DataGridColumn id="dg1col9" dataField="Washington"/><DataGridColumn id="dg1col10" dataField="Revenue" sortable="false"/><DataGridColumn id="dg1col11" dataField="Percent" formatter="{percfmt}"/></columns>' +
+        		'</DataGrid></BIX5>';
+
+var gridData = [{"Year":2015, "Quarter":"1/4", "Month":1, "Seoul":109520, "Busan":40454, "Incheon":82477, "NewYork":47424, "LA":103225, "Washington":61161, "Revenue":444260, "Percent":40},
+{"Year":2015, "Quarter":"1/4", "Month":2, "Seoul":15749, "Busan":29714, "Incheon":31393, "NewYork":45006, "LA":17945, "Washington":90148, "Revenue":229956, "Percent":20},
+{"Year":2015, "Quarter":"1/4", "Month":3, "Seoul":14766, "Busan":97314, "Incheon":103216, "NewYork":86072, "LA":52863, "Washington":93789, "Revenue":448020, "Percent":40},
+{"Year":2015, "Quarter":"2/4", "Month":4, "Seoul":52352, "Busan":56859, "Incheon":15688, "NewYork":65438, "LA":39181, "Washington":109514, "Revenue":339031, "Percent":31},
+{"Year":2015, "Quarter":"2/4", "Month":5, "Seoul":100842, "Busan":30391, "Incheon":23745, "NewYork":72742, "LA":102195, "Washington":30407, "Revenue":360322, "Percent":33},
+{"Year":2015, "Quarter":"2/4", "Month":6, "Seoul":19217, "Busan":75298, "Incheon":70807, "NewYork":36447, "LA":100805, "Washington":84934, "Revenue":387508, "Percent":36},
+{"Year":2015, "Quarter":"3/4", "Month":7, "Seoul":74324, "Busan":64947, "Incheon":101350, "NewYork":34673, "LA":24486, "Washington":57781, "Revenue":357561, "Percent":28},
+{"Year":2015, "Quarter":"3/4", "Month":8, "Seoul":85932, "Busan":95733, "Incheon":40327, "NewYork":69255, "LA":80024, "Washington":102739, "Revenue":474011, "Percent":37},
+{"Year":2015, "Quarter":"3/4", "Month":9, "Seoul":101804, "Busan":65098, "Incheon":79194, "NewYork":101669, "LA":30608, "Washington":73020, "Revenue":451393, "Percent":35},
+{"Year":2015, "Quarter":"4/4", "Month":10, "Seoul":92130, "Busan":91881, "Incheon":45166, "NewYork":65524, "LA":45348, "Washington":72708, "Revenue":412757, "Percent":36},
+{"Year":2015, "Quarter":"4/4", "Month":11, "Seoul":80925, "Busan":70537, "Incheon":25347, "NewYork":29360, "LA":76296, "Washington":42766, "Revenue":325230, "Percent":29},
+{"Year":2015, "Quarter":"4/4", "Month":12, "Seoul":99008, "Busan":30598, "Incheon":99124, "NewYork":22776, "LA":107805, "Washington":38384, "Revenue":397696, "Percent":35},
+{"Year":2016, "Quarter":"1/4", "Month":1, "Seoul":68503, "Busan":10155, "Incheon":47908, "NewYork":60857, "LA":104179, "Washington":109097, "Revenue":400699, "Percent":31},
+{"Year":2016, "Quarter":"1/4", "Month":2, "Seoul":80573, "Busan":75743, "Incheon":107750, "NewYork":76243, "LA":79265, "Washington":85345, "Revenue":504918, "Percent":40},
+{"Year":2016, "Quarter":"1/4", "Month":3, "Seoul":23435, "Busan":30538, "Incheon":86528, "NewYork":36735, "LA":96031, "Washington":96928, "Revenue":370196, "Percent":29},
+{"Year":2016, "Quarter":"2/4", "Month":4, "Seoul":35657, "Busan":109415, "Incheon":45569, "NewYork":87683, "LA":92773, "Washington":53422, "Revenue":424520, "Percent":45},
+{"Year":2016, "Quarter":"2/4", "Month":5, "Seoul":50140, "Busan":30142, "Incheon":83992, "NewYork":87292, "LA":72324, "Washington":32520, "Revenue":356410, "Percent":37},
+{"Year":2016, "Quarter":"2/4", "Month":6, "Seoul":39458, "Busan":10848, "Incheon":10553, "NewYork":48474, "LA":25642, "Washington":36591, "Revenue":171565, "Percent":18},
+{"Year":2016, "Quarter":"3/4", "Month":7, "Seoul":33761, "Busan":49046, "Incheon":31351, "NewYork":46829, "LA":97148, "Washington":42630, "Revenue":300765, "Percent":31},
+{"Year":2016, "Quarter":"3/4", "Month":8, "Seoul":89645, "Busan":72565, "Incheon":23678, "NewYork":78847, "LA":62559, "Washington":87722, "Revenue":415017, "Percent":42},
+{"Year":2016, "Quarter":"3/4", "Month":9, "Seoul":14844, "Busan":30709, "Incheon":83037, "NewYork":23130, "LA":65006, "Washington":48367, "Revenue":265093, "Percent":27},
+{"Year":2016, "Quarter":"4/4", "Month":10, "Seoul":30598, "Busan":55523, "Incheon":90576, "NewYork":79997, "LA":71346, "Washington":63569, "Revenue":391608, "Percent":34},
+{"Year":2016, "Quarter":"4/4", "Month":11, "Seoul":64461, "Busan":61341, "Incheon":74479, "NewYork":10715, "LA":40404, "Washington":93611, "Revenue":345011, "Percent":30},
+{"Year":2016, "Quarter":"4/4", "Month":12, "Seoul":99229, "Busan":95468, "Incheon":108828, "NewYork":27176, "LA":28673, "Washington":54816, "Revenue":414191, "Percent":36}];
+/*
+BIX5.grid.calls("grid1", {
+    "setLayout" : gridLayout,
+   "setData" : gridData
+});
+*/
+var gridApp, gridRoot;
+function gridReadyHandler(id) {
+    // BIX5Grid 관련 객체
+    gridApp = document.getElementById(id);  // 그리드를 포함하는 div 객체
+    gridRoot = gridApp.getRoot();   // 데이터와 그리드를 포함하는 객체
+ 
+    gridApp.setLayout(gridLayout);
+    gridApp.setData(gridData);
+}
+
+function convertQuarter(item, value, column, callByExport) {
+    var month = item["Month"];
+    var quarter = item["Quarter"];
+    var result = "";
+    if (month != null)
+        result += month +"월";
+    if (quarter != null)
+        if (result.length > 0)
+            result += " (" + quarter + ")";
+        else
+            result = quarter;
+ 
+    return result;
+}
 
 </script>
-<!-- 샘플 작동을 위한 css와 js -->
-<!-- 
-<script type="text/javascript" src="./Web/JS/common.js"></script>
-<script type="text/javascript" src="./Web/JS/sample_util.js"></script>
-<link rel="stylesheet" type="text/css" href="./Web/sample.css"/>
--->
-<!-- SyntaxHighlighter -->
-<!-- 
-<script type="text/javascript" src="./Web/syntax/shCore.js"></script>
-<script type="text/javascript" src="./Web/syntax/shBrushJScript.js"></script>
-<link type="text/css" rel="stylesheet" href="./Web/syntax/shCoreDefault.css"/>
--->
 </head>
 <body>
-	<div class="wrapper">
-		<div id="content" style="height:390px;">
-			<!-- 차트가 삽입될 DIV -->
-			<div id="chartHolder1" class="chartHolder" style="height:130px;"></div>
-			<div id="chartHolder2" class="chartHolder" style="height:130px;"></div>
-			<div id="chartHolder3" class="chartHolder" style="height:130px;"></div>
+	<div class="mBox1 h1">
+		<div class="tit">
+			<div class="ti">ADAS 서버 현황</div>
+			<div class="rt">
+				<a href="###" class="iRefresh">새로고립</a>
+				<a href="###" class="iSet2">세팅</a>
+			</div>
+		</div>
+		<div class="con">
+			<div class="co">
+				<div class="mGrid1">
+					<div class="row">
+						<div class="col">
+							<div id="chartHolder" style="height: 260px; background-color: #FFFFFF"></div>
+						</div>
+						<div class="col">
+							<div id="chartHolder01" style="height: 130px; background-color: #FFFFFF"></div>
+							<div id="chartHolder02" style="height: 130px; background-color: #FFFFFF"></div>
+						</div>
+						<div class="col">
+							<div id="gridHolder" style="height: 260px; background-color: #FFFFFF"></div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>
