@@ -35,7 +35,7 @@
 	         			,{id:"blank", x:1050,y:330,width:500,height:300, type:"blank", 
    	    	            contentUrl:"", options:{border:true, borderColor:"#ccc", borderWidth:"2px"}}
 	         			*/
- 				 		{
+ 				 		/*{
  				 			id:"chart1", 
  				 			x:0,
 							y:0,
@@ -44,13 +44,76 @@
  				 			options:{
  				 				border:true, borderColor:"#ccc", borderWidth:"2px"
  				 			}
-						}, {
+						},*/ /*{
 							id:"iframe1", 
 							x:510,
 							y:0,
-							width:500,height:500, type:"iframe", layoutType:"headless", title:"IFRAME 위젯",
+							width:500,height:300, type:"iframe", layoutType:"headless", title:"IFRAME 위젯",
 							contentsOptions:{
 								url:"./widget/getCustomWidget.view?widgetType=test&widgetName=server_status"
+							}
+						},*/ {
+							id:"iframe2", 
+							x:0,
+							y:0,
+							width:500,height:400, type:"iframe", layoutType:"headless", title:"Iframe Column Chart",
+							contentsOptions:{
+								url:"./widget/getCustomWidget.view?widgetType=sd&widgetName=Column_2D"
+							}
+						},{
+							id:"iframe3", 
+							x:520,
+							y:0,
+							width:500,height:400, type:"iframe", layoutType:"headless", title:"Iframe Multi Series Cart",
+							contentsOptions:{
+								url:"./widget/getCustomWidget.view?widgetType=sd&widgetName=Multi_Series"
+							}
+						},{
+							id:"iframe4", 
+							x:0,
+							y:420,
+							width:500,height:400, type:"iframe", layoutType:"headless", title:"Iframe Dual Pie Chart",
+							contentsOptions:{
+								url:"./widget/getCustomWidget.view?widgetType=poi&widgetName=dual_pie_chart"
+							}
+						},{
+							id:"iframe5", 
+							x:520,
+							y:420,
+							width:500,height:400, type:"iframe", layoutType:"headless", title:"Iframe Column Stacked",
+							contentsOptions:{
+								url:"./widget/getCustomWidget.view?widgetType=safe&widgetName=column_stacked"
+							}
+						},{
+							id:"iframe6",
+							x:1040,
+							y:0,
+							width:500,height:400, type:"iframe", layoutType:"headless", title:"Iframe Adas Bar Stacked",
+							contentsOptions:{
+								url:"./widget/getCustomWidget.view?widgetType=adas&widgetName=bar_stacked"
+							}
+						},{
+							id:"iframe7",
+							x:1040,
+							y:420,
+							width:500,height:400, type:"iframe", layoutType:"headless", title:"Iframe HD Bar Stacked",
+							contentsOptions:{
+								url:"./widget/getCustomWidget.view?widgetType=hd&widgetName=bar_stacked"
+							width:500,height:500, type:"iframe", layoutType:"window", title:"IFRAME 위젯",
+							contentsOptions:{
+								url:"./widget/getCustomWidget.view?widgetType=test&widgetName=server_status"
+							}
+							width:500,height:500, type:"iframe", layoutType:"window", title:"IFRAME 위젯",
+							contentsOptions:{
+								url:"./widget/getCustomWidget.view?widgetType=test&widgetName=server_status"
+							}
+						}, {
+							id:"layout1", 
+							x : 0,
+							y : 310,
+							width:500,height:500, type:"iframe", layoutType:"headless", title:"IFRAME 위젯",
+							contentsOptions:{
+								url:"./widget/getCustomWidget.view?widgetType=test&widgetName=layout"
 							}
 						}
 		         	]
@@ -59,7 +122,8 @@
 //	     dashboard.setSlideWidth( 1024 );
 //	     dashboard.setSlideHeight( 500 );
 
-	     dashboard.setSlideWidth( $( "#dashboardHolder" ).width() );
+	     /*dashboard.setSlideWidth( $( "#dashboardHolder" ).width() );*/
+	     dashboard.setSlideWidth( $( window ).width() );
 	     dashboard.setSlideHeight( $( window ).height() - 70 );
 	     // slide 크기는 지정해서 넣는 수 밖에 없음
 

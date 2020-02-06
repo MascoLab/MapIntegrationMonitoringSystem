@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="robots" content="noindex, nofollow" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta http-equiv="Content-Style-Type" content="text/css"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+<title></title>
+
+<link rel="stylesheet" type="text/css" href="../css/pages/common.css">			<!-- 공통 스타일 -->
+<link rel="stylesheet" type="text/css" href="../BIX5/Assets/BIX5.css"/>			<!-- BIX5 스타일 -->  
+<link rel="stylesheet" type="text/css" href="../BIX5/Assets/BIX5Dashboard.css"/>	<!-- BIX5 Dashboard 스타일 --> 
+
+<script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>		<!-- jQeury 라이브러리 -->
+<script type="text/javascript" src="../BIX5/JS/BIX5.js" ></script> 				<!-- BIX5 라이브러리 -->
+<script type="text/javascript" src="../BIX5/LicenseKey/BIX5License.js"></script>	<!-- BIX5 라이선스 -->
+
+<script type="text/javascript">
+
+
+BIX5.chart.create("chart1", "chartHolder1", "", "100%", "100%");
+BIX5.chart.create("chart2", "chartHolder2", "", "100%", "100%");
+ 
+var layoutStr =
+                '<BIX5 backgroundColor="#FFFFFF" borderStyle="none" >'
+                    +'<Options>'
+                      +'<Caption text="Web Browser Market Share"/>'
+                     +'<Legend useVisibleCheck="true"/>'
+                   +'</Options>'
+                 +'<CurrencyFormatter id="numFmt" currencySymbol="%" alignSymbol="right"/>'
+                    +'<Pie2DChart showDataTips="true" itemClickJsFunction="chartClickHanlder" showRotateEffect="true">'
+               /* Pie2D 차트 생성시에 필요한 Pie2DChart 정의합니다. */
+               /* showDataTips : 데이터에 마우스를 가져갔을 때 나오는 Tip을 보이기/안보이기 속성입니다. */
+                      +'<series>'
+                           +'<Pie2DSeries nameField="browser" field="share" labelPosition="inside" color="#ffffff">'
+                         /* Pie2DChart 정의 후 Pie2DSeries labelPosition="inside"정의합니다 */
+                               +'<showDataEffect>'
+                               /* 차트 생성시에 Effect를 주고 싶을 때 showDataEffect정의합니다 */
+                                   +'<SeriesSlide duration="1000"/>'
+             /* SeriesSlide 효과는 시리즈 데이터가 데이터로 표시될 때 한쪽에서 미끄러지듯 나타나는 효과를 적용합니다. */
+                /* elementOffset : effect를 지연시키는 시간을 지정합니다 default:20 */
+                /* minimumElementDuration : 각 엘리먼트의 최소 지속 시간을 설정합니다 default:0 */
+                             /* 이 값보다 짧은 시간에 effect가 실행되지 않습니다. */
+              /* offset : effect개시의 지연시간을 설정합니다 default:0 */
+              /* perElementOffset : 각 엘리먼트의 개시 지연시간을 설정합니다. */
+                /* direction : left:왼쪽, right:오른쪽, up:위, down:아래 default는 left입니다. */
+                               +'</showDataEffect>'
+                          +'</Pie2DSeries>'
+                     +'</series>'
+                  +'</Pie2DChart>'
+              +'</BIX5>';
+ 
+var layoutStr2 = '<BIX5 backgroundColor="#FFFFFF" borderStyle="none" >'
+                  +'<Options>'
+                      +'<Caption text="Web Browser Market Share"/>'
+                     +'<Legend useVisibleCheck="true"/>'
+                   +'</Options>'
+                 +'<CurrencyFormatter id="numFmt" currencySymbol="%" alignSymbol="right"/>'
+                    +'<Pie2DChart showDataTips="true">'
+               /* Pie2D 차트 생성시에 필요한 Pie2DChart 정의합니다. */
+               /* showDataTips : 데이터에 마우스를 가져갔을 때 나오는 Tip을 보이기/안보이기 속성입니다. */
+                      +'<series>'
+                           +'<Pie2DSeries nameField="browser" field="share" labelPosition="inside" color="#ffffff">'
+                         /* Pie2DChart 정의 후 Pie2DSeries labelPosition="inside"정의합니다 */
+                               +'<showDataEffect>'
+                               /* 차트 생성시에 Effect를 주고 싶을 때 showDataEffect정의합니다 */
+                                   +'<SeriesSlide duration="1000"/>'
+             /* SeriesSlide 효과는 시리즈 데이터가 데이터로 표시될 때 한쪽에서 미끄러지듯 나타나는 효과를 적용합니다. */
+                /* elementOffset : effect를 지연시키는 시간을 지정합니다 default:20 */
+                /* minimumElementDuration : 각 엘리먼트의 최소 지속 시간을 설정합니다 default:0 */
+                             /* 이 값보다 짧은 시간에 effect가 실행되지 않습니다. */
+              /* offset : effect개시의 지연시간을 설정합니다 default:0 */
+              /* perElementOffset : 각 엘리먼트의 개시 지연시간을 설정합니다. */
+                /* direction : left:왼쪽, right:오른쪽, up:위, down:아래 default는 left입니다. */
+                               +'</showDataEffect>'
+                          +'</Pie2DSeries>'
+                     +'</series>'
+                  +'</Pie2DChart>'
+              +'</BIX5>';
+ 
+// 차트 데이터
+var chartData =
+   [{"browser":"Chrome", "share":40},
+  {"browser":"Internet Explorer", "share":21},
+    {"browser":"Firefox", "share":19},
+  {"browser":"Safari", "share":15},
+   {"browser":"Opera", "share":5}];
+ 
+BIX5.chart.calls("chart1", {
+   "setLayout" : layoutStr,
+    "setData" : chartData
+});
+ 
+function chartClickHanlder(seriesId, index, data, values){
+  window.setTimeout(function(){
+       BIX5.chart.call("chart2", "setLayout", layoutStr2);
+     BIX5.chart.call("chart2", "setData", getRandomData());
+  }, 1000);
+}
+ 
+function getRandomData(){
+ var arr = [{"browser":"2016"}, {"browser":"2017"}, {"browser":"2018"}, {"browser":"2019"}];
+ return arr.map(function(item){
+      item.share = Math.round(Math.random() * 50);
+        return item;
+    });
+}
+
+</script>
+
+</head>
+<body>
+
+
+
+	<div class="gGrid1">
+		<!-- grid -->
+		<div class="mGrid1">
+			<!-- row -->
+			<div class="row">
+				<!-- col -->
+				<div class="col">
+					<div class="mBox1 h1">
+						<div class="tit">
+							<div class="ti">Core 및 Extended POI 보유 현황</div>
+							<div class="rt">
+								<a href="###" class="iRefresh">새로고립</a>
+								<a href="###" class="iSet2">세팅</a>
+							</div>
+						</div>
+						<div class="con">
+							<div class="co">
+								<div class="txt">
+								
+									<div class="wrapper">
+										<div id="content" style="height:270px;">
+												<div id="chartHolder1" class="chartHolder" style="height:120px;"></div>
+												<div id="chartHolder2" class="chartHolder" style="height:120px;"></div>
+											</div>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+</body>
+</html> 
+

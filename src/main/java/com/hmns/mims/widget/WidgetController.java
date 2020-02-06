@@ -32,6 +32,8 @@ public class WidgetController {
 		return mv;
 	}
 	
+	
+	
 	// WIDGET_INFO
 	/**
 	 * WIDGET_INFO 파라미터 정보

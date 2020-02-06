@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="robots" content="noindex, nofollow" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta http-equiv="Content-Style-Type" content="text/css"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+<title></title>
+
+<link rel="stylesheet" type="text/css" href="../css/pages/common.css">			<!-- 공통 스타일 -->
+<link rel="stylesheet" type="text/css" href="../BIX5/Assets/BIX5.css"/>			<!-- BIX5 스타일 -->  
+<link rel="stylesheet" type="text/css" href="../BIX5/Assets/BIX5Dashboard.css"/>	<!-- BIX5 Dashboard 스타일 --> 
+
+<script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>		<!-- jQeury 라이브러리 -->
+<script type="text/javascript" src="../BIX5/JS/BIX5.js" ></script> 				<!-- BIX5 라이브러리 -->
+<script type="text/javascript" src="../BIX5/LicenseKey/BIX5License.js"></script>	<!-- BIX5 라이선스 -->
+
+<script type="text/javascript">
+
+BIX5.chart.create("chart1", "chartHolder1", "", "100%", "100%");
+ 
+// 스트링 형식으로 레이아웃 정의.
+var layoutStr =
+                '<BIX5 backgroundColor="#FFFFFF" borderStyle="none">'
+                 +'<Options>'
+                      +'<Caption text="Sales by Month"/>'
+                       +'<SubCaption text="( $M )" textAlign="right" />'
+                     +'<Legend defaultMouseOverAction="false" useVisibleCheck="true"/>'
+                    +'</Options>'
+                 +'<Bar2DChart showDataTips="true" barWidthRatio="0.48">'
+                      +'<horizontalAxis>'
+                           +'<LinearAxis/>'
+                      +'</horizontalAxis>'
+                      +'<verticalAxis>'
+                         +'<CategoryAxis categoryField="Month"/>'
+                      +'</verticalAxis>'
+                        +'<series>'
+                           /*
+                          type 속성을 stacked로 변경
+                            type속성으로는
+                           clustered : 일반적인 다중데이터(차트의 멀티시리즈)방식으로 데이터를 표현합니다.(Default)
+                          stacked : 데이터를 위에 쌓아 올린 방식으로 표현 합니다.
+                            overlaid : 수치 데이터 값을 겹쳐서 표현 합니다. 주로 목표 위치와 현재 위치를 나타낼 때 많이 쓰입니다.
+                            100% : 차트의 수치 데이터를 퍼센티지로 계산 후 값을 퍼센티지로 나타냅니다.
+                           */
+                          +'<Bar2DSet type="stacked" showTotalLabel="true" totalLabelJsFunction="totalFunc" color="#666" labelYOffset="2" labelXOffset="5">'
+                                +'<series>'
+                               /* Bar2D Stacked 를 생성시에는 Bar2DSeries를 최소 2개 정의합니다 */
+                                    +'<Bar2DSeries labelPosition="inside" showValueLabels="[5]" xField="tv" displayName="TV" color="#ffffff" insideLabelYOffset="2">'
+                                     +'<showDataEffect>'
+                                           +'<SeriesInterpolate/>'
+                                       +'</showDataEffect>'
+                                  +'</Bar2DSeries>'
+                                 +'<Bar2DSeries labelPosition="inside" showValueLabels="[5]" xField="tablet" displayName="Tablet" color="#ffffff" insideLabelYOffset="2">'
+                                     +'<showDataEffect>'
+                                           +'<SeriesInterpolate/>'
+                                       +'</showDataEffect>'
+                                  +'</Bar2DSeries>'
+                                 +'<Bar2DSeries labelPosition="inside" showValueLabels="[5]" xField="phone" displayName="Cell Phone" color="#ffffff" insideLabelYOffset="2">'
+                                      +'<showDataEffect>'
+                                           +'<SeriesInterpolate/>'
+                                       +'</showDataEffect>'
+                                  +'</Bar2DSeries>'
+                             +'</series>'
+                          +'</Bar2DSet>'
+                        +'</series>'
+                  +'</Bar2DChart>'
+              +'</BIX5>';
+ 
+// 차트 데이터
+var chartData =
+   [{"Month" : "Jan","phone" : 8,"tv" : 14,"tablet" : 12},
+  {"Month" : "Feb","phone" : 20,"tv" : 11,"tablet" : 23},
+     {"Month" : "Mar","phone" : 16,"tv" : 10,"tablet" : 23},
+     {"Month" : "Apr","phone" : 18,"tv" : 18,"tablet" : 23},
+     {"Month" : "May","phone" : 27,"tv" : 31,"tablet" : 25},
+     {"Month" : "Jun","phone" : 22,"tv" : 25,"tablet" : 25},
+     {"Month" : "Jul","phone" : 16,"tv" : 14,"tablet" : 18},
+     {"Month" : "Aug","phone" : 10,"tv" : 18,"tablet" : 12}];
+ 
+BIX5.chart.calls("chart1", {
+  "setLayout" : layoutStr,
+    "setData" : chartData
+});
+ 
+/*
+// ------------------------- 스택 타입의 토탈 필드 사용자 정의 함수 -----------------------------------------------------
+// 차트의 SeriesSet 에서 showTotalLabel 속성을 설정한 경우 토탈 필드를 사용자 정의하는 함수입니다.
+// layout XML 에서 Series 속성을 넣을때 labelJsFunction 주고, 만든 javascript 함수명을 넣어줍니다
+//
+// 예) <Bar2DSet showTotalLabel="true" totalLabelJsFunction="totalLabelFunc">
+//
+// 파라메터 설명
+// index : 해당 시리즈 아이템의 인덱스.
+// data : 해당 item의 값을 표현하기 위해 입력된 data(입력된 데이타중 해당 row(레코드) 자료입니다)
+// value : 총 합계 값.
+*/
+function totalFunc(index, data, value){
+ if(index == 5)
+      return insertComma(value);
+  return "";
+}
+ 
+//숫자에 천단위 콤마 찍어 반환하는 함수.
+function insertComma(n) {
+    var reg = /(^[+-]?\d+)(\d{3})/; // 정규식
+  n += "";
+    while (reg.test(n))
+ n = n.replace(reg, '$1' + "," + '$2');
+  return n;
+}
+
+
+</script>
+
+</head>
+<body>
+
+
+
+	<div class="gGrid1">
+		<!-- grid -->
+		<div class="mGrid1">
+			<!-- row -->
+			<div class="row">
+				<!-- col -->
+				<div class="col">
+					<div class="mBox1 h1">
+						<div class="tit">
+							<div class="ti">도로종별별 HD 구축 연장</div>
+							<div class="rt">
+								<a href="###" class="iRefresh">새로고립</a>
+								<a href="###" class="iSet2">세팅</a>
+							</div>
+						</div>
+						<div class="con">
+							<div class="co">
+								<div class="txt">
+								
+									<div class="wrapper">
+										<div id="content" style="height:270px;">
+												<div id="chartHolder1" class="chartHolder" style="height:230px;"></div>
+											</div>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+</body>
+</html> 
+

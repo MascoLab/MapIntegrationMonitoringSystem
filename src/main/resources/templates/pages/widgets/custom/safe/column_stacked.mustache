@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="robots" content="noindex, nofollow" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta http-equiv="Content-Style-Type" content="text/css"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+<title></title>
+
+<link rel="stylesheet" type="text/css" href="../css/pages/common.css">			<!-- 공통 스타일 -->
+<link rel="stylesheet" type="text/css" href="../BIX5/Assets/BIX5.css"/>			<!-- BIX5 스타일 -->  
+<link rel="stylesheet" type="text/css" href="../BIX5/Assets/BIX5Dashboard.css"/>	<!-- BIX5 Dashboard 스타일 --> 
+
+<script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>		<!-- jQeury 라이브러리 -->
+<script type="text/javascript" src="../BIX5/JS/BIX5.js" ></script> 				<!-- BIX5 라이브러리 -->
+<script type="text/javascript" src="../BIX5/LicenseKey/BIX5License.js"></script>	<!-- BIX5 라이선스 -->
+
+<script type="text/javascript">
+
+var chartVars = "BIX5OnLoadCallFunction=chartReadyHandler";
+ 
+BIX5.chart.create("chart1", "chartHolder1", chartVars, "100%", "100%");
+ 
+function chartReadyHandler(id) {
+ document.getElementById(id).setLayout(layoutStr);
+   document.getElementById(id).setData(chartData);
+}
+ 
+var layoutStr =
+ '<BIX5 backgroundColor="#FFFFFF" borderStyle="none">'
+     +'<Options>'
+          +'<Caption text="Sales by Month"/>'
+           +'<SubCaption text="( $M )" textAlign="right" />'
+         +'<Legend useVisibleCheck="true" defaultMouseOverAction="false" />'
+       +'</Options>'
+     +'<Column2DChart showDataTips="true" columnWidthRatio="0.4">'
+         +'<horizontalAxis>'
+               +'<CategoryAxis categoryField="Month"/>'
+          +'</horizontalAxis>'
+          +'<verticalAxis>'
+             +'<LinearAxis maximum="100" interval="10"/>'
+          +'</verticalAxis>'
+            +'<series>'
+               /*
+              type 속성을 stacked로 변경
+                type속성으로는
+               clustered : 일반적인 다중데이터(차트의 멀티시리즈)방식으로 데이터를 표현합니다.(Default)
+              stacked : 데이터를 위에 쌓아 올린 방식으로 표현 합니다.
+                overlaid : 수치 데이터 값을 겹쳐서 표현 합니다. 주로 목표 위치와 현재 위치를 나타낼 때 많이 쓰입니다.
+                100% : 차트의 수치 데이터를 퍼센티지로 계산 후 값을 퍼센티지로 나타냅니다.
+               */
+              +'<Column2DSet type="stacked" showTotalLabel="true" totalLabelJsFunction="totalFunc">'
+                    +'<series>'
+               /*  Column2D Stacked 를 생성시에는 Column2DSeries를 최소 2개 정의합니다 */
+                     +'<Column2DSeries labelPosition="inside" yField="tv" displayName="TV" showValueLabels="[6]" color="#ffffff" strokeJsFunction="strokeFunction">'
+                           +'<showDataEffect>'
+                               +'<SeriesInterpolate/>'
+                           +'</showDataEffect>'
+                      +'</Column2DSeries>'
+                      +'<Column2DSeries labelPosition="inside" yField="tablet" displayName="Tablet" showValueLabels="[6]" color="#ffffff" strokeJsFunction="strokeFunction">'
+                           +'<showDataEffect>'
+                               +'<SeriesInterpolate/>'
+                           +'</showDataEffect>'
+                      +'</Column2DSeries>'
+                      +'<Column2DSeries labelPosition="inside" yField="phone" displayName="Cell Phone" showValueLabels="[6]" color="#ffffff" strokeJsFunction="strokeFunction">'
+                            +'<showDataEffect>'
+                               +'<SeriesInterpolate/>'
+                           +'</showDataEffect>'
+                      +'</Column2DSeries>'
+                  +'</series>'
+              +'</Column2DSet>'
+         +'</series>'
+      +'</Column2DChart>'
+   +'</BIX5>';
+ 
+ 
+// 차트 데이터
+var chartData =
+   [{"Month":"Jan", "phone":12, "tv":11, "tablet":12},
+ {"Month":"Feb", "phone":14, "tv":19, "tablet":17},
+  {"Month":"Mar", "phone":23, "tv":25, "tablet":20},
+  {"Month":"Apr", "phone":20, "tv":20, "tablet":18},
+  {"Month":"May", "phone":35, "tv":25, "tablet":25},
+  {"Month":"Jun", "phone":20, "tv":22, "tablet":23},
+  {"Month":"Jul", "phone":17, "tv":20, "tablet":17},
+  {"Month":"Aug", "phone":23, "tv":21, "tablet":21},
+  {"Month":"Sep", "phone":18, "tv":17, "tablet":10}];
+ 
+// 스택 수치 합 사용자 정의 함수
+function totalFunc(index, data, value){
+  if(index == 6)
+      return insertComma(value);
+  return "";
+}
+ 
+//숫자에 천단위 콤마 찍어 반환하는 함수.
+function insertComma(n) {
+    var reg = /(^[+-]?\d+)(\d{3})/; // 정규식
+  n += "";
+    while (reg.test(n))
+ n = n.replace(reg, '$1' + "," + '$2');
+  return n;
+}
+ 
+function strokeFunction(id, index, data, values){
+ if(values[0] == "Jul")
+      return {
+            color : "#000",
+         weight : 2
+      };
+}
+
+</script>
+
+</head>
+<body>
+
+
+
+	<div class="gGrid1">
+		<!-- grid -->
+		<div class="mGrid1">
+			<!-- row -->
+			<div class="row">
+				<!-- col -->
+				<div class="col">
+					<div class="mBox1 h1">
+						<div class="tit">
+							<div class="ti">월별 과금형카메라 변경 현황</div>
+							<div class="rt">
+								<a href="###" class="iRefresh">새로고립</a>
+								<a href="###" class="iSet2">세팅</a>
+							</div>
+						</div>
+						<div class="con">
+							<div class="co">
+								<div class="txt">
+								
+									<div class="wrapper">
+										<div id="content" style="height:270px;">
+												<div id="chartHolder1" class="chartHolder" style="height:230px;"></div>
+											</div>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+</body>
+</html> 
+
