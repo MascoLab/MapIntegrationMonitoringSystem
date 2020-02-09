@@ -217,6 +217,18 @@ $( function() {
 					},
 				]
 			}, {
+				label : "custom",
+				children : [
+					{
+						label : "CCTV",
+						title : "CCTV",
+						type : "iframe",
+						contentsOptions:{
+							url : "./widget/getCustomWidget.view?widgetType=test&widgetName=map_cctv"
+						}
+					}
+				]
+			}, {
 				label : "blank", 
 				type : "blank", 
 				options : {
