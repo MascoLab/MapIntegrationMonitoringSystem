@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hmns.mims.system.mapper.POIOP_Mapper">
+	<select id="selectPoiCACntList" resultType="HashMap">
+		SELECT
+			CA_NAME AS [대분류],
+			COUNT(*) AS [건수]
+		FROM
+			PTM_COMMON A
+			INNER JOIN PTC_POI_CLASS B ON A.POI_ID = B.POI_ID AND B.MAIN_CLASS_YN = 1
+			INNER JOIN PTC_CLASS C ON B.CLASS_CODE = C.CLASS_CODE
+		GROUP BY CA_NAME
+	</select>
+	
+	<select id="selectPoiCBCntList" resultType="HashMap">
+		SELECT
+			CA_NAME [A분류],
+			CB_NAME [B분류],
+			COUNT(*) AS [건수]
+		FROM
+			DBO.PTM_COMMON A
+			INNER JOIN DBO.PTC_POI_CLASS B ON A.POI_ID = B.POI_ID AND B.MAIN_CLASS_YN = 1
+			INNER JOIN PTC_CLASS C ON B.CLASS_CODE = C.CLASS_CODE
+		WHERE
+			CA_NAME = '교통편의'
+			AND CB_NAME = '교통시설'
+		GROUP BY CA_NAME, CB_NAME"
+	</select>
+</mapper>

@@ -26,6 +26,9 @@ BIX5.chart.create("chart2", "chartHolder2", "", "100%", "100%");
  
 var layoutStr =
                 '<BIX5 backgroundColor="#FFFFFF" borderStyle="none" >'
+                	+'<Options>'
+                     +'<Legend useVisibleCheck="true"/>'
+                   +'</Options>'
                  +'<CurrencyFormatter id="numFmt" currencySymbol="%" alignSymbol="right"/>'
                     +'<Pie2DChart showDataTips="true" itemClickJsFunction="chartClickHanlder" showRotateEffect="true">'
                /* Pie2D 차트 생성시에 필요한 Pie2DChart 정의합니다. */
@@ -51,7 +54,6 @@ var layoutStr =
  
 var layoutStr2 = '<BIX5 backgroundColor="#FFFFFF" borderStyle="none" >'
                   +'<Options>'
-                      +'<Caption text="Web Browser Market Share"/>'
                      +'<Legend useVisibleCheck="true"/>'
                    +'</Options>'
                  +'<CurrencyFormatter id="numFmt" currencySymbol="%" alignSymbol="right"/>'
@@ -109,6 +111,7 @@ function getRandomData(){
 </head>
 
 <body>
+<!--
 	<div class="mBox1 h1">
 		<div class="tit">
 			<div class="ti">Core 및 Extended POI 보유 현황</div>
@@ -126,6 +129,12 @@ function getRandomData(){
 				</div>
 			</div>
 		</div>
+	</div>
+-->
+
+	<div style="width: 100%; height: 100%;">
+		<div id="chartHolder1" class="chartHolder" style="display: inline-block; width: 49%; height: 100%;"></div>
+		<div id="chartHolder2" class="chartHolder" style="display: inline-block; width: 49%; height: 100%; background-color: #FFFFFF;"></div>
 	</div>
 </body>
 

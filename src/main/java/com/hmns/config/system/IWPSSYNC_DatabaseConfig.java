@@ -1,4 +1,4 @@
-package com.hmns.config;
+package com.hmns.config.system;
 
 import javax.sql.DataSource;
 
@@ -16,25 +16,24 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-@MapperScan( value = "com.hmns", annotationClass = AgentConnMapper.class, sqlSessionFactoryRef = "agentSqlSessionFactory" )
+@MapperScan( value = "com.hmns", annotationClass = IWPSSYNC_ConnMapper.class, sqlSessionFactoryRef = "iwpssyncSqlSessionFactory" )
 @EnableTransactionManagement
-public class AgentDatabaseConfig {
-	
-	@Bean( name = "agentDataSource", destroyMethod = "close" )
-	@ConfigurationProperties( prefix = "spring.agent.datasource" )
-	public DataSource agentDataSource() {
+public class IWPSSYNC_DatabaseConfig {
+	@Bean( name = "iwpssyncDataSource", destroyMethod = "close" )
+	@ConfigurationProperties( prefix = "spring.iwpssync.datasource" )
+	public DataSource iwpssyncDataSource() {
 		return DataSourceBuilder.create().type( HikariDataSource.class ).build();
 	}
 	
-	@Bean( name = "agentSqlSessionFactory" )
-	public SqlSessionFactory agentSqlSessionFactory( @Qualifier( "agentDataSource" ) DataSource agentDataSource ) throws Exception {
+	@Bean( name = "iwpssyncSqlSessionFactory" )
+	public SqlSessionFactory iwpssyncSqlSessionFactory( @Qualifier( "iwpssyncDataSource" ) DataSource iwpssyncDataSource ) throws Exception {
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-		sqlSessionFactoryBean.setDataSource( agentDataSource );
+		sqlSessionFactoryBean.setDataSource( iwpssyncDataSource );
 		return sqlSessionFactoryBean.getObject();
 	}
 	
-	@Bean( name = "agentSqlSessionTemplate" )
-	public SqlSessionTemplate agentSqlSessionTemplate( SqlSessionFactory agentSqlSessionFactory ) throws Exception {
-		return new SqlSessionTemplate( agentSqlSessionFactory );
+	@Bean( name = "iwpssyncSqlSessionTemplate" )
+	public SqlSessionTemplate iwpssyncSqlSessionTemplate( SqlSessionFactory iwpssyncSqlSessionFactory ) throws Exception {
+		return new SqlSessionTemplate( iwpssyncSqlSessionFactory );
 	}
 }

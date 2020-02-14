@@ -1,57 +1,68 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>BIX5 | Dashboard Demo</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="description" content="BIX5 Dashboard, BIX5 Chart, BIX5 Grid, BIX5 MapChart, BIXsoft 2017">
-	<meta name="keywords" content="HTML5,Chart,JavaScript,CSS,Ajax,Graph,BIX5Chart">
-	<script type="text/javascript" src="/js/jquery-1.12.4.min.js"></script>
-	<script>
-/*	
-	$(document).ready(function(){
-		var product;
-		if("" == getParameterByName("product")){
-			if("" == getParameterByName("Product")){
-				product = "Dashboard";
-			} else {
-				product = getParameterByName("Product");
-			}
-		} else {
-			product = getParameterByName("product");
-		}
-		
-		if("Mapchart" == getParameterByName("product") || "Mapchart"==getParameterByName("Product")){
-			product = "MapChart";
-		} 
-		
-		var tab = getParameterByName("tab");
-		var page = "" == getParameterByName("page") ? "Web/Overview" : getParameterByName("page");
+{{>layout/header}}
 
-		$("#topFrame").attr("src", "./Samples/"+product+"/Web/Top.html");
-		$("#menuFrame").attr("src", "./Samples/"+product+"/Web/LeftMenu.html?tab="+tab+"&page="+page);
-		$("#sampleFrame").attr("src", "./Samples/"+product+"/"+page+".html");		
-	});
-*/	
-	function getParameterByName(name) {
-		name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-		var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-			results = regex.exec(location.search);
-		return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-	}
-	</script>
-</head>
+<link rel="stylesheet" type="text/css" href="./css/pages/main.css">
 
-<frameset rows="80px,100%" frameborder="1" border="1px" BORDERCOLOR="#00619d">
-	<frame scrolling="no" rows="100%" name="topFrame" id="topFrame" noresize>
-		<frameset cols="320px,100%" frameborder="0">
-			<frame scrolling="no" rows="100%" noresize name="menuFrame" id="menuFrame" frameborder="0" marginwidth="0">
-			<frameset rows="100%">
-				<frame scrolling="yes" noresize name="sampleFrame" id="sampleFrame" frameborder="0">
-			</frameset>
-		</frameSet>
-	</frame>
-</frameSet>
+<script type="text/javascript" src="./js/bootstrap.js"></script>
+<script type="text/javascript" src="./js/pages/main.js"></script>
+<script type="text/javascript" src="./js/DashBoardTest/DashBoardTest.js"></script>
 
-</html>
+{{>layout/left_menu}}
+
+<div id="body">
+	<div class="gGrid1">
+<!-- 
+		<div class="mButton1 top">
+			<a href="###" class="mBtn1 selected"><span class="iHome">HOME</span></a>
+			<span class="mBtn1 delete">협력사 작업 현황 <a href="###" class="iDelete">삭제</a></span>
+			<span class="mBtn1 delete">Core POI  데이터 보유현황 <a href="###" class="iDelete">삭제</a></span>
+			<span class="mBtn1 delete">실시간 조사 진행 현황 <a href="###" class="iDelete">삭제</a></span>
+		</div>
+-->
+		<ul class="nav nav-tabs" role="tablist">
+			<li class="active"><a href="#mGrid1" data-toggle="tab">ADAS</a><span>x</span></li>
+			<li><a href="#mGrid2" data-toggle="tab">변화정보</a><span>x</span></li>
+			<li><a href="#" class="add-contact">+ 위젯 추가</a></li>
+		</ul>
+<!-- 
+		<div class="mTab1" role="tablist">
+			<span class="ls selected"><a href="#mGrid1">HOME</a> <a href="###" class="iDelete">삭제</a></span>
+			<span class="ls"><a href="#mGrid2">협력사 작업 현황</a> <a href="###" class="iDelete">삭제</a></span>
+			<span class="ls"><a href="#">+ 탭 추가</a></span>
+		</div>
+-->
+		<div class="tab-content">
+			<div class="mGrid1 tab-pane active" id="mGrid1">
+				<div id="dashboardHolder" style="width: 100%; height: 100%;"></div>
+			</div>
+
+			<div class="mGrid1 tab-pane" id="mGrid2">
+				<div class="row">
+					<div class="col">
+						<iframe src="./widget/getCustomWidget.view?widgetType=test&widgetName=server_status" frameborder="0" class="frame" name="frame"></iframe>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<iframe src="./widget/getCustomWidget.view?widgetType=sd&widgetName=Multi_Series" frameborder="0" class="frame" name="frame"></iframe>
+					</div>
+					<div class="col">
+						<iframe src="./widget/getCustomWidget.view?widgetType=poi&widgetName=dual_pie_chart" frameborder="0" class="frame" name="frame"></iframe>
+					</div>
+					<div class="col">
+						<iframe src="./widget/getCustomWidget.view?widgetType=safe&widgetName=column_stacked" frameborder="0" class="frame" name="frame"></iframe>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<iframe src="./widget/getCustomWidget.view?widgetType=adas&widgetName=bar_stacked" frameborder="0" class="frame" name="frame"></iframe>
+					</div>
+					<div class="col">
+						<iframe src="./widget/getCustomWidget.view?widgetType=hd&widgetName=bar_stacked" frameborder="0" class="frame" name="frame"></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{{>layout/bottom}}

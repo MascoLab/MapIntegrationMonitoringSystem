@@ -2,7 +2,6 @@ package com.hmns.config;
 
 import javax.sql.DataSource;
 
-import org.apache.catalina.core.ApplicationContext;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;

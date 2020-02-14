@@ -1,4 +1,4 @@
-package com.hmns.config;
+package com.hmns.config.system;
 
 import javax.sql.DataSource;
 
@@ -16,25 +16,24 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-@MapperScan( value = "com.hmns", annotationClass = AgentConnMapper.class, sqlSessionFactoryRef = "agentSqlSessionFactory" )
+@MapperScan( value = "com.hmns", annotationClass = IWPSCPPROC2_ConnMapper.class, sqlSessionFactoryRef = "iwpscpproc2SqlSessionFactory" )
 @EnableTransactionManagement
-public class AgentDatabaseConfig {
-	
-	@Bean( name = "agentDataSource", destroyMethod = "close" )
-	@ConfigurationProperties( prefix = "spring.agent.datasource" )
-	public DataSource agentDataSource() {
+public class IWPSCPPROC2_DatabaseConfig {
+	@Bean( name = "iwpscpproc2DataSource", destroyMethod = "close" )
+	@ConfigurationProperties( prefix = "spring.iwpscpproc2.datasource" )
+	public DataSource iwpscpproc2DataSource() {
 		return DataSourceBuilder.create().type( HikariDataSource.class ).build();
 	}
 	
-	@Bean( name = "agentSqlSessionFactory" )
-	public SqlSessionFactory agentSqlSessionFactory( @Qualifier( "agentDataSource" ) DataSource agentDataSource ) throws Exception {
+	@Bean( name = "iwpscpproc2SqlSessionFactory" )
+	public SqlSessionFactory iwpscpproc2SqlSessionFactory( @Qualifier( "iwpscpproc2DataSource" ) DataSource iwpscpproc2DataSource ) throws Exception {
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-		sqlSessionFactoryBean.setDataSource( agentDataSource );
+		sqlSessionFactoryBean.setDataSource( iwpscpproc2DataSource );
 		return sqlSessionFactoryBean.getObject();
 	}
 	
-	@Bean( name = "agentSqlSessionTemplate" )
-	public SqlSessionTemplate agentSqlSessionTemplate( SqlSessionFactory agentSqlSessionFactory ) throws Exception {
-		return new SqlSessionTemplate( agentSqlSessionFactory );
+	@Bean( name = "iwpscpproc2SqlSessionTemplate" )
+	public SqlSessionTemplate iwpscpproc2SqlSessionTemplate( SqlSessionFactory iwpscpproc2SqlSessionFactory ) throws Exception {
+		return new SqlSessionTemplate( iwpscpproc2SqlSessionFactory );
 	}
 }

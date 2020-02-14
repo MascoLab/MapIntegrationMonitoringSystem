@@ -28,6 +28,11 @@ public class TestController {
 		return "/pages/test";
 	}
 	
+	@RequestMapping( "/testMain.view" )
+	public String testMain( Model model ) {
+		return "/pages/test";
+	}
+	
 	@RequestMapping( "/test/mainTest.view" )
 	public ModelAndView mainTest( Model model ) {
 		ModelAndView mv = new ModelAndView();
