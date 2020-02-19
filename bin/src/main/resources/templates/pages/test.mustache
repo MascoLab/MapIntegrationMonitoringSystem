@@ -1,0 +1,68 @@
+{{>layout/header}}
+
+<link rel="stylesheet" type="text/css" href="./css/pages/main.css">
+
+<script type="text/javascript" src="./js/bootstrap.js"></script>
+<script type="text/javascript" src="./js/pages/main.js"></script>
+<script type="text/javascript" src="./js/DashBoardTest/DashBoardTest.js"></script>
+
+{{>layout/left_menu}}
+
+<div id="body">
+	<div class="gGrid1">
+<!-- 
+		<div class="mButton1 top">
+			<a href="###" class="mBtn1 selected"><span class="iHome">HOME</span></a>
+			<span class="mBtn1 delete">협력사 작업 현황 <a href="###" class="iDelete">삭제</a></span>
+			<span class="mBtn1 delete">Core POI  데이터 보유현황 <a href="###" class="iDelete">삭제</a></span>
+			<span class="mBtn1 delete">실시간 조사 진행 현황 <a href="###" class="iDelete">삭제</a></span>
+		</div>
+-->
+		<ul class="nav nav-tabs" role="tablist">
+			<li class="active"><a href="#mGrid1" data-toggle="tab">ADAS</a><span>x</span></li>
+			<li><a href="#mGrid2" data-toggle="tab">변화정보</a><span>x</span></li>
+			<li><a href="#" class="add-contact">+ 위젯 추가</a></li>
+		</ul>
+<!-- 
+		<div class="mTab1" role="tablist">
+			<span class="ls selected"><a href="#mGrid1">HOME</a> <a href="###" class="iDelete">삭제</a></span>
+			<span class="ls"><a href="#mGrid2">협력사 작업 현황</a> <a href="###" class="iDelete">삭제</a></span>
+			<span class="ls"><a href="#">+ 탭 추가</a></span>
+		</div>
+-->
+		<div class="tab-content">
+			<div class="mGrid1 tab-pane active" id="mGrid1">
+				<div id="dashboardHolder" style="width: 100%; height: 100%;"></div>
+			</div>
+
+			<div class="mGrid1 tab-pane" id="mGrid2">
+				<div class="row">
+					<div class="col">
+						<iframe src="./widget/getCustomWidget.view?widgetType=test&widgetName=server_status" frameborder="0" class="frame" name="frame"></iframe>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<iframe src="./widget/getCustomWidget.view?widgetType=sd&widgetName=Multi_Series" frameborder="0" class="frame" name="frame"></iframe>
+					</div>
+					<div class="col">
+						<iframe src="./widget/getCustomWidget.view?widgetType=poi&widgetName=dual_pie_chart" frameborder="0" class="frame" name="frame"></iframe>
+					</div>
+					<div class="col">
+						<iframe src="./widget/getCustomWidget.view?widgetType=safe&widgetName=column_stacked" frameborder="0" class="frame" name="frame"></iframe>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<iframe src="./widget/getCustomWidget.view?widgetType=adas&widgetName=bar_stacked" frameborder="0" class="frame" name="frame"></iframe>
+					</div>
+					<div class="col">
+						<iframe src="./widget/getCustomWidget.view?widgetType=hd&widgetName=bar_stacked" frameborder="0" class="frame" name="frame"></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{{>layout/bottom}}

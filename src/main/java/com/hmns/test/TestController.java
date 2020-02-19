@@ -1,5 +1,6 @@
 package com.hmns.test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,6 +58,58 @@ public class TestController {
 		
 		return mv;
 	}
+	
+	//AGENT_CPU % TEST
+	
+	/* @SuppressWarnings("unchecked")
+	@RequestMapping("/test/processListMap.do")
+	public String processListMap(HttpServletRequest request, Model model) throws Exception {
+		HashMap<String, Object> processListMap = new HashMap<String, Object>();
+		processListMap.put("CPU_USAGE", request.getParameter("CPU_USAGE"));
+		processListMap.put("PROCESS_NAME", request.getParameter("PROCESS_NAME"));
+		processListMap.put("INSERT_DATE", request.getParameter("INSERT_DATE"));
+		System.out.println(processListMap);
+		
+		List<String> list = new ArrayList<>();
+		list = testService.processListMap(processListMap);
+		
+		model.addAttribute("processListMap",list);
+		
+		return "/pages/test2";
+	} */
+	
+	@RequestMapping("/test/processListMap.do")
+	public ModelAndView processListMap(HttpServletRequest request, Model model) throws Exception {
+		/*
+		ModelAndView mv = new ModelAndView();
+
+		HashMap<String, Object> processListMap = new HashMap<String, Object>();
+		processListMap.put("CPU_USAGE", request.getParameter("CPU_USAGE"));
+		processListMap.put("PROCESS_NAME", request.getParameter("PROCESS_NAME"));
+		processListMap.put("INSERT_DATE", request.getParameter("INSERT_DATE"));
+		System.out.println(processListMap);
+		
+//		List<String> list = new ArrayList<>();
+//		list = testService.processListMap(processListMap);
+		List<HashMap> list = new ArrayList<>();
+		list = testService.processListMap( processListMap );
+		
+		mv.addObject("processListMap", list);
+		mv.setViewName("/pages/widgets/custom/test/agent_chart");
+		return mv;
+		*/
+		
+		ModelAndView mv = new ModelAndView( new MappingJackson2JsonView() );
+		mv.addObject( "RESULT", testService.processListMap( new HashMap() ) );
+		mv.setViewName("/pages/widgets/custom/test/agent_chart");
+		return mv;
+	}
+	
+	/////////////////////////////////////////////////////////////
+	
+	
+	
+	
 	
 	@SuppressWarnings( "rawtypes" )
 	@RequestMapping( "/test/getCommonCodeList.do" )

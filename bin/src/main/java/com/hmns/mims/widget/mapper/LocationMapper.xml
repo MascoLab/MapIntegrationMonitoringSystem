@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hmns.mims.widget.mapper.LocationMapper">
+
+	<sql id="widgetLocationWhere">
+		<if test="locationSeq != null">
+			AND LOCATION_SEQ = #{locationSeq}
+		</if>
+		<if test="tabSeq != null">
+			AND TAB_SEQ = #{tabSeq} 
+		</if>
+		<if test="widgetSeq != null">
+			AND WIDGET_SEQ = #{widgetSeq}
+		</if>
+		<if test="locationOrder != null">
+			AND LOCATION_ORDER = #{locationOrder}
+		</if>
+		<if test="locationX != null">
+			AND LOCATION_X = #{locationX}
+		</if> 
+		<if test="locationY != null">
+			AND LOCATION_Y = #{locationY}
+		</if>
+		<if test="locationWidth != null">
+			AND LOCATION_WIDTH = #{locationWidth}
+		</if>
+		<if test="locationHeight != null">
+			AND LOCATION_HEIGHT = #{locationHeight}
+		</if>
+	</sql>
+
+	<select id="selectLocationListCnt" resultType="Integer">
+		SELECT COUNT(*)
+		FROM
+		(
+			SELECT
+				ROW_NUMBER() OVER (ORDER BY LOCATION_SEQ ASC) AS rownum,
+				LOCATION_SEQ,
+				TAB_SEQ,
+				WIDGET_SEQ,
+				LOCATION_ORDER,
+				LOCATION_X,
+				LOCATION_Y,
+				LOCATION_WIDTH,
+				LOCATION_HEIGHT
+			FROM
+				WIDGET_LOCATION
+			WHERE
+				1 = 1
+				<include refid="widgetLocationWhere"></include>
+		)T1
+	</select>
+	
+	<select id="selectLocationList" resultType="HashMap">
+		SELECT *
+		FROM
+		(
+			SELECT
+				ROW_NUMBER() OVER (ORDER BY LOCATION_SEQ ASC) AS rownum,
+				LOCATION_SEQ,
+				TAB_SEQ,
+				WIDGET_SEQ,
+				LOCATION_ORDER,
+				LOCATION_X,
+				LOCATION_Y,
+				LOCATION_WIDTH,
+				LOCATION_HEIGHT
+			FROM
+				WIDGET_LOCATION
+			WHERE
+				1 = 1
+				<include refid="widgetLocationWhere"></include>
+		)T1
+		<if test="start != '' and start != null">
+			WHERE
+				rownum BETWEEN ${start} + 1 AND ${start} + ${limit}
+		</if>
+	</select>
+	
+	<insert id="insertLocation">
+		INSERT INTO WIDGET_LOCATION
+		( LOCATION_SEQ, TAB_SEQ, WIDGET_SEQ, LOCATION_ORDER, LOCATION_X, LOCATION_Y, LOCATION_WIDTH, LOCATION_HEIGHT )
+		VALUES
+		( #{locationSeq}, #{tabSeq}, #{widgetSeq}, #{locationOrder}, #{locationX}, #{locationY}, #{locationWidth}, #{locationHeight} )
+	</insert>
+	
+	<update id="updateLocation">
+		UPDATE
+			WIDGET_LOCATION
+		SET
+			<if test="tabSeq != null">
+				TAB_SEQ = #{tabSeq},
+			</if>
+			<if test="widgetSeq != null">
+				WIDGET_SEQ = #{widgetSeq},
+			</if>
+			<if test="locationOrder != null">
+				LOCATION_ORDER = #{locationOrder},
+			</if>
+			<if test="locationX != null">
+				LOCATION_X = #{locationX},
+			</if>
+			<if test="locationY != null">
+				LOCATION_Y = #{locationY},
+			</if>
+			<if test="locationWidth != null">
+				LOCATION_WIDTH = #{locationWidth},
+			</if>
+			<if test="locationHeight != null">
+				LOCATION_HEIGHT = #{locationHeight}
+			</if>
+		WHERE
+			LOCATION_SEQ = #{locationSeq}
+	</update>
+	
+	<delete id="deleteLocation">
+		DELETE FROM
+			WIDGET_LOCATION
+		WHERE 
+			LOCATION_SEQ = #{locationSeq}
+	</delete>
+</mapper>

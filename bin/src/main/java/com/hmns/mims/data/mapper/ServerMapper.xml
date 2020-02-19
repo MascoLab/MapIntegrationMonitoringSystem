@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hmns.mims.data.mapper.ServerMapper">
+
+	<sql id="serverWhere">
+		<if test="serverSeq != null">
+			AND SERVER_SEQ = #{serverSeq}
+		</if>
+		<if test="serverName != null">
+			AND SERVER_NAME LIKE '%' + #{serverName} + '%'
+		</if>
+		<if test="serverTypeCode != null">
+			AND SERVER_TYPE_CODE = #{serverTypeCode}
+		</if>
+		<if test="serverDesc != null">
+			AND SERVER_DESC LIKE '%' + #{serverDesc} + '%'
+		</if>
+		<if test="serverIp != null">
+			AND SERVER_IP = #{serverIp}
+		</if>
+		<if test="dbmsPort != null">
+			AND DBMS_PORT = #{dbmsPort}
+		</if>
+		<if test="dbmsID != null">
+			AND DBMS_ID = #{dbmsID}
+		</if>
+		<if test="dbmsPW != null">
+			AND DBMS_PW = #{dbmsPW}
+		</if>
+		<if test="dbmsName != null">
+			AND DBMS_NAME = #{dbmsName}
+		</if>
+		<if test="useuserID != null">
+			AND USE_USER_ID = #{useuserID}
+		</if>
+	</sql>
+
+	<select id="selectServerListCnt" resultType="Integer">
+		SELECT COUNT(*)
+		FROM
+		(
+			SELECT
+				ROW_NUMBER() OVER (ORDER BY SERVER_SEQ ASC) AS rownum,
+				SERVER_SEQ,
+				SERVER_NAME,
+				SERVER_TYPE_CODE,
+				SERVER_DESC,
+				SERVER_IP,
+				DBMS_PORT,
+				DBMS_ID,
+				DBMS_PW,
+				DBMS_NAME,
+				USE_USER_ID,
+				CONVERT( CHAR(19), INSERT_DATE, 120 ) AS INSERT_DATE,
+				CONVERT( CHAR(19), INSERT_DATE, 120 ) AS UPDATE_DATE
+			FROM
+				DATA_SERVER
+			WHERE
+				1 = 1
+				<include refid="serverWhere"></include>
+		) T1
+	</select>
+
+	<select id="selectServerList" resultType="HashMap">
+		SELECT *
+		FROM
+		(
+			SELECT
+				ROW_NUMBER() OVER (ORDER BY SERVER_SEQ ASC) AS rownum,
+				SERVER_SEQ,
+				SERVER_NAME,
+				SERVER_TYPE_CODE,
+				SERVER_DESC,
+				SERVER_IP,
+				DBMS_PORT,
+				DBMS_ID,
+				DBMS_PW,
+				DBMS_NAME,
+				USE_USER_ID,
+				CONVERT( CHAR(19), INSERT_DATE, 120 ) AS INSERT_DATE,
+				CONVERT( CHAR(19), INSERT_DATE, 120 ) AS UPDATE_DATE
+			FROM
+				DATA_SERVER
+			WHERE
+				1 = 1
+				<include refid="serverWhere"></include>
+		) T1
+		<if test="start != '' and start != null">
+			WHERE
+				rownum BETWEEN ${start} + 1 AND ${start} + ${limit}
+		</if>
+	</select>
+
+	<insert id="insertServer">
+		INSERT INTO DATA_SERVER
+		( SERVER_SEQ, SERVER_NAME, SERVER_TYPE_CODE, SERVER_DESC, SERVER_IP,
+			 DBMS_PORT, DBMS_ID, DBMS_PW, DBMS_NAME, USE_USER_ID, INSERT_DATE )
+		VALUES
+		( #{serverSeq}, #{serverName}, #{serverTypeCode}, #{serverDesc}, #{serverIp},
+			 #{dbmsPort}, #{dbmsID}, #{dbmsPW}, #{dbmsName}, #{useuserID}, GETDATE() )
+	</insert>
+
+	<update id="updateServer">
+		UPDATE DATA_SERVER
+		SET
+			<if test ="serverName != null">
+				SERVER_NAME = #{serverName},
+			</if>
+			<if test ="serverTypeCode != null">
+				SERVER_TYPE_CODE = #{serverTypeCode},
+			</if>
+			<choose>
+				<when test= "serverDesc != null">
+					SERVER_DESC = #{serverDesc},
+				</when>
+				<otherwise>
+					SERVER_DESC = '',
+				</otherwise>
+			</choose>
+			<if test ="serverIP != null">
+				SERVER_IP = #{serverIP},
+			</if>
+			<if test ="dbmsPort != null">
+				DBMS_PORT = #{dbmsPort},
+			</if>
+			<if test ="dbmsID != null">
+				DBMS_ID = #{dbmsID},
+			</if>
+			<if test ="dbmsPW != null">
+				DBMS_PW = #{dbmsPW},
+			</if>
+			<if test ="dbmsName != null">
+				DBMS_NAME = #{dbmsName},
+			</if>
+			<if test ="useuserID != null">
+				USE_USER_ID = #{useuserID},
+			</if>
+			UPDATE_DATE = GETDATE()
+		WHERE
+			SERVER_SEQ = #{serverSeq}	
+	</update>
+
+	<delete id="deleteServer">
+		DELETE FROM
+			DATE_SERVER
+		WHERE
+			SERVER_SEQ = #{serverSeq}
+	</delete>
+</mapper>

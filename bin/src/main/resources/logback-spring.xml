@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+	<!-- 변수 지정 -->
+	<property name="LOG_PATTEN" value="%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n" />
+	<property name="LOG_PATH" value="D:/data/logs/" />
+
+	<!-- INFO 파일 설정 -->
+	<appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- 파일명 설정-->
+			<fileNamePattern>${LOG_PATH}SERVER1-INFO-%d{yyyy-MM-dd}.%i.txt
+			</fileNamePattern>
+			<!-- 파일크기 설정(100메가 넘으면 다음 파일에 씀)-->
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 100MB -->
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<!-- 파일 저장 기한 설정(3일 지나면 지움)-->
+			<maxHistory>3</maxHistory>
+		</rollingPolicy>
+		<!-- 필터설정 (INFO 이상 레벨만)-->
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
+		<!-- 로그 패턴 설정-->
+		<encoder>
+			<pattern>${LOG_PATTEN}</pattern>
+		</encoder>
+	</appender>
+	<!-- ERROR 파일 설정 -->
+	<appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- 파일명 설정-->
+			<fileNamePattern>${LOG_PATH}SERVER1-ERROR-%d{yyyy-MM-dd}.%i.txt
+			</fileNamePattern>
+			<!-- 파일크기 설정(100메가 넘으면 다음 파일에 씀)-->
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<!-- 파일 저장 기한 설정(3일 지나면 지움)-->
+			<maxHistory>3</maxHistory>
+		</rollingPolicy>
+		<!-- 필터설정 (ERROR 이상 레벨만)-->
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>ERROR</level>
+		</filter>
+		<!-- 로그 패턴 설정-->
+		<encoder>
+			<pattern>${LOG_PATTEN}</pattern>
+		</encoder>
+	</appender>
+	<!-- 콜솔 로그 설정 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- 로그 패턴 설정-->
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>${LOG_PATTEN}</Pattern>
+		</layout>
+	</appender>
+
+	<!-- 주요 로그들 레벨 설정 -->
+	<logger name="org.springframework.core">
+		<level value="info" />
+	</logger>
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
+	<logger name="org.springframework.web">
+		<level value="info" />
+	</logger>
+	<logger name="org.springframework.web.filter.CommonsRequestLoggingFilter">
+		<level value="info" />
+	</logger>
+	<logger name="com.example.web">
+		<level value="info" />
+	</logger>
+	<logger name="java.sql">
+		<level value="debug" />
+	</logger>
+	<!-- <logger name="org.mybatis.spring"> <level value="debug" /> </logger> -->
+	<logger name="com.example.web.sqlmappers">
+		<level value="trace" />
+	</logger>
+
+	<logger name="jdbc" level="OFF" />
+
+	<logger name="jdbc.sqlonly" level="OFF" />
+	<logger name="jdbc.sqltiming" level="INFO" />
+	<logger name="jdbc.audit" level="OFF" />
+	<logger name="jdbc.resultset" level="OFF" />
+	<logger name="jdbc.resultsettable" level="INFO" />
+	<logger name="jdbc.connection" level="OFF" />
+
+	<root level="info">
+		<appender-ref ref="INFO" />
+		<appender-ref ref="ERROR" />
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hmns.mims.widget.mapper.BaseMapper">
+
+	<sql id="baseWhere">
+		<if test="baseWidgetSeq != null">
+			AND BASE_WIDGET_SEQ = #{baseWidgetSeq}
+		</if>
+		<if test ="baseWidgetName != null">
+			AND BASE_WIDGET_NAME = #{baseWidgetName}
+		</if>
+		<if test ="baseWidgetUrl != null">
+			AND BASE_WIDGET_URL = #{baseWidgetUrl}
+		</if>
+		<if test ="baseWidgetTypeCode != null">
+			AND BASE_WIDGET_TYPE_CODE = #{baseWidgetTypeCode}
+		</if>
+		<if test ="baseWidgetWidth != null">
+			AND BASE_WIDGET_WIDTH = #{baseWidgetWidth}
+		</if>
+		<if test ="baseWidgetHeight != null">
+			AND BASE_WIDGET_HEIGHT = #{baseWidgetHeight}
+		</if>
+		<if test ="baseOrder != null">
+			AND BASE_ORDER = #{baseOrder}
+		</if>
+	</sql>
+
+	<select id="selectBaseListCnt" resultType="Integer">
+		SELECT COUNT(*)
+		FROM
+		(
+			SELECT 
+				ROW_NUMBER() OVER (ORDER BY BASE_WIDGET_SEQ ASC) AS rownum,
+				BASE_WIDGET_SEQ,
+				BASE_WIDGET_NAME,
+				BASE_WIDGET_URL,
+				BASE_WIDGET_TYPE_CODE,
+				BASE_WIDGET_WIDTH,
+				BASE_WIDGET_HEIGHT,
+				BASE_ORDER
+			FROM
+				WIDGET_BASE
+			WHERE
+				1=1
+				<include refid="baseWhere"></include>		
+		) T1
+	</select>
+	
+	<select id="selectBaseList" resultType="HashMap">
+		SELECT *
+		FROM
+		(
+			SELECT 
+				ROW_NUMBER() OVER (ORDER BY BASE_WIDGET_SEQ ASC) AS rownum,
+				BASE_WIDGET_SEQ,
+				BASE_WIDGET_NAME,
+				BASE_WIDGET_URL,
+				BASE_WIDGET_TYPE_CODE,
+				BASE_WIDGET_WIDTH,
+				BASE_WIDGET_HEIGHT,
+				BASE_ORDER
+			FROM
+				WIDGET_BASE
+			WHERE
+				1=1
+				<include refid="baseWhere"></include>		
+		) T1
+		<if test="start != '' and start != null">
+			WHERE
+				rownum BETWEEN ${start} + 1 AND ${start} + ${limit}
+		</if>
+	</select>
+	
+	<insert id="insertBase">
+		INSERT INTO WIDGET_BASE
+		( BASE_WIDGET_SEQ, BASE_WIDGET_NAME, BASE_WIDGET_URL, BASE_WIDGET_TYPE_CODE,
+			 BASE_WIDGET_WIDTH, BASE_WIDGET_HEIGHT, BASE_ORDER )
+		VALUES
+		( #{baseWidgetSeq}, #{baseWidgetName}, #{baseWidgetUrl}, #{baseWidgetTypeCode},
+			 #{baseWidgetWidth}, #{baseWidgetHeight}, #{baseOrder} )
+	</insert>
+	
+	<update id="updateBase">
+		UPDATE 
+			WIDGET_BASE
+		SET
+			<if test="baseWidgetName != null">
+				BASE_WIDGET_NAME = #{baseWidgetName},
+			</if>
+			<if test="baseWidgetUrl != null">
+				BASE_WIDGET_URL = #{baseWidgetUrl},
+			</if>
+			<if test="baseWidgetTypeCode != null">
+				BASE_WIDGET_TYPE_CODE = #{baseWidgetTypeCode},
+			</if>
+			<if test="baseWidgetWidth != null">
+				BASE_WIDGET_WIDTH = #{baseWidgetWidth},
+			</if>
+			<if test="baseWidgetHeight != null">
+				BASE_WIDGET_HEIGHT = #{baseWidgetHeight},
+			</if>
+			<if test="baseOrder != null">
+				BASE_ORDER = #{baseOrder}
+			</if>
+		WHERE
+			BASE_WIDGET_SEQ = #{baseWidgetSeq}
+	</update>
+	
+	<delete id="deleteBase">
+		DELETE FROM
+			WIDGET_BASE
+		WHERE
+			BASE_WIDGET_SEQ = #{baseWidgetSeq}
+	</delete>
+</mapper>

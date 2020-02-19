@@ -1,0 +1,10 @@
+[{"From":"Amit", "Subject":"GMC-1 Release1", "ReceiveDate":"2016/09/06",
+"SendDate":"2016/09/06", "CC":"Jim", "Length":451572, "Level":1, "AttachCount":0},
+{"From":"Amit", "Subject":"GMC-1 Release3", "ReceiveDate":"2016/08/06",
+"SendDate":"2016/08/05", "CC":"Jim", "Length":693572, "Level":3, "AttachCount":1},
+{"From":"Amit", "Subject":"GMC-1 Release3", "ReceiveDate":"2016/08/06",
+"SendDate":"2016/08/06", "CC":"Jim", "Length":8281, "Level":1, "AttachCount":12},
+{"From":"Barb", "Subject":"GMC-1 Release3", "ReceiveDate":"2016/07/06",
+"SendDate":"2016/07/06", "CC":"Anant", "Length":82371, "Level":2, "AttachCount":3},
+{"From":"Barb", "Subject":"GMC-1 Release4", "ReceiveDate":"2016/08/06",
+"SendDate":"2016/08/05", "CC":"Anant", "Length":9286, "Level":5, "AttachCount":6}]

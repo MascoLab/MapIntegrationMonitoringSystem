@@ -1,0 +1,32 @@
+<BIX5 backgroundColor="#FFFFFF" borderStyle="none">
+	<Options>
+		<Caption text="자동차전용도로 연장"/>
+		<!-- <SubCaption text="From 2011 To 2013 (Annual %)" textAlign="center" /> -->
+		<Legend defaultMouseOverAction="false" useVisibleCheck="true"/>
+	</Options>
+	<Column3DChart showDataTips="true" columnWidthRatio="0.56" >
+		<horizontalAxis>
+			<CategoryAxis categoryField="Month"/>
+		</horizontalAxis>
+		<verticalAxis>
+			<LinearAxis maximum="9"/>
+		</verticalAxis>
+		<series>
+			<Column3DSeries labelPosition="outside" yField="2011" displayName="2011" showValueLabels="[3]" outsideLabelXOffset="7">
+				<showDataEffect>
+					<SeriesInterpolate/>
+				</showDataEffect>
+			</Column3DSeries>
+			<Column3DSeries labelPosition="outside" yField="2012" displayName="2012" showValueLabels="[3]" outsideLabelXOffset="7">
+				<showDataEffect>
+					<SeriesInterpolate/>
+				</showDataEffect>
+			</Column3DSeries>
+			<Column3DSeries labelPosition="outside" yField="2013" displayName="2013" showValueLabels="[3]" outsideLabelXOffset="7">
+				<showDataEffect>
+					<SeriesInterpolate/>
+				</showDataEffect>
+			</Column3DSeries>
+		</series>
+	</Column3DChart>
+</BIX5>

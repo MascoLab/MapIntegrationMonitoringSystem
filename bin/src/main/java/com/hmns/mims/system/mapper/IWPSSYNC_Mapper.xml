@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hmns.mims.system.mapper.IWPSSYNC_Mapper">
+	<select id="selectRoadKindLengthList" resultType="HashMap">
+		SELECT
+			ROAD_KIND_NAME AS [도로 종별],
+			SUM(LENGTH_GRS) / 1000 AS [총 연장 길이 km]
+		FROM
+			RTM_LINK A
+			INNER JOIN RTC_ROAD_KIND B ON A.ROAD_KIND = B.ROAD_KIND
+		GROUP BY ROAD_KIND_NAME
+	</select>	
+	
+	<select id="selectRoadKindCarPrivateLengthList" resultType="HashMap">
+		SELECT
+			ROAD_KIND_NAME AS [도로 종별],
+			SUM(LENGTH_GRS) / 1000 AS [전체 연장 길이 km],
+			SUM(CASE
+					WHEN LINK_ADD_INFO_CODE &amp; 4 = 4 OR LINK_ADD_INFO_CODE &amp; 512 = 512 THEN LENGTH_GRS
+					ELSE 0
+				END ) / 1000 AS [자전도 연장 길이 km]
+		FROM
+			RTM_LINK A
+			INNER JOIN RTC_ROAD_KIND B ON A.ROAD_KIND = B.ROAD_KIND
+		GROUP BY ROAD_KIND_NAME
+	</select>
+	
+	<select id="selectCameraPenaltyCntList" resultType="HashMap">
+		;WITH TEMP AS
+		(
+			SELECT 
+				DATEADD(YEAR, -2, GETDATE()) MONTH
+            UNION ALL
+            SELECT
+            	DATEADD(MONTH, 1, MONTH)
+			FROM 
+				TEMP
+			WHERE
+				MONTH + 1 &lt; GETDATE()
+		),
+		CALENDAR AS
+		(
+			SELECT
+				CONVERT(VARCHAR(7), MONTH,23) AS MONTH
+			FROM
+				TEMP
+		)
+		SELECT
+			A.MONTH,
+			B.[신규],
+			C.[수정],
+			D.[삭제]
+		FROM
+			CALENDAR A
+			LEFT OUTER JOIN (
+				SELECT
+					CONVERT(VARCHAR(7), WORK_DATE,23) AS WORK_DATE,
+					COUNT(*) AS [신규]
+				FROM
+					SYNC_CCNOP_HISTORY.DBO.""$HRTN_SAFE""
+				WHERE
+					OP_CODE = 'I'
+					AND LEFT(SAFE_CODE, 2) IN ('01', '02', '03', '04', '07', '22', '61', '62', '63', '65','70','71')
+				GROUP BY CONVERT(VARCHAR(7), WORK_DATE,23)
+			) B ON A.MONTH = B.WORK_DATE
+			LEFT OUTER JOIN (
+				SELECT
+					CONVERT(VARCHAR(7), WORK_DATE,23) AS WORK_DATE,
+					COUNT(A.SAFE_ID) AS [수정]
+				FROM
+					SYNC_CCNOP_HISTORY.DBO.""$HRTN_SAFE"" A
+					LEFT OUTER JOIN (
+						SELECT
+							SAFE_MAP_ID, SAFE_ID
+						FROM 
+							RTN_SAFE
+						WHERE
+							CHECK_CODE IN (2, 3, 7, 8)
+					) B ON A.SAFE_MAP_ID = B.SAFE_MAP_ID AND A.SAFE_ID = B.SAFE_ID
+				WHERE
+					OP_CODE = 'U'
+					AND LEFT(SAFE_CODE, 2) IN ('01', '02', '03', '04', '07', '22', '61', '62', '63', '65', '70', '71')
+					AND B.SAFE_ID IS NULL
+				GROUP BY CONVERT(VARCHAR(7), WORK_DATE,23)
+			) C ON A.MONTH = C.WORK_DATE 
+			LEFT OUTER JOIN (
+				SELECT
+					CONVERT(VARCHAR(7), UPDATE_DATE, 23) AS WORK_DATE,
+					COUNT(*) AS [삭제]
+				FROM 
+					RTN_SAFE
+				WHERE
+					CHECK_CODE IN (2, 3, 7, 8)
+					AND LEFT(SAFE_CODE, 2) IN ('01', '02', '03', '04', '07', '22', '61', '62', '63', '65','70','71')
+				GROUP BY CONVERT(VARCHAR(7), UPDATE_DATE, 23)
+			) D ON A.MONTH = D.WORK_DATE 
+		ORDER BY A.MONTH
+	</select>
+	
+	<select id="selectSdmapRoadInfoList" resultType="HashMap">
+		SELECT
+			A.LINK_MAP_ID AS [도엽 ID],
+			A.LINK_ID AS [링크 ID],
+			A.LENGTH_GRS / 1000 AS [도로 연장 길이 km],
+			C.ROAD_KIND_NAME AS [도로 종별],
+			REVERSE(	
+				STUFF(
+					REVERSE(
+						CASE WHEN A.LINK_KIND_CODE &amp; 0001 = 0001 THEN '본선(분리),' ELSE '' END
+						+ CASE WHEN A.LINK_KIND_CODE &amp; 0002 = 0002 THEN '연결로(JC),' ELSE '' END
+						+ CASE WHEN A.LINK_KIND_CODE &amp; 0004 = 0004 THEN '교차로의 통로,' ELSE '' END
+						+ CASE WHEN A.LINK_KIND_CODE &amp; 0008 = 0008 THEN '연결로(IC),' ELSE '' END
+						+ CASE WHEN A.LINK_KIND_CODE &amp; 0016 = 0016 THEN 'SA 레이어,' ELSE '' END
+						+ CASE WHEN A.LINK_KIND_CODE &amp; 0032 = 0032 THEN '복합교차점내 링크,' ELSE '' END
+						+ CASE WHEN A.LINK_KIND_CODE &amp; 0064 = 0064 THEN '로타리내 링크,' ELSE '' END
+						+ CASE WHEN A.LINK_KIND_CODE &amp; 0128 = 0128 THEN '회전교차로 내 링크,' ELSE '' END
+						+ CASE WHEN A.LINK_KIND_CODE &amp; 0256 = 0256 THEN '회차로 링크,' ELSE '' END
+						+ CASE WHEN A.LINK_KIND_CODE &amp; 0512 = 0512 THEN 'P-turn 링크,' ELSE '' END
+						+ CASE WHEN A.LINK_KIND_CODE &amp; 1024 = 1024 THEN 'U-turn 링크,' ELSE '' END
+						+ CASE WHEN A.LINK_KIND_CODE &amp; 2048 = 2048 THEN '진출입로,' ELSE '' END
+						+ CASE WHEN A.LINK_KIND_CODE &amp; 4096 = 4096 THEN '단지내 도로,' ELSE '' END
+						+ CASE WHEN A.LINK_KIND_CODE &amp; 32768 = 32768 THEN '본선(비분리),' ELSE '' END),
+					1, 1, '')
+			) AS [링크 종별], 
+			D.ONEWAY_NAME AS [일방 통행 유무], 
+			CASE
+				WHEN B.LINK_ID IS NOT NULL THEN LINK_P_NUM
+				WHEN B.LINK_ID IS NULL AND A.ONEWAY IN (3,4,5,6) THEN LANE_NUM
+				ELSE CAST(LANE_NUM/2 AS INT)
+				END AS [정방향 차선수], 
+			CASE
+				WHEN LINK_KIND_CODE &amp; 32768 = 32768 THEN NULL
+				ELSE
+					CASE
+						WHEN B.LINK_ID IS NOT NULL THEN LINK_N_NUM
+						WHEN B.LINK_ID IS NULL AND A.ONEWAY IN (3,4,5,6) THEN 0
+						ELSE CAST(LANE_NUM/2 AS INT)
+						END
+				END AS [역방향 차선수],
+				REVERSE(
+					STUFF(
+						REVERSE(
+							CASE WHEN A.FACILITY_CODE_P &amp; 0 = 0 THEN '일반도로(정),' ELSE '' END
+							+ CASE WHEN A.FACILITY_CODE_P &amp; 1 = 1 THEN '교량(정),' ELSE '' END
+							+ CASE WHEN A.FACILITY_CODE_P &amp; 2 = 2 THEN '터널(정),' ELSE '' END
+							+ CASE WHEN A.FACILITY_CODE_P &amp; 4 = 4 THEN '고가(정),' ELSE '' END
+							+ CASE WHEN A.FACILITY_CODE_P &amp; 8 = 8 THEN '지하(정),' ELSE '' END
+							+ CASE WHEN A.FACILITY_CODE_P &amp; 16 = 16 THEN '오르막(정),' ELSE '' END
+							+ CASE WHEN A.FACILITY_CODE_P &amp; 32 = 32 THEN '내리막(정),' ELSE '' END
+							+ CASE WHEN A.FACILITY_CODE_N &amp; 0 = 0 THEN '일반도로(역),' ELSE '' END
+							+ CASE WHEN A.FACILITY_CODE_N &amp; 1 = 1 THEN '교량(역),' ELSE '' END
+							+ CASE WHEN A.FACILITY_CODE_N &amp; 2 = 2 THEN '터널(역),' ELSE '' END
+							+ CASE WHEN A.FACILITY_CODE_N &amp; 4 = 4 THEN '고가(역),' ELSE '' END
+							+ CASE WHEN A.FACILITY_CODE_N &amp; 8 = 8 THEN '지하(역),' ELSE '' END
+							+ CASE WHEN A.FACILITY_CODE_N &amp; 16 = 16 THEN '오르막(역),' ELSE '' END
+							+ CASE WHEN A.FACILITY_CODE_N &amp; 32 = 32 THEN '내리막(역),' ELSE '' END), 1, 1, '')
+				) AS [시설물 종별],
+				A.MAX_SPEED_LIMIT AS [속도 값 km],
+				E.LINK_STATUS_NAME AS [공사중 유무],
+				REVERSE(
+					STUFF(
+						REVERSE(
+							CASE WHEN A.LINK_ADD_INFO_CODE &amp; 1 = 1 THEN '중앙 버스 전용차로,' ELSE '' END
+							+ CASE WHEN A.LINK_ADD_INFO_CODE &amp; 2 = 2 THEN '측면 버스 전용차로,' ELSE '' END), 1, 1, '')
+				) AS [버스 전용 차로]
+			FROM
+				RTM_LINK A
+				LEFT OUTER JOIN RTN_LANE_LINK B ON A.LINK_MAP_ID = B.LINK_MAP_ID AND A.LINK_ID = B.LINK_ID
+				INNER JOIN RTC_ROAD_KIND C ON A.ROAD_KIND = C.ROAD_KIND 
+				INNER JOIN RTC_ONEWAY D ON A.ONEWAY = D.ONEWAY
+				INNER JOIN RTC_LINK_STATUS E ON A.LINK_STATUS = E.LINK_STATUS
+	</select>
+	
+	<select id="selectSdmapRoadSafeInfoList" resultType="HashMap">
+		SELECT
+			SAFE_MAP_ID,
+			SAFE_ID,
+			LINK_MAP_ID_GRS,
+			LINK_ID_GRS,
+			B.MAIN_NAME + '-' + SUB_NAME AS [카메라 종별],
+			SPEED_LIMIT AS [속도 값 km]
+		FROM
+			RTN_SAFE A
+			INNER JOIN RTC_SAFE_CODE B ON A.SAFE_CODE = B.SAFE_CODE
+	</select>
+</mapper>

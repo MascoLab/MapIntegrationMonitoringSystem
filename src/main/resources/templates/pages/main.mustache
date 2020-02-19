@@ -1,139 +1,196 @@
 {{>layout/header}}
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gridstack@0.6.3/dist/gridstack.min.css" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/gridstack@0.6.3/dist/gridstack.min.css" />
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/gridstack@0.6.3/dist/gridstack.all.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/gridstack@0.6.3/dist/gridstack.all.js"></script>
 
 <script type="text/javascript" src="./js/pages/main.js"></script>
 
-<script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=2a59880f0cd4bbc12eea3056dee908f6"></script>
-<script type="text/javascript" src="http://openapi.its.go.kr/javascript/jquery.xml2json.js"></script>	<!-- xml to json -->
-<script type="text/javascript" src="http://openapi.its.go.kr/javascript/openapi.cctv.js"></script>	<!-- open cctv api -->
+<script type="text/javascript"
+	src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=2a59880f0cd4bbc12eea3056dee908f6"></script>
+<script type="text/javascript"
+	src="http://openapi.its.go.kr/javascript/jquery.xml2json.js"></script>
+<!-- xml to json -->
+<script type="text/javascript"
+	src="http://openapi.its.go.kr/javascript/openapi.cctv.js"></script>
+<!-- open cctv api -->
 
 {{>layout/left_menu}}
 
 <div id="body">
-	<div class="gGrid1"> 
+	<div class="gGrid1">
 		<div class="mGrid1">
 			<div class="grid-stack">
-				<div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="4" data-gs-height="4">
+				<div class="grid-stack-item" data-gs-x="0" data-gs-y="0"
+					data-gs-width="4" data-gs-height="4">
 					<div class="grid-stack-item-content">
 						<div class="mBox1 h1">
 							<div class="tit">
 								<div class="ti">자동차전용도로 연장</div>
 								<div class="rt">
-									<a href="###" class="iRefresh">새로고립</a>
-								<a href="###" class="iSet2">세팅</a>
+									<a href="###" class="iRefresh">새로고립</a> <a href="###"
+										class="iSet2">세팅</a>
 								</div>
 							</div>
 							<div class="con">
 								<div class="co">
-									<iframe src="./widget/getCustomWidget.view?widgetType=sd&widgetName=Multi_Series" frameborder="0" class="frame" name="frame"></iframe>
+									<iframe
+										src="./widget/getCustomWidget.view?widgetType=sd&widgetName=Multi_Series"
+										frameborder="0" class="frame" name="frame"></iframe>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				
-				<div class="grid-stack-item" data-gs-x="4" data-gs-y="0" data-gs-width="4" data-gs-height="4">
+
+				<div class="grid-stack-item" data-gs-x="4" data-gs-y="0"
+					data-gs-width="4" data-gs-height="4">
 					<div class="grid-stack-item-content">
 						<div class="mBox1 h1">
 							<div class="tit">
 								<div class="ti">Core 및 Extended POI 보유 현황</div>
 								<div class="rt">
-									<a href="###" class="iRefresh">새로고립</a>
-								<a href="###" class="iSet2">세팅</a>
+									<a href="###" class="iRefresh">새로고립</a> <a href="###"
+										class="iSet2">세팅</a>
 								</div>
 							</div>
 							<div class="con">
 								<div class="co">
-									<iframe src="./widget/getCustomWidget.view?widgetType=poi&widgetName=dual_pie_chart" frameborder="0" class="frame" name="frame" scrolling="no"></iframe>	<!-- scrolling="no" -->
+									<iframe
+										src="./widget/getCustomWidget.view?widgetType=poi&widgetName=dual_pie_chart"
+										frameborder="0" class="frame" name="frame" scrolling="no"></iframe>
+									<!-- scrolling="no" -->
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				
-				<div class="grid-stack-item" data-gs-x="8" data-gs-y="0" data-gs-width="4" data-gs-height="4">
+
+				<div class="grid-stack-item" data-gs-x="8" data-gs-y="0"
+					data-gs-width="4" data-gs-height="4">
 					<div class="grid-stack-item-content">
 						<div class="mBox1 h1">
 							<div class="tit">
 								<div class="ti">월별 과금형카메라 변경 현황</div>
 								<div class="rt">
-									<a href="###" class="iRefresh">새로고립</a>
-								<a href="###" class="iSet2">세팅</a>
+									<a href="###" class="iRefresh">새로고립</a> <a href="###"
+										class="iSet2">세팅</a>
 								</div>
 							</div>
 							<div class="con">
 								<div class="co">
-									<iframe src="./widget/getCustomWidget.view?widgetType=safe&widgetName=column_stacked" frameborder="0" class="frame" name="frame"></iframe>
+									<iframe
+										src="./widget/getCustomWidget.view?widgetType=safe&widgetName=column_stacked"
+										frameborder="0" class="frame" name="frame"></iframe>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				
-				<div class="grid-stack-item" data-gs-x="0" data-gs-y="4" data-gs-width="6" data-gs-height="8">
+
+				<div class="grid-stack-item" data-gs-x="0" data-gs-y="4"
+					data-gs-width="6" data-gs-height="8">
 					<div class="grid-stack-item-content">
 						<div class="mBox1 h1">
 							<div class="tit">
 								<div class="ti">CCTV 현황</div>
 								<div class="rt">
-									<a href="###" class="iRefresh">새로고립</a>
-									<a href="###" class="iSet2">세팅</a>
+									<a href="###" class="iRefresh">새로고립</a> <a href="###"
+										class="iSet2">세팅</a>
 								</div>
 							</div>
 							<div class="con">
 								<div class="co">
-									<iframe src="./widget/getCustomWidget.view?widgetType=test&widgetName=map_cctv" frameborder="0" class="frame" name="frame" scrolling="no"></iframe>
+									<iframe
+										src="./widget/getCustomWidget.view?widgetType=test&widgetName=map_cctv"
+										frameborder="0" class="frame" name="frame" scrolling="no"></iframe>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				
-				<div class="grid-stack-item" data-gs-x="6" data-gs-y="4" data-gs-width="6" data-gs-height="4">
+
+				<div class="grid-stack-item" data-gs-x="6" data-gs-y="4"
+					data-gs-width="6" data-gs-height="4">
 					<div class="grid-stack-item-content">
 						<div class="mBox1 h1">
 							<div class="tit">
 								<div class="ti">도로종별별 ADAS 구축 연장</div>
 								<div class="rt">
-									<a href="###" class="iRefresh">새로고립</a>
-								<a href="###" class="iSet2">세팅</a>
+									<a href="###" class="iRefresh">새로고립</a> <a href="###"
+										class="iSet2">세팅</a>
 								</div>
 							</div>
 							<div class="con">
 								<div class="co">
-									<iframe src="./widget/getCustomWidget.view?widgetType=adas&widgetName=bar_stacked" frameborder="0" class="frame" name="frame"></iframe>
+									<iframe
+										src="./widget/getCustomWidget.view?widgetType=adas&widgetName=bar_stacked"
+										frameborder="0" class="frame" name="frame"></iframe>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="grid-stack-item" data-gs-x="6" data-gs-y="8"
+					data-gs-width="6" data-gs-height="4">
+					<div class="grid-stack-item-content">
+						<div class="mBox1 h1">
+							<div class="tit">
+								<div class="ti">도로종별별 HD 구축 연장</div>
+								<div class="rt">
+									<a href="###" class="iRefresh">새로고립</a> <a href="###"
+										class="iSet2">세팅</a>
+								</div>
+							</div>
+							<div class="con">
+								<div class="co">
+									<iframe
+										src="./widget/getCustomWidget.view?widgetType=hd&widgetName=bar_stacked"
+										frameborder="0" class="frame" name="frame"></iframe>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div class="grid-stack-item" data-gs-x="0" data-gs-y="12"
+					data-gs-width="6" data-gs-height="6">
+					<div class="grid-stack-item-content">
+						<div class="mBox1 h1">
+							<div class="tit">
+								<div class="ti">AGENT CPU</div>
+								<div class="rt">
+									<a href="###" class="iRefresh">새로고립</a> <a href="###"
+										class="iSet2">세팅</a>
+								</div>
+							</div>
+							<div class="con">
+								<div class="co">
+										<!-- src="./widget/getCustomWidget.view?widgetType=test&widgetName=agent_chart" -->
+										<!-- src="/test/processListMap.do" -->
+									<iframe
+										src="/test/processListMap.do"
+										frameborder="0" class="frame" name="frame"></iframe>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				
-				<div class="grid-stack-item" data-gs-x="6" data-gs-y="8" data-gs-width="6" data-gs-height="4">
-					<div class="grid-stack-item-content">
-						<div class="mBox1 h1">
-							<div class="tit">
-								<div class="ti">도로종별별 HD 구축 연장</div>
-								<div class="rt">
-									<a href="###" class="iRefresh">새로고립</a>
-								<a href="###" class="iSet2">세팅</a>
-								</div>
-							</div>
-							<div class="con">
-								<div class="co">
-									<iframe src="./widget/getCustomWidget.view?widgetType=hd&widgetName=bar_stacked" frameborder="0" class="frame" name="frame"></iframe>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				
+
+
+
 			</div>
-		</div>	
+		</div>
 	</div>
 </div>
 

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="robots" content="noindex, nofollow" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta http-equiv="Content-Style-Type" content="text/css"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+<title></title>
+
+<link rel="stylesheet" type="text/css" href="../css/pages/common.css">			<!-- 공통 스타일 -->
+<link rel="stylesheet" type="text/css" href="../BIX5/Assets/BIX5.css"/>			<!-- BIX5 스타일 -->  
+<link rel="stylesheet" type="text/css" href="../BIX5/Assets/BIX5Dashboard.css"/>	<!-- BIX5 Dashboard 스타일 --> 
+
+<script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>		<!-- jQeury 라이브러리 -->
+<script type="text/javascript" src="../BIX5/JS/BIX5.js" ></script> 				<!-- BIX5 라이브러리 -->
+<script type="text/javascript" src="../BIX5/LicenseKey/BIX5License.js"></script>	<!-- BIX5 라이선스 -->
+
+<script type="text/javascript">
+
+BIX5.chart.create("chart1", "chartHolder1", "", "100%", "100%");
+ 
+var layoutStr =
+                '<BIX5 backgroundColor="#FFFFFF" borderStyle="none">'
+                 +'<SeriesInterpolate id="ss"/>'
+                   +'<Column2DChart showDataTips="true" selectionMode="multiple" columnWidthRatio="0.48">'
+                       +'<horizontalAxis>'
+                           +'<CategoryAxis categoryField="Country"/>'
+                        +'</horizontalAxis>'
+                      +'<verticalAxis>'
+                         +'<LinearAxis maximum="100" interval="10"/>'
+                      +'</verticalAxis>'
+                        +'<series>'
+                           +'<Column2DSeries labelPosition="outside" yField="GDP" displayName="GDP Growth (In %)" showDataEffect="{ss}" showValueLabels="[4]" strokeJsFunction="strokeFunction"/>'
+                       +'</series>'
+                  +'</Column2DChart>'
+               +'</BIX5>';
+ 
+var chartData = [{"Country":"SouthSudan", "GDP":20},
+                {"Country":"Libya", "GDP":30},
+              {"Country":"SierraLeone", "GDP":51.2},
+                {"Country":"Mongolia", "GDP":44.5},
+             {"Country":"Paraguay", "GDP":62.35},
+                {"Country":"TimorLeste", "GDP":84.46},
+                {"Country":"Iraq", "GDP":48.9},
+             {"Country":"Panama", "GDP":38},
+             {"Country":"Gambia", "GDP":60.5},
+               {"Country":"Mozam-bique", "GDP":40.1}];
+ 
+function strokeFunction(id, index, data, values){
+  if(values[0] == "Paraguay")
+     return {
+            color : "#000",
+         weight : 2
+      };
+}
+
+BIX5.chart.calls("chart1", {
+    "setLayout" : layoutStr,
+    "setData" : chartData
+});
+</script>
+
+</head>
+
+<body>
+	<div class="mBox1 h1">
+		<div class="tit">
+			<div class="ti">도로종별 기준 연장</div>
+			<div class="rt">
+				<a href="###" class="iRefresh">새로고립</a>
+				<a href="###" class="iSet2">세팅</a>
+			</div>
+		</div>
+		<div class="con">
+			<div class="co">
+				<div id="chartHolder1" class="chartHolder" style="height:270px;"></div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html> 

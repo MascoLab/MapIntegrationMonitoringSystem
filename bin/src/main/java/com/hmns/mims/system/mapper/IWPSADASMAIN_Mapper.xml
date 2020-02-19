@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hmns.mims.system.mapper.IWPSADASMAIN_Mapper">
+	<select id="selectRoadKindLengthList" resultType="HashMap">
+		SELECT
+			CASE
+				WHEN ROAD_KIND = 0 THEN '미정의'
+				WHEN ROAD_KIND = 1 THEN '고속도로'
+				WHEN ROAD_KIND = 2 THEN '도시고속도로'
+				WHEN ROAD_KIND = 3 THEN '국도'
+				WHEN ROAD_KIND = 4 THEN '국가지원지방도'
+				WHEN ROAD_KIND = 5 THEN '지방도'
+				WHEN ROAD_KIND = 6 THEN '주요도로1'
+				WHEN ROAD_KIND = 7 THEN '주요도로2'
+				WHEN ROAD_KIND = 8 THEN '주요도로3'
+				WHEN ROAD_KIND = 9 THEN '기타도로1'
+				WHEN ROAD_KIND = 10 THEN '기타도로2'
+				WHEN ROAD_KIND = 11 THEN '세도로'
+				WHEN ROAD_KIND = 12 THEN '페리항로'
+				END AS [도로 종별], 
+			SUM(B.LENGTH) / 1000 AS [총 길이],
+			SUM(IIF(A.LINK_ID IS NOT NULL, B.LENGTH, 0)) / 1000 AS [구축 길이], 
+			SUM(IIF(A.LINK_ID IS NULL, B.LENGTH, 0)) / 1000 AS [미구축 길이]
+		FROM 
+			(	SELECT 
+					DISTINCT LINK_MAP_ID, 
+					LINK_ID
+				FROM 
+					HDTD_CORE_MAT	) A
+			RIGHT OUTER JOIN NRTM_LINK B ON A.LINK_MAP_ID = B.LINK_MAP_ID AND A.LINK_ID = B.LINK_ID
+		GROUP BY ROAD_KIND
+	</select>
+</mapper>

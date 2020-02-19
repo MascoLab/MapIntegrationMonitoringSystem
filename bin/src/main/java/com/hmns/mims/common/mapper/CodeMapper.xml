@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hmns.mims.common.mapper.CodeMapper">
+	<sql id="codeWhere">
+		<if test="code != null">
+			AND CODE = #{code}
+		</if>
+		<if test="parentCode != null">
+			<choose>
+				<when test="parentCode.equals('NULL')">
+					AND PARENT_CODE = ''
+				</when>
+				<otherwise>
+					AND PARENT_CODE = #{parentCode}
+				</otherwise>
+			</choose>
+		</if>
+		<if test="codeName != null">
+			AND CODE_NAME LIKE '%' + #{codeName} + '%'
+		</if>
+		<if test="codeDesc != null">
+			AND CODE_DESC LIKE '%' + #{codeDesc} + '%'
+		</if>
+		<if test="codeOrder != null">
+			AND CODE_ORDER = #{codeOrder}
+		</if>
+		<if test="useYN != null">
+			AND USE_YN = #{useYN}
+		</if>
+	</sql>
+
+	<select id="selectCodeListCnt" resultType="Integer">
+		SELECT COUNT(*)
+		FROM 
+		(	SELECT
+				ROW_NUMBER() OVER (ORDER BY CODE ASC) AS rownum,
+				CODE, 
+				PARENT_CODE, 
+				CODE_NAME, 
+				CODE_DESC, 
+				CODE_ORDER,
+				USE_YN, 
+				INSERT_USER, 
+				CONVERT( CHAR(19), INSERT_DATE, 120 ) AS INSERT_DATE, 
+				UPDATE_USER, 
+				CONVERT( CHAR(19), UPDATE_DATE, 120 ) AS UPDATE_DATE
+			FROM
+				COMMON_CODE
+			WHERE
+				1 = 1
+				<include refid="codeWhere"></include> ) T1
+	</select>
+	
+	<select id="selectCodeList" resultType="HashMap">
+		SELECT *
+		FROM 
+		(	SELECT
+				ROW_NUMBER() OVER (ORDER BY CODE ASC) AS rownum,
+				CODE, 
+				PARENT_CODE, 
+				CODE_NAME, 
+				CODE_DESC, 
+				CODE_ORDER,
+				USE_YN, 
+				INSERT_USER, 
+				CONVERT( CHAR(19), INSERT_DATE, 120 ) AS INSERT_DATE, 
+				UPDATE_USER, 
+				CONVERT( CHAR(19), UPDATE_DATE, 120 ) AS UPDATE_DATE
+			FROM
+				COMMON_CODE
+			WHERE
+				1 = 1
+				<include refid="codeWhere"></include> ) T1
+		<if test="start != '' and start != null">
+		WHERE
+			rownum BETWEEN ${start} + 1 AND ${start} + ${limit}
+		</if>
+	</select>
+	
+	<insert id="insertCode">
+		<selectKey keyProperty="code" resultType="string" order="BEFORE">
+			<if test="parentCode != null">
+				SELECT 
+					ISNULL( 
+						RIGHT( '00000' + CONVERT( VARCHAR, ( CONVERT( INT, MAX( CODE ) ) + 1 ) ), 10 ), 
+						RIGHT( '00000' + CONVERT( VARCHAR, ( CONVERT( INT, #{parentCode} ) + 1 ) ), 10 ) 
+					) AS attrCode
+				FROM
+					COMMON_CODE
+				WHERE
+					PARENT_CODE = #{parentCode}
+			</if>
+			<if test="parentCode == null">
+				SELECT
+					RIGHT( '00000' + CONVERT( VARCHAR, ( CONVERT( INT, LEFT( MAX( CODE ), 5 ) ) + 1 ) ) + '00000', 10 )
+				FROM
+					COMMON_CODE
+				WHERE
+					PARENT_CODE = ''
+			</if>
+		</selectKey>
+		
+		INSERT INTO COMMON_CODE
+			( 	CODE, PARENT_CODE, CODE_NAME, CODE_DESC, CODE_ORDER, 
+				USE_YN, INSERT_USER, INSERT_DATE )
+		VALUES
+			( 	#{code}, #{parentCode}, #{codeName}, #{codeDesc}, #{codeOrder}, 
+				#{useYN}, #{userName}, GETDATE() )
+	</insert>
+	
+	<update id="updateCode">
+		UPDATE 
+			COMMON_CODE
+		SET
+			<if test="parentCode != null">
+				PARENT_CODE = #{parentCode},
+			</if>
+			<if test="codeName != null">
+				CODE_NAME = #{codeName},
+			</if>
+			<choose>
+				<when test="codeDesc != null">
+					CODE_DESC = #{codeDesc},
+				</when>
+				<otherwise>
+					CODE_DESC = '',
+				</otherwise>
+			</choose>
+			<if test="codeOrder != null">
+				CODE_ORDER = #{codeOrder},
+			</if>
+			<if test="useYN != null">
+				USE_YN = #{useYN},
+			</if>
+			UPDATE_USER = #{userName},
+			UPDATE_DATE = GETDATE()
+		WHERE
+			CODE = #{code}
+	</update>
+	
+	<delete id="deleteCode">		
+		DELETE 
+		FROM
+			COMMON_CODE
+		WHERE
+			CODE = #{code}
+	</delete>
+</mapper>

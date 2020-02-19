@@ -3,9 +3,29 @@
 <mapper namespace="com.hmns.test.mapper.TestAgentMapper">
 	<!-- 모니터링 목록 조회 결과 컬림 -->
 	<select id="selectServerResourceList" resultType="HashMap">
-		SELECT 
+		SELECT
 			*
 		FROM
 			AGENT_SERVER_RESOURCE
 	</select>
+
+
+	<!--  <select id="processListMap" parameterType="map" resultType="map">
+		SELECT
+			PROCESS_NAME, CPU_USAGE, FORMAT(INSERT_DATE, 'yyyy-MM-dd hh:mm') AS INSERT_DATE
+		FROM
+			AGENT_SERVER_RESOURCE_PROCESS
+	</select> -->
+	
+	<select id="processListMap" resultType="HashMap">
+		SELECT 
+			TOP 501 SERVER_SEQ, SERVER_PROCESS_SEQ, PROCESS_NAME, CPU_USAGE, MEMORY_USAGE, FORMAT(INSERT_DATE,'yyyy-MM-dd hh:mm:ss') AS INSERT_DATE
+		FROM 
+			AGENT_SERVER_RESOURCE_PROCESS 
+		WHERE 
+			INSERT_DATE BETWEEN '2020-02-14' AND '2020-02-18' 
+		ORDER BY SERVER_SEQ ASC
+	</select>
+	
+
 </mapper>

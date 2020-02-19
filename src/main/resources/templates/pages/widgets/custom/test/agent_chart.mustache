@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>HYUNDAI MnSOFT</title>
+
+<link rel="stylesheet" type="text/css" href="../css/pages/common.css">
+<!-- 공통 스타일 -->
+<link rel="stylesheet" type="text/css" href="../BIX5/Assets/BIX5.css" />
+<!-- BIX5 스타일 -->
+<link rel="stylesheet" type="text/css"
+	href="../BIX5/Assets/BIX5Dashboard.css" />
+<!-- BIX5 Dashboard 스타일 -->
+
+<script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
+<!-- jQeury 라이브러리 -->
+<script type="text/javascript" src="../BIX5/JS/BIX5.js"></script>
+<!-- BIX5 라이브러리 -->
+<script type="text/javascript" src="../BIX5/LicenseKey/BIX5License.js"></script>
+<!-- BIX5 라이선스 -->
+
+<script type="text/javascript">
+
+BIX5.chart.create("chart1", "chartHolder", "", "100%", "100%");
+
+
+
+/* 		 * showDataTip : 툴팁 출력 설정
+		 * minimum : 게이지 최소 값
+		 * maximum : 게이지 최대 값
+		 * startAngle : 시작 각도
+		 * minimumAngle : 게이지 최소 각도
+		 * maximumAngle : 게이지 최대 각도
+		 * gaugeWidth : 게이지 가로 크기
+		 * gaugeHeight : 게이지 세로 크기
+		 * innerRatio : 안쪽 영역 비율 값, 유효 값 0 ~ 1
+		 * outerRatio : 바깥쪽 영역 비율 값, 유효 값 0 ~ 1
+		 * circleOffset : 값이 여러개일 경우 원 형태 간의 여백을 설정합니다.
+		 * horizontalOriginRatio : 게이지 출력 수평위치를 설정합니다.
+		 * verticalOriginRatio : 게이지 출력 수직위치를 설정합니다.
+		 * valueChangeFunction : 데이터가 변경 될 경우 호출될 사용자 정의 함수를 설정합니다
+		 * fillJsFunction : 데이터의 값에 따른 색상 값을 설정하는 사용자 정의 함수를 설정합니다.
+		 * duration : 이펙트 출력시간을 설정합니다. default 800
+		 * bounceAnimating : 튕김 이펙트를 설정합니다. deafult true
+		 * showValueLabel : 수치 라벨을 출력할지 설정합니다. default true
+		 * valueField : 여러 데이터를 출력 할 경우 차트 데이터의 필드 명을 설정합니다.
+		 * nameField : 여러 데이터 출력 시 해당 데이터에 대한 이름을 출력할 필드 명을 설정합니다.
+		 * backgroundColors : 게이지가 출력되는 영역의 배경 색상을 설정합니다. default [#e2eaf3]
+		 * backgroundStrokes : 게이지가 출력되는 영역의 배경 테두리 색상을 설정합니다.
+		 * foregroundColors : 게이지가 출력되는 영역의 색상을 설정합니다. default [#51c0ee]
+		 * foregroundStrokes : 게이지가 출력되는 영역의 테두리 색상을 설정합니다. */
+
+
+
+var layoutStr =
+    '<BIX5 backgroundColor="#FFFFFF" borderStyle="none">'
+     +'<Options>'
+           +'<Legend />'
+     +'</Options>'
+     +'<NumberFormatter id="nft" precision="2"/>'
+      +'<Line2DChart showDataTips="true" dataTipFormatter="{nft}">'
+         +'<horizontalAxis>'
+               +'<CategoryAxis id="hAxis" categoryField="INSERT_DATE"/>'
+            +'</horizontalAxis>'
+          +'<verticalAxis>'
+             +'<LinearAxis id="vAxis" title="AGENT CPU (%)"/>'
+           +'</verticalAxis>'
+            +'<series>'
+            
+            
+               +'<Line2DSeries yField="StSessCPU_USAGE" form="curve" displayName="StSessCPU_USAGE">'  /* kairos.exe */
+                  +'<showDataEffect>'
+                       +'<SeriesClip duration="1000"/> '
+                  +'</showDataEffect>'
+              +'</Line2DSeries>'
+              
+                +'<Line2DSeries yField="TaskmgrCPU_USAGE" form="curve" displayName="TaskmgrCPU_USAGE">' /* DailyDetecterConsole64_v1_2_0_1.exe */
+                    +'<showDataEffect>'
+                       +'<SeriesClip duration="1000"/> '
+                  +'</showDataEffect>'
+              +'</Line2DSeries>'
+              
+              +'<Line2DSeries yField="MIMSAgentCPU_USAGE" form="curve" displayName="MIMSAgentCPU_USAGE">' /* sqlservr */
+             	 +'<showDataEffect>'
+                	 +'<SeriesClip duration="1000"/> '
+            	+'</showDataEffect>'
+        	  +'</Line2DSeries>'
+
+        	  
+            +'</series>'
+      +'</Line2DChart>'
+ +'</BIX5>';
+ 
+ 
+ 
+// 차트 데이터
+/*
+[
+{{#processListMap}}
+{{CPU_USAGE}}
+{{/processListMap}}
+];
+*/
+
+var chartData = 
+[
+{{#RESULT}}
+{"INSERT_DATE":{{{INSERT_DATE}}},"StSessCPU_USAGE":{{StSessCPU_USAGE}}, "TaskmgrCPU_USAGE":{{TaskmgrCPU_USAGE}}, "MIMSAgentCPU_USAGE":{{MIMSAgentCPU_USAGE}} },
+{{/RESULT}}
+];
+
+
+  /* [{"INSERT_DATE":"1880","kairos":0.20, "daily":0.10, "sqlervr":0.30},
+   {"INSERT_DATE":"1890","kairos":0.10, "daily":0.35, "sqlervr":0.22},
+  {"INSERT_DATE":"1900","kairos":0.03, "daily":0.08, "sqlervr":0.18},
+  {"INSERT_DATE":"1910","kairos":0.45, "daily":0.42, "sqlervr":0.42},
+  {"INSERT_DATE":"1920","kairos":0.55, "daily":0.25, "sqlervr":0.24},
+  {"INSERT_DATE":"1930","kairos":0.66, "daily":0.13, "sqlervr":0.18},
+  {"INSERT_DATE":"1940","kairos":0.70, "daily":0.09, "sqlervr":0.06},
+    {"INSERT_DATE":"1950","kairos":0.34, "daily":0.18, "sqlervr":0.08},
+    {"INSERT_DATE":"2015","kairos":0.80, "daily":0.87, "sqlervr":null}];  */
+
+ 
+BIX5.chart.calls("chart1", {
+ "setLayout" : layoutStr,
+    "setData" : chartData
+});
+ 
+
+</script>
+</head>
+
+<body class="">
+	<!-- 
+<div class="mBox1 h1">
+	<div class="tit">
+		<div class="ti">변화정보 상세현황</div>
+		<div class="rt">
+			<a href="###" class="iRefresh">새로고립</a>
+			<a href="###" class="iSet2">세팅</a>
+		</div>
+	</div>
+	<div class="con">
+		<div class="co">
+			<div id="chartHolder" style="height: 300px"></div>
+		</div>
+	</div>
+</div>
+-->
+	<div id="chartHolder" style="width: 100%; height: 100%;"></div>
+
+</body>
+</html>
