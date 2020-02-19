@@ -29,7 +29,13 @@ $(document).ready(function(){
 
 
 	// Grid Stack Init
-	$('.grid-stack').gridstack();
+	$('.grid-stack').gridstack(
+		{
+			resizable : {
+				handles: 'e, se, s, sw, w'
+			},
+		}
+	);
 /*
 	// CCTV View
 	var container = document.getElementById( 'div_map' ),
