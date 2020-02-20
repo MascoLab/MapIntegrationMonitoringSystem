@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Knockout.js demo</title>
+
+	<!-- BIX links -->
+	<link rel="stylesheet" type="text/css" href="./css/pages/common.css">			<!-- 공통 스타일 -->
+	<link rel="stylesheet" type="text/css" href="./BIX5/Assets/BIX5.css"/>			<!-- BIX5 스타일 -->  
+	<link rel="stylesheet" type="text/css" href="./BIX5/Assets/BIX5Dashboard.css"/>	<!-- BIX5 Dashboard 스타일 --> 
+	
+  <link rel="stylesheet" href="/css/demo.css"/>
+  <link rel="stylesheet" href="/css/gridstack.min.css"/>
+
+	<!-- BIX js -->  
+	<script type="text/javascript" src="./BIX5/JS/BIX5.js" ></script> 				<!-- BIX5 라이브러리 -->
+	<script type="text/javascript" src="./BIX5/LicenseKey/BIX5License.js"></script>	<!-- BIX5 라이선스 --> 
+	
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-debug.js"></script>	<!-- knockout.js libarary -->
+  <script src="https://cdn.jsdelivr.net/npm/gridstack@0.6.3/dist/gridstack.all.js"></script>
+  
+</head>
+<body>
+  <div class="container-fluid">
+    <h1>knockout.js Demo</h1>
+    <div>
+    	<!-- 
+    	<div id="widgetInput">
+	    	<input id="Title">
+	    	
+	    	<select id="Type">
+	    		<option data-bind="click: addNewWidget({widgetData:{Title:'자동차전용도로 연장', Type:'sd', Name:'Multi_Series'}})">
+					자동차전용도로 연장
+				</option>
+	    		<option data-bind="click: addNewWidget({widgetData:{Title:'Core 및 Extended POI 보유 현황', Type:'poi',Name:'dual_pie_chart'}})">
+	    			Core 및 Extended POI 보유 현황
+	    		</option>
+	    		
+	    		
+	    	</select>
+	    	
+	    	<select id="Name">
+	    		<option value="Multi_Series">Multi_Series</option>
+	    		<option value="dual_pie_chart">dual_pie_chart</option>
+	    	</select>
+    	</div>
+ 		-->
+    	<!-- <button id="MakeWidget_a" type="button" class="btn btn-outline-success">Consist Widget</button> -->
+
+    	<div id="MakeWidget">
+			<a class="btn btn-primary" data-bind="click: addNewWidget({widgetData:{Title:'자동차전용도로 연장', Type:'sd', Name:'Multi_Series'}})">자동차전용도로 연장</a>
+	    	<a class="btn btn-primary" data-bind="click: addNewWidget({widgetData:{Title:'Core 및 Extended POI 보유 현황', Type:'poi',Name:'dual_pie_chart'}})">Core 및 Extended POI 보유 현황</a>
+			<a class="btn btn-primary" data-bind="click: addNewWidget({widgetData:{Title:'월별 과금형카메라 변경 현황', Type:'safe',Name:'column_stacked'}})">월별 과금형카메라 변경 현황</a>
+			<a class="btn btn-primary" data-bind="click: addNewWidget({widgetData:{Title:'CCTV 현황', Type:'test',Name:'map_cctv'}})">CCTV 현황</a>
+    	</div>
+    	<!-- 
+    		a태그 말고 고를 수 있는 component로 변경
+    		or a태그 여러개 박힐 수 있게
+    		or select tag를 사용해서 1개만 고를 수 있게 
+    	-->
+    </div>
+    <br>
+    <div data-bind="component: {name: 'dashboard-grid', params: $data}"></div>
+  </div>
+
+  <script type="text/javascript">
+  	// knockout.js는 div의 name에 잡힌 것에 bind 시켜주는 듯??
+	// var widgetType = null, widgetName=null;
+  	
+    ko.components.register('dashboard-grid', {
+      viewModel: {
+        createViewModel: function (controller, componentInfo) {
+          var ViewModel = function (controller, componentInfo) {
+            var grid = null;
+            
+            this.widgets = controller.widgets;
+             
+            this.widgetType = controller.widgets.Type;
+            this.widgetName = controller.widgets.Name;
+             
+             // rendering 마지막 부분
+            this.afterAddWidget = function (items) {
+            	
+            	// console.log("grid0",grid);
+           		
+              if (grid == null) {
+                grid = $(componentInfo.element).find('.grid-stack').gridstack({
+                  auto: false
+                }).data('gridstack');
+              }
+              
+              var item = items.find(function (i) { return i.nodeType == 1 });
+              
+              grid.addWidget(item);
+              
+              ko.utils.domNodeDisposal.addDisposeCallback(item, function () {
+                grid.removeWidget(item);
+              });
+            };
+          };
+
+          return new ViewModel(controller, componentInfo);
+        }
+      },
+      template:
+        [
+        	'<div class="grid-stack" data-bind="foreach: {data: widgets, afterRender: afterAddWidget}">',
+	        	'<div class="grid-stack-item" data-bind="attr: {\'data-gs-x\': $data.x, \'data-gs-y\': $data.y, \'data-gs-width\': $data.width, \'data-gs-height\': $data.height, \'data-gs-auto-position\': $data.auto_position, \'data-gs-id\': $data.id}">',
+					'<div class="grid-stack-item-content">',
+						'<div class="mBox1 h1">',
+							'<div class="tit">',
+								'<div class="ti"><span data-bind="text:title"></span></div>',
+								'<div class="rt">',
+									'<a href="###" class="iRefresh">새로고립</a>',
+									'<a href="###" class="iSet2">세팅</a>',
+									'<button data-bind="click: $root.deleteWidget">Del</button>',
+						        	'<button data-bind="click: $root.alertWidget">Alert</button>',
+								'</div>',
+							'</div>',
+							'<div class="con">',
+								'<div class="co">',
+									'<iframe data-bind="attr : {\'src\': $data.url }" frameborder="0" class="frame" name="frame" scrolling="no"></iframe>',
+								'</div>',
+							'</div>',
+						'</div>',
+					'</div>',
+				'</div>',
+			'</div> '
+        	/* 
+          '<div class="grid-stack" data-bind="foreach: {data: widgets, afterRender: afterAddWidget}">',
+          '   <div class="grid-stack-item" data-bind="attr: {\'data-gs-x\': $data.x, \'data-gs-y\': $data.y, \'data-gs-width\': $data.width, \'data-gs-height\': $data.height, \'data-gs-auto-position\': $data.auto_position, \'data-gs-id\': $data.id}">',
+            	'<div class="grid-stack-item-content">',
+		        	'<button data-bind="click: $root.deleteWidget">Delete me</button>',
+		        	'<button data-bind="click: $root.alertWidget">Alert me</button>',
+		        '</div>',
+          '   </div>',
+          '</div> '
+           */
+        ].join('')
+    });
+
+    // jQuery start
+    // controller와 widget을 만들어서 knockout javascript를 활용하여 데이터 바인딩
+    $(function () {
+   		// controller 정의 부분
+      var Controller = function (widgets) {
+        var self = this;
+
+        this.widgets = ko.observableArray(widgets);
+		// ko.observable은 새로고침 한 것과 같이 데이터 바인딩 된 것이 바로 바뀔 수 있게 해주는 것으로 생각
+		// ko.observableArray는 observable변수들이 모여있는 array로 생각
+        this.addNewWidget = function (params) {
+			console.log(params);
+			// widget을 추가할 때 조건을 주면 크기를 set해서 가져올 수 있게 할 수 있을 듯(각 widget마다 적정한 크기를 fix해서 가져올 수 있을 거 같다!)
+			widgetType = params.widgetData.Type;
+			widgetName = params.widgetData.Name;
+			console.log("widgetType",widgetType);
+			console.log("widgetName", widgetName);
+			
+			var iframeURL = "./widget/getCustomWidget.view?widgetType=" + widgetType + "&widgetName=" + widgetName;
+			var title = params.widgetData.Title;
+			
+          this.widgets.push({
+            x: 0,
+            y: 0,
+            url : iframeURL,
+            title:title,
+            width: Math.floor(4),	// + 3 * Math.random()
+            height: Math.floor(4),	// + 3 * Math.random()
+            auto_position: true
+          });
+          return false;
+        };
+
+        this.deleteWidget = function (item) {
+          self.widgets.remove(item);
+          return false;
+        };
+        this.alertWidget = function(item){
+        	console.log("alertitem",item);
+        }
+      };
+      
+		//widgets 초기 정의 부분
+      var widgets = [
+        /* {x: 0, y: 0, width: 2, height: 2, id: '0'},
+        {x: 2, y: 0, width: 4, height: 2, id: '1'},
+        {x: 6, y: 0, width: 2, height: 4, id: '2'},
+        {x: 1, y: 2, width: 4, height: 2, id: '3'} */
+      ];
+		
+		// controller 생성
+      var controller = new Controller(widgets);
+		// knockout에 등록
+      ko.applyBindings(controller);
+		
+		// 버튼 클릭
+		$("#MakeWidget_a").click(function(){
+			
+			var w_title = $("#Title").val();
+			var w_type = $("#Type").val();
+			var w_name = $("#Name").val();
+			console.log("=================================");
+			console.log(w_title, w_type, w_name);
+			console.log("=================================");
+			
+			/* 
+			$("#MakeWidget_b").attr('data-bind',
+					"click: addNewWidget({widgetData:{Title:'"+w_title+"', Type:'"+w_type+"', Name:'"+w_name+"'}})")
+			
+			 var Atag =	'<a id="MakeWidget_b" class="btn btn-primary"' 
+						+ 'data-bind="click: addNewWidget('
+						+'{widgetData:{Title:"'+w_title+'", Type:"'+w_type+'", Name:"'+w_name+'"}})>Add Widget</a>';
+			
+			$("#MakeWidget").children().remove();
+			$("#MakeWidget").append(Atag);
+			*/
+		});
+		
+    });
+  </script>
+</body>
+</html>
