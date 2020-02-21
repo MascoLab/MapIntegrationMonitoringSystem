@@ -11,7 +11,7 @@
 <script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="../BIX5/JS/BIX5.js" ></script> 
 <script type="text/javascript" src="../BIX5/LicenseKey/BIX5License.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2a59880f0cd4bbc12eea3056dee908f6"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2a59880f0cd4bbc12eea3056dee908f6&libraries=services"></script>
 <script type="text/javascript" src="http://openapi.its.go.kr/javascript/jquery.xml2json.js"></script>	<!-- xml to json -->
 <script type="text/javascript" src="http://openapi.its.go.kr/javascript/openapi.cctv.js"></script>	<!-- open cctv api -->
 
@@ -41,6 +41,12 @@
 </div>
 
 <script type="text/javascript">
+	/*
+		수정 이력
+		2020/02/20 지도 좌표계 변환 메소드 작성 및 등록, 지도 drag 이벤트 등록( 진행중 )
+		
+	
+	*/
 
 	//BIX5Chart 를 생성합니다.
 	//파라메터 (순서대로) 
@@ -85,25 +91,22 @@
 	// 37.418390, 126.932434	- 기존 google map 좌표계(광명역, 관악역 중간 지점)
 	// 위도 37.42841507091721, 경도 126.90970491332553
 	//########### map 설정 ##############
+	// 현대엠앤소프트 위치( WGS84 ) : (37.53227431107196, 126.95191338080117)
+	// 매스코 위치( WGS84 ) : 37.39295964817937, 126.97229861054522
 	var container = document.getElementById('map'),
 	options = {
-		center: new kakao.maps.LatLng(37.427527, 126.893165),
-		level: 8 
+		center: new kakao.maps.LatLng(37.39295964817937, 126.97229861054522),
+		level: 6
 	};
 	
 	var map = new kakao.maps.Map(container, options);
-	
-	// 맵 중심좌표 재설정을 위한 것
-  	var bounds = map.getBounds();
-  	console.log("map boundary",bounds.toString());
 	
   	/*
 	###################################################
 	################# CCTV API Request ################
 	###################################################
 	*/
-  	var key = '1566268087863';
-  	var ReqType = '2';
+  	
   	
   	// kakao map에서 가져오는 boundary를 이용하여 MinX, MaxX, MinY, MaxY를 추출
   	/*
@@ -116,13 +119,31 @@
   		  cctv의 정보를 ajax로 받아와서 다시 WGS84 to GRS80 변환 후 map에 뿌려주는 식이 될 것
   	
   	함수화 하여 활용해야 할 것( 예: 지도 중심 좌표 이동시 function 안에 이 내용이 들어가야 함 )
-  	
   	*/
   	
-  	var MinX = '126.869072';
-  	var MaxX = '126.932434';
-  	var MinY = '37.418390 ';
-  	var MaxY = '37.454966';
+  	/* 변수들 모음  */
+  	
+  	// 맵 중심좌표 재설정을 위한 것
+  	var bounds = null;
+ 	// 좌표 변환 객체
+	var geocoder = new kakao.maps.services.Geocoder();
+	// ###### 마커의 위치 담을 array ######
+  	var positions = [];
+	// 변환된 좌표를 가지고 있을 array
+  	var changePoints = [];  	
+	
+  	126.96248918511452
+  	la: 37.38478916933378
+  	ja: 126.98204168920479
+  	ka: 37.404111671774096
+	
+  	// cctv request 변수들
+  	var key = '1566268087863';
+  	var ReqType = '2';
+  	var MinX = '126.95068599614207';
+  	var MaxX = '126.98978874719981';
+  	var MinY = '37.37278318929329';
+  	var MaxY = '37.41142887879428';
   	var type = 'ex';	// ex 고속도로, its 국도
   	var CctvType = '1';	//1 : 실시간 스트리밍(HLS) / 2 : 동영상 파일 / 3 : 정지 영상
   	var url = 'http://openapi.its.go.kr:8081/api/NCCTVInfo?'
@@ -135,24 +156,273 @@
   			+'&type='+type
   			+'&CctvType='+CctvType;
   	
-  	$(function(){
-		console.log("2 Jquery Start!")
+  	var tmpUrl = 'http://openapi.its.go.kr:8081/api/NCCTVInfo?'
+  			+'key=' + key
+  			+'&ReqType='+ReqType
+  			+'&type='+type
+  			+'&CctvType='+CctvType;
+  	
+  	// marker 객체들을 담고 있는 배열
+  	var markers = [];
+	
+  	var json;
+  	// get method   
+  	// $.getJSON(url, function(data){ } parameter : url, function(success) 
+  	$.get(url, function(data){
+  		console.log("4-1 jquery get method!");
+  		//$.noConflict();
+  		//$( document ).ready(function(jQuery){	// 충돌 방지를 위한 jQuery 재정의
+  			// xml to json
+	  		json = $.xml2json(data);
+	  		// 정보 출력
+	  		//console.log("cctv 정보", json.data);
+	  		
+	  		$.each(json.data,function(i, f){
+	  			var obj = {
+	  					title : f.cctvname,
+	  					cctvurl : f.cctvurl,
+	  					position : new kakao.maps.LatLng(f.coordy, f.coordx)
+	  			}
+	  			positions.push(obj);
+	  		});
+	  		
+	  		console.log("positions",positions);
+	  		console.log("positions length", positions.length);
+	  		
+	  		var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+   
+			for (var i = 0; i < positions.length; i ++) {
+				// 마커 이미지의 이미지 크기 입니다
+			    var imageSize = new kakao.maps.Size(24, 35); 
+			    // 마커 이미지를 생성합니다    
+			    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+			    // 마커를 생성합니다
+			    var marker = new kakao.maps.Marker({
+			        map: map, // 마커를 표시할 지도
+			        position: positions[i].position, // 마커를 표시할 위치
+			        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+			        image : markerImage // 마커 이미지 
+			    });
+			    kakao.maps.event.addListener(marker, 'click', clickListener(positions[i].position, positions[i].title, positions[i].cctvurl));
+			    
+			    markers.push(marker);
+			}
+  	})	// jquery.get method end
+  	
+    /*
+	###################################################
+	################ 카카오 맵 이벤트 함수  ##################
+	###################################################
+	*/
+	
+	// click function
+	function clickListener(position, title, cctvurl){
+  		return function(){
+    		$("#cctvView").children().remove();
+    		// div 생성
+    		var content = 
+    			'<video controls autoplay style="width:100%; height:100%;">'
+				+'<source src="'+cctvurl+'" type="video/mp4">'
+				+'</video>'
+    		$("#cctvView").append(content);
+  		}
+  	}
+
+	/* 
+	kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
+	    // 클릭한 위치에 마커를 표시합니다 
+	    addMarker(mouseEvent.latLng);             
+	});
+	
+	function addMarker(position) {
+	    
+		console.log( "경도위도 : " + position);
+	    // 마커를 생성합니다
+	    var marker = new kakao.maps.Marker({
+	        position: position
+	    });
+
+	    // 마커가 지도 위에 표시되도록 설정합니다
+	    marker.setMap(map);
+	}
+	 */
   		
-		var json;
+  	// ###############################################
+  	// ################ 드래그 이벤트 ####################
+  	// ###############################################
+  	kakao.maps.event.addListener(map, 'dragend', function() {        
+  	    /* 
+  		// 지도 중심좌표를 얻어옵니다 
+  	    var latlng = map.getCenter(); 
+  	    var message = '변경된 지도 중심좌표는 ' + latlng.getLat() + ' 이고, ';
+  	    message += '경도는 ' + latlng.getLng() + ' 입니다';
+  	    console.log("message",message);
+  	     */ 
+  		// 흐름도
+   	    // 지도의 boundary 정보 get -> 좌표계 변환( kakao map 좌표계 -> cctv 좌표계 ) -> 변환한 boundary 좌표 정보로 cctv 정보 가져오기 -> 좌표계 변환( cctv 좌표  -> kakao map )  -> marker에 뿌리기 및 marker event 등록 
+  	    
+   	    /* 
+   	    	cctv api 지도 좌표계
+  		EPSG: 4326 / WGS84
+  			kakao map 지도 좌표계
+  		EPSG: 5181 GRS80 -falseY: 50000
+  			wcongnamul 좌표계 사용한다고 함
+  			
+  			kakaomap과 cctv 좌표계 동일...ㅠ
+  		지도 좌표계 참고 : https://www.osgeo.kr/17
+   	     */
   		
-	  	// get method   $.getJSON(url, function(data){ } parameter : url, function(success) 
+   	     //지도 boundary 정보
+  	    bounds = map.getBounds();
+  	  	console.log("map boundary",bounds);
+  	  	console.log("map boundary",bounds.toString());
+  	    
+  	  	// boundary를 경도, 위도 형태로 나누고 wcongnamul 좌표계 이용 -> wgs84로 변경한다ds
+  	  	var point1 = {
+  	  			x : bounds.ea,
+  	  			y : bounds.la
+  	  	},
+  	  	point2 = {
+  	  			x:bounds.ja,
+  	  			y:bounds.ka
+  	  	}
+  	  	MinX = bounds.ea
+  	  	MaxX = bounds.ja
+  	  	MinY = bounds.la
+	  	MaxY = bounds.ka
+	  	
+	  	var tmpUrl2 = tmpUrl
+			  	  	+'&MinX='+MinX
+					+'&MaxX='+MaxX
+					+'&MinY='+MinY
+					+'&MaxY='+MaxY;
+  	  	
+  	 	cctvLoading(tmpUrl2);
+  	  	
+  	  	// point1 : Min point2 : Max
+  	  	//console.log("point1",point1);
+  	  	//console.log("point2",point2);
+  	  	
+  	  	// 변환한 boundary 정보를 cctv api 정보에 넣어서 ajax를 통해 정보 request & response 받아온다
+// 	  	DAUMtoWGS84(point1);
+//		DAUMtoWGS84(point2);
+		/* 
+		geocoder.transCoord(point1.x, point1.y, function( result, status ) {
+			if (status === kakao.maps.services.Status.OK) {
+				//console.log(result[0]);
+				//console.log(result[0].x);
+				//console.log(result[0].y); 
+				tmpUrl += 	'&MinX=' + result[0].x
+							+'&MinY=' + result[0].y
+//				changePoints.push(obj);
+		    }
+			
+//			console.log( "TEST : " + tmpPoints );
+//			return tmpPoints;
+			geocoder.transCoord(point2.x, point2.y, function( result, status ) {
+				if (status === kakao.maps.services.Status.OK) {
+					//console.log(result[0]);
+					//console.log(result[0].x);
+					//console.log(result[0].y);
+					tmpUrl += 	'&MaxX=' + result[0].x
+								+'&MaxY=' + result[0].y
+			    }
+				
+//				console.log( "TEST : " + tmpPoints );
+//				return tmpPoints;
+				onTest();
+			}, {
+			    input_coord: kakao.maps.services.Coords.WCONGNAMUL,
+			    output_coord: kakao.maps.services.Coords.WGS84
+			});
+		}, {
+		    input_coord: kakao.maps.services.Coords.WCONGNAMUL,
+		    output_coord: kakao.maps.services.Coords.WGS84
+		});
+  	  	 */
+  	});
+  	
+	function setMarkers(map) {
+	    for (var i = 0; i < markers.length; i++) {
+	        markers[i].setMap(map);
+	    }            
+	} 
+	
+	function removeMarkers(map) {
+	    for (var i = 0; i < markers.length; i++) {
+	        markers[i].setMap(null);
+	    }
+	    
+	 	// 배열 초기화
+	    markers = [];	
+	    positions = [];	
+	}
+	
+	 
+ 	function cctvLoading(url){
+ 		
+ 		// 새로운 cctv 좌표를 ajax로 받아와서 새로 뿌려줌
+ 		// 초기 map에 나온 마커들을 초기화 시켜줌
+ 		removeMarkers(map);
+ 		
+ 		var json;
+ 	  	// get method   
+ 	  	// $.getJSON(url, function(data){ } parameter : url, function(success) 
+ 	  	$.get(url, function(data){
+ 	  			// xml to json
+ 		  		json = $.xml2json(data);
+ 		  		
+ 		  		$.each(json.data,function(i, f){
+ 		  			var obj = {
+ 		  					title : f.cctvname,
+ 		  					cctvurl : f.cctvurl,
+ 		  					position : new kakao.maps.LatLng(f.coordy, f.coordx)
+ 		  			}
+ 		  			positions.push(obj);
+ 		  		});
+ 		  		
+ 		  		console.log("positions",positions);
+ 		  		console.log("positions length", positions.length);
+ 		  		
+ 		  		var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+ 	   
+ 				for (var i = 0; i < positions.length; i ++) {
+ 					// 마커 이미지의 이미지 크기 입니다
+ 				    var imageSize = new kakao.maps.Size(24, 35); 
+ 				    // 마커 이미지를 생성합니다    
+ 				    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+ 				    // 마커를 생성합니다
+ 				    var marker = new kakao.maps.Marker({
+ 				        map: map, // 마커를 표시할 지도
+ 				        position: positions[i].position, // 마커를 표시할 위치
+ 				        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+ 				        image : markerImage // 마커 이미지 
+ 				    });
+ 				    kakao.maps.event.addListener(marker, 'click', clickListener(positions[i].position, positions[i].title, positions[i].cctvurl));
+ 				    
+ 				    markers.push(marker);
+ 				}
+ 	  	})	// jquery.get method end
+ 		
+ 	}
+	 
+  	function onTest() {
+  		console.log( tmpUrl );
+  		/*  		
+	  	console.log( changePoints );
+	  	console.log( changePoints.length );
+	  	
+	  	var json;
+	  	// get method   
+	  	// $.getJSON(url, function(data){ } parameter : url, function(success) 
 	  	$.get(url, function(data){
 	  		console.log("4-1 jquery get method!");
 	  		//$.noConflict();
 	  		//$( document ).ready(function(jQuery){	// 충돌 방지를 위한 jQuery 재정의
 	  			// xml to json
 		  		json = $.xml2json(data);
-		  		
 		  		// 정보 출력
-		  		console.log("cctv 정보", json.data);
-		  		
-		  		// ###### 마커의 위치 담을 변수 ######
-		  		var positions = [];
+		  		//console.log("cctv 정보", json.data);
 		  		
 		  		$.each(json.data,function(i, f){
 		  			var obj = {
@@ -169,13 +439,10 @@
 		  		var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
     
 				for (var i = 0; i < positions.length; i ++) {
-					
 					// 마커 이미지의 이미지 크기 입니다
 				    var imageSize = new kakao.maps.Size(24, 35); 
-				    
 				    // 마커 이미지를 생성합니다    
 				    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
-				     
 				    // 마커를 생성합니다
 				    var marker = new kakao.maps.Marker({
 				        map: map, // 마커를 표시할 지도
@@ -183,90 +450,13 @@
 				        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
 				        image : markerImage // 마커 이미지 
 				    });
-				    
-				    
-				 	// 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
-				 	// for문의 변수를 그대로 쓸 수 있음
-				 	// click은 된 것을 확인
-				 	// 이를 알아보기 위해서는 함수 표현식과 함수 선언식의 차이점을 알아둬야 한다
-				 	// 참고 사이트 : https://joshua1988.github.io/web-development/javascript/function-expressions-vs-declarations/
-				    /* (function(marker){
-				    	kakao.maps.event.addListener(marker, 'click', function(positions[i].title, positions[i].cctvurl, positions[i].position){
-				    		console.log("click!","click!click!");
-				    		console.log("test1",positions[i].title);
-				    		console.log("test2",positions[i].cctvurl);
-				    		console.log("test3",positions[i].position);
-				    	});
-				    	
-				    })(marker); */
-				    
 				    kakao.maps.event.addListener(marker, 'click', clickListener(positions[i].position, positions[i].title, positions[i].cctvurl));
-				 	
 				}
 	  		//})
 	  	})	// jquery.get method end
-    })	// jquery
-  	
-    /*
-	###################################################
-	################ 카카오 맵 이벤트 함수  ##################
-	###################################################
-	*/
-	
-  	/*
-  	지도 중심좌표 이동시 마다 발생하는 이벤트
-  	kakao.maps.event.addListener(map, 'center_changed', function() {
-  	    // 지도의  레벨을 얻어옵니다
-  	    var level = map.getLevel();
-
-  	    // 지도의 중심좌표를 얻어옵니다 
-  	    var latlng = map.getCenter(); 
-  	    console.log("위도 : "+latlng.getLat());
-  	    console.log("경도 : "+latlng.getLng());
-  	});
-  	*/
-	
-	// click function
-	function clickListener(position, title, cctvurl){
-	  		console.log("1","clickListener 동작!");
-  		return function(){
-  			console.log("2","return 동작!");	
-  			console.log("test1",title);
-    		console.log("test2",position);
-    		console.log("test3",cctvurl);
-    		
-    		/*
-    		$("#cctvView").attr("hidden","false");
-    		$("#cctvView").children().attr("src",cctvurl);
-    		$("#cctvView").children().attr("type","video/mp4");
-    		*/
-    		
-    		//$("#cctvView").attr("src",cctvurl+"?autoplay=1");
-    		//$("#cctv_holder").attr("src",cctvurl);
-    		
-    		// #######################################
-    		// div
-    		$("#cctvView").children().remove();
-    		
-    		// div 생성
-    		var content = 
-    			'<video controls autoplay style="width:100%; height:100%;">'
-				+'<source src="'+cctvurl+'" type="video/mp4">'
-				+'</video>'
-				
-			/*
-    		var newDiv = document.createElement("div");
-    		newDiv.setAttribute("src")
-    		*/
-    		$("#cctvView").append(content);
-    		// #######################################
-    		
-    		console.log("3","return 끝부분!");	
-    		
-  		}
-  		 console.log("4","clickListener 끝부분!")
+*/
   	}
-	
+  	
 	/* 
 	widget.componentReadyHandler = function(componentId) {
 	}
