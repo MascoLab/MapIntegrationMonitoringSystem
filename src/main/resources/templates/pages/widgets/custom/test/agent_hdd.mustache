@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>HYUNDAI MnSOFT</title>
+
+<link rel="stylesheet" type="text/css" href="../css/pages/common.css">
+<!-- 공통 스타일 -->
+<link rel="stylesheet" type="text/css" href="../BIX5/Assets/BIX5.css" />
+<!-- BIX5 스타일 -->
+<link rel="stylesheet" type="text/css"
+	href="../BIX5/Assets/BIX5Dashboard.css" />
+<!-- BIX5 Dashboard 스타일 -->
+
+<script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
+<!-- jQeury 라이브러리 -->
+<script type="text/javascript" src="../BIX5/JS/BIX5.js"></script>
+<!-- BIX5 라이브러리 -->
+<script type="text/javascript" src="../BIX5/LicenseKey/BIX5License.js"></script>
+<!-- BIX5 라이선스 -->
+
+<script type="text/javascript">
+
+BIX5.chart.create("chart1", "chartHolder1", "", "100%", "100%");
+BIX5.chart.create("chart2", "chartHolder2", "", "100%", "100%");
+BIX5.chart.create("chart3", "chartHolder3", "", "100%", "100%");
+BIX5.chart.create("chart4", "chartHolder4", "", "100%", "100%");
+
+//게이지 영역 범위
+var trackValues = [0,25,50,75,100];
+
+//게이지 영역 라벨
+var trackLabels = ["보통","주의","경고","위험"];
+
+//스트링 형식으로 레이아웃 정의
+var layoutStr =
+           '<BIX5 frameColor="#EEEEEE" backgroundColor="#FFFFFF" borderStyle="none">'
+               +'<Options>'
+                   +'<Caption text="C:\" />'
+              +'</Options>'
+              +'<HalfCircularGauge valueChangeFunction="valueChangeFunc" frameType="flat" minimumAngle="180" maximumAngle="360" minimum="0" maximum="100" interval="25" minorInterval="5" padding="0" labelGap="-10" valueXOffset="0" valueYOffset="0" tickLabelStyleName="tickLabelStyle" valueLabelStyleName="valueLabelStyle" dataTipJsFunction="dataTipFunction" tickGap="-40" editMode="true" liveDragging="true" showDataTip="true" needleCoverRadius="25" needleThickness="16" pointThickness="0" needleLengthRatio="0.85" needlePointStyle="steeple" needleBackLengthRatio="0" tickLabelPlacement="outside" showTrackColor="true" trackColors="[#05c1b0,#f7b642,#f48a40,#e14159]" trackAlphas="[1,1,1,1,1]" trackValues="[' + trackValues.toString() + ']" trackLabels="[' + trackLabels.toString() + ']" trackLabelsXOffset="[-0.3,0.2,-0.2,0.3]" trackLabelsYOffset="[0.1,-0.3,-0.3,0.1]" trackLabelStyleName="trackLabelStyle" trackOuterRadius="1.06" trackInnerRadius="0" minorTickRadius="3" showValueLabel="true" isValueTop="true" tickRadius="0" bounceAnimating="true">'
+                   +'<frameStroke>'
+                       +'<Stroke color="#5e4e3e" weight="10"/>'
+                   +'</frameStroke>'
+                  +'<frameFill>'
+                         +'<SolidColor alpha="0"/>'
+                     +'</frameFill>'
+                    +'<needleFill>'
+                        +'<SolidColor color="#5e4e3e"/>'
+                   +'</needleFill>'
+                   +'<needleStroke>'
+                      +'<Stroke color="#5e4e3e"/>'
+                   +'</needleStroke>'
+                     +'<needleCoverFill>'
+                       +'<SolidColor color="#5e4e3e"/>'
+                   +'</needleCoverFill>'
+                  +'<needleCoverStroke>'
+                         +'<Stroke color="#5e4e3e"/>'
+                   +'</needleCoverStroke>'
+                    +'<minorTickFill>'
+                         +'<SolidColor color="#555555"/>'
+                   +'</minorTickFill>'
+                    +'<minorTickStroke>'
+                       +'<Stroke color="#555555"/>'
+                   +'</minorTickStroke>'
+              +'</HalfCircularGauge>'
+                +'<Style>'
+                     +'.tickLabelStyle{'
+                      +'color:#555555;'
+                        +'fontSize:14;'
+                      +'fontWeight:bold;'
+                  +'}'
+                     +'.valueLabelStyle{'
+                         +'borderStyle:none;'
+                         +'backgroundAlpha:0;'
+                        +'color:#ffffff;'
+                        +'fontSize:18;'
+                      +'textAlign:center;'
+                     +'}'
+                     +'.trackLabelStyle{'
+                         +'fontSize:20;'
+                      +'fontWeight:bold;'
+                      +'color:#ffffff;'
+                    +'}'
+                 +'</Style>'
+            +'</BIX5>';
+var layoutStr2 =
+                '<BIX5 frameColor="#EEEEEE" backgroundColor="#FFFFFF" borderStyle="none">'
+                    +'<Options>'
+                        +'<Caption text="D:\"/>'
+                   +'</Options>'
+                   +'<HalfCircularGauge valueChangeFunction="valueChangeFunc" frameType="flat" minimumAngle="180" maximumAngle="360" minimum="0" maximum="100" interval="25" minorInterval="5" padding="0" labelGap="-10" valueXOffset="0" valueYOffset="0" tickLabelStyleName="tickLabelStyle" valueLabelStyleName="valueLabelStyle" dataTipJsFunction="dataTipFunction" tickGap="-40" editMode="true" liveDragging="true" showDataTip="true" needleCoverRadius="25" needleThickness="16" pointThickness="0" needleLengthRatio="0.85" needlePointStyle="steeple" needleBackLengthRatio="0" tickLabelPlacement="outside" showTrackColor="true" trackColors="[#05c1b0,#f7b642,#f48a40,#e14159]" trackAlphas="[1,1,1,1,1]" trackValues="[' + trackValues.toString() + ']" trackLabels="[' + trackLabels.toString() + ']" trackLabelsXOffset="[-0.3,0.2,-0.2,0.3]" trackLabelsYOffset="[0.1,-0.3,-0.3,0.1]" trackLabelStyleName="trackLabelStyle" trackOuterRadius="1.06" trackInnerRadius="0" minorTickRadius="3" showValueLabel="true" isValueTop="true" tickRadius="0" bounceAnimating="true">'
+                        +'<frameStroke>'
+                            +'<Stroke color="#5e4e3e" weight="10"/>'
+                        +'</frameStroke>'
+                       +'<frameFill>'
+                              +'<SolidColor alpha="0"/>'
+                          +'</frameFill>'
+                         +'<needleFill>'
+                             +'<SolidColor color="#5e4e3e"/>'
+                        +'</needleFill>'
+                        +'<needleStroke>'
+                           +'<Stroke color="#5e4e3e"/>'
+                        +'</needleStroke>'
+                          +'<needleCoverFill>'
+                            +'<SolidColor color="#5e4e3e"/>'
+                        +'</needleCoverFill>'
+                       +'<needleCoverStroke>'
+                              +'<Stroke color="#5e4e3e"/>'
+                        +'</needleCoverStroke>'
+                         +'<minorTickFill>'
+                              +'<SolidColor color="#555555"/>'
+                        +'</minorTickFill>'
+                         +'<minorTickStroke>'
+                            +'<Stroke color="#555555"/>'
+                        +'</minorTickStroke>'
+                   +'</HalfCircularGauge>'
+                     +'<Style>'
+                          +'.tickLabelStyle{'
+                           +'color:#555555;'
+                             +'fontSize:14;'
+                           +'fontWeight:bold;'
+                       +'}'
+                          +'.valueLabelStyle{'
+                              +'borderStyle:none;'
+                              +'backgroundAlpha:0;'
+                             +'color:#ffffff;'
+                             +'fontSize:18;'
+                           +'textAlign:center;'
+                          +'}'
+                          +'.trackLabelStyle{'
+                              +'fontSize:20;'
+                           +'fontWeight:bold;'
+                           +'color:#ffffff;'
+                         +'}'
+                      +'</Style>'
+                 +'</BIX5>';
+var layoutStr3 =
+                     '<BIX5 frameColor="#EEEEEE" backgroundColor="#FFFFFF" borderStyle="none">'
+                         +'<Options>'
+                             +'<Caption text="Y:\"/>'
+                        +'</Options>'
+                        +'<HalfCircularGauge valueChangeFunction="valueChangeFunc" frameType="flat" minimumAngle="180" maximumAngle="360" minimum="0" maximum="100" interval="25" minorInterval="5" padding="0" labelGap="-10" valueXOffset="0" valueYOffset="0" tickLabelStyleName="tickLabelStyle" valueLabelStyleName="valueLabelStyle" dataTipJsFunction="dataTipFunction" tickGap="-40" editMode="true" liveDragging="true" showDataTip="true" needleCoverRadius="25" needleThickness="16" pointThickness="0" needleLengthRatio="0.85" needlePointStyle="steeple" needleBackLengthRatio="0" tickLabelPlacement="outside" showTrackColor="true" trackColors="[#05c1b0,#f7b642,#f48a40,#e14159]" trackAlphas="[1,1,1,1,1]" trackValues="[' + trackValues.toString() + ']" trackLabels="[' + trackLabels.toString() + ']" trackLabelsXOffset="[-0.3,0.2,-0.2,0.3]" trackLabelsYOffset="[0.1,-0.3,-0.3,0.1]" trackLabelStyleName="trackLabelStyle" trackOuterRadius="1.06" trackInnerRadius="0" minorTickRadius="3" showValueLabel="true" isValueTop="true" tickRadius="0" bounceAnimating="true">'
+                             +'<frameStroke>'
+                                 +'<Stroke color="#5e4e3e" weight="10"/>'
+                             +'</frameStroke>'
+                            +'<frameFill>'
+                                   +'<SolidColor alpha="0"/>'
+                               +'</frameFill>'
+                              +'<needleFill>'
+                                  +'<SolidColor color="#5e4e3e"/>'
+                             +'</needleFill>'
+                             +'<needleStroke>'
+                                +'<Stroke color="#5e4e3e"/>'
+                             +'</needleStroke>'
+                               +'<needleCoverFill>'
+                                 +'<SolidColor color="#5e4e3e"/>'
+                             +'</needleCoverFill>'
+                            +'<needleCoverStroke>'
+                                   +'<Stroke color="#5e4e3e"/>'
+                             +'</needleCoverStroke>'
+                              +'<minorTickFill>'
+                                   +'<SolidColor color="#555555"/>'
+                             +'</minorTickFill>'
+                              +'<minorTickStroke>'
+                                 +'<Stroke color="#555555"/>'
+                             +'</minorTickStroke>'
+                        +'</HalfCircularGauge>'
+                          +'<Style>'
+                               +'.tickLabelStyle{'
+                                +'color:#555555;'
+                                  +'fontSize:14;'
+                                +'fontWeight:bold;'
+                            +'}'
+                               +'.valueLabelStyle{'
+                                   +'borderStyle:none;'
+                                   +'backgroundAlpha:0;'
+                                  +'color:#ffffff;'
+                                  +'fontSize:18;'
+                                +'textAlign:center;'
+                               +'}'
+                               +'.trackLabelStyle{'
+                                   +'fontSize:20;'
+                                +'fontWeight:bold;'
+                                +'color:#ffffff;'
+                              +'}'
+                           +'</Style>'
+                      +'</BIX5>';
+var layoutStr4 =
+                          '<BIX5 frameColor="#EEEEEE" backgroundColor="#FFFFFF" borderStyle="none">'
+                              +'<Options>'
+                                  +'<Caption text="Z:\"/>'
+                             +'</Options>'
+                             +'<HalfCircularGauge valueChangeFunction="valueChangeFunc" frameType="flat" minimumAngle="180" maximumAngle="360" minimum="0" maximum="100" interval="25" minorInterval="5" padding="0" labelGap="-10" valueXOffset="0" valueYOffset="0" tickLabelStyleName="tickLabelStyle" valueLabelStyleName="valueLabelStyle" dataTipJsFunction="dataTipFunction" tickGap="-40" editMode="true" liveDragging="true" showDataTip="true" needleCoverRadius="25" needleThickness="16" pointThickness="0" needleLengthRatio="0.85" needlePointStyle="steeple" needleBackLengthRatio="0" tickLabelPlacement="outside" showTrackColor="true" trackColors="[#05c1b0,#f7b642,#f48a40,#e14159]" trackAlphas="[1,1,1,1,1]" trackValues="[' + trackValues.toString() + ']" trackLabels="[' + trackLabels.toString() + ']" trackLabelsXOffset="[-0.3,0.2,-0.2,0.3]" trackLabelsYOffset="[0.1,-0.3,-0.3,0.1]" trackLabelStyleName="trackLabelStyle" trackOuterRadius="1.06" trackInnerRadius="0" minorTickRadius="3" showValueLabel="true" isValueTop="true" tickRadius="0" bounceAnimating="true">'
+                                  +'<frameStroke>'
+                                      +'<Stroke color="#5e4e3e" weight="10"/>'
+                                  +'</frameStroke>'
+                                 +'<frameFill>'
+                                        +'<SolidColor alpha="0"/>'
+                                    +'</frameFill>'
+                                   +'<needleFill>'
+                                       +'<SolidColor color="#5e4e3e"/>'
+                                  +'</needleFill>'
+                                  +'<needleStroke>'
+                                     +'<Stroke color="#5e4e3e"/>'
+                                  +'</needleStroke>'
+                                    +'<needleCoverFill>'
+                                      +'<SolidColor color="#5e4e3e"/>'
+                                  +'</needleCoverFill>'
+                                 +'<needleCoverStroke>'
+                                        +'<Stroke color="#5e4e3e"/>'
+                                  +'</needleCoverStroke>'
+                                   +'<minorTickFill>'
+                                        +'<SolidColor color="#555555"/>'
+                                  +'</minorTickFill>'
+                                   +'<minorTickStroke>'
+                                      +'<Stroke color="#555555"/>'
+                                  +'</minorTickStroke>'
+                             +'</HalfCircularGauge>'
+                               +'<Style>'
+                                    +'.tickLabelStyle{'
+                                     +'color:#555555;'
+                                       +'fontSize:14;'
+                                     +'fontWeight:bold;'
+                                 +'}'
+                                    +'.valueLabelStyle{'
+                                        +'borderStyle:none;'
+                                        +'backgroundAlpha:0;'
+                                       +'color:#ffffff;'
+                                       +'fontSize:18;'
+                                     +'textAlign:center;'
+                                    +'}'
+                                    +'.trackLabelStyle{'
+                                        +'fontSize:20;'
+                                     +'fontWeight:bold;'
+                                     +'color:#ffffff;'
+                                   +'}'
+                                +'</Style>'
+                           +'</BIX5>';
+//게이지 데이터
+var chartData =
+[
+	{{#RESULT}}
+	{{C:\HDD_CONVERT}}
+	{{/RESULT}}
+];
+ 
+var chartData2 =
+[
+	{{#RESULT}}
+	{{D:\HDD_CONVERT}}
+	{{/RESULT}}
+]; 
+
+var chartData3 =
+[
+	{{#RESULT}}
+	{{Y:\HDD_CONVERT}}
+	{{/RESULT}}
+]; 
+	
+var chartData4 =
+[
+	{{#RESULT}}
+	{{Z:\HDD_CONVERT}}
+	{{/RESULT}}
+]; 
+ 
+if(chartData >= 80 || chartData2 >= 80 || chartData3 >= 80 || chartData4 >= 80){
+alert("HDD 사용량 초과 주의");
+}
+
+BIX5.chart.calls("chart1", {
+"setLayout" : layoutStr,
+ "setData" : chartData
+});
+BIX5.chart.calls("chart2", {
+	"setLayout" : layoutStr2,
+	 "setData" : chartData2
+	});
+BIX5.chart.calls("chart3", {
+	"setLayout" : layoutStr3,
+	 "setData" : chartData3
+	});
+BIX5.chart.calls("chart4", {
+	"setLayout" : layoutStr4,
+	 "setData" : chartData4
+	});
+
+
+//게이지 값 랜덤 변경 함수
+function changeValue()
+{
+// 게이지의 값을 변경할려면 setData 함수를 사용하세요.
+document.getElementById("chart1").setData([parseInt(Math.random()*100)]);
+}
+
+//게이지 값 보관.
+var gaugeValue;
+
+//게이지 value change 이벤트 핸들러 함수.
+function valueChangeFunc(value)
+{
+ gaugeValue = value;
+}
+
+//확인
+function commitValue()
+{
+ var str = "",
+    index = 0;
+
+while(true){
+     if(gaugeValue >= trackValues[index] && gaugeValue <= trackValues[index + 1]){
+      str = trackLabels[index];
+        break;
+   }
+    index++;
+ }
+
+str += " ( " + gaugeValue + " )";
+alert(str);
+}
+
+//데이터팁(툴팁) 펑션.
+function dataTipFunction(str)
+{
+return "<font color='#0055FF'>값 : " + Math.round(str) + "</font>";
+}
+
+</script>
+</head>
+<body class="">
+	<div style="width: 100%; height: 100%;">
+		<div id="chartHolder1" style="display: inline-block; width: 49.5%; height: 49.5%;"></div>
+		<div id="chartHolder2" style="display: inline-block; width: 49.5%; height: 49.5%;"></div>
+		<div id="chartHolder3" style="display: inline-block; width: 49.5%; height: 49.5%;"></div>
+		<div id="chartHolder4" style="display: inline-block; width: 49.5%; height: 49.5%;"></div>
+	</div>
+</body>
+</html>
+

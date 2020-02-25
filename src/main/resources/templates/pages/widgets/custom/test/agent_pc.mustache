@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>HYUNDAI MnSOFT</title>
+
+<link rel="stylesheet" type="text/css" href="../css/pages/common.css">
+<!-- 공통 스타일 -->
+<link rel="stylesheet" type="text/css" href="../BIX5/Assets/BIX5.css" />
+<!-- BIX5 스타일 -->
+<link rel="stylesheet" type="text/css"
+	href="../BIX5/Assets/BIX5Dashboard.css" />
+<!-- BIX5 Dashboard 스타일 -->
+
+<script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
+<!-- jQeury 라이브러리 -->
+<script type="text/javascript" src="../BIX5/JS/BIX5.js"></script>
+<!-- BIX5 라이브러리 -->
+<script type="text/javascript" src="../BIX5/LicenseKey/BIX5License.js"></script>
+<!-- BIX5 라이선스 -->
+
+<script type="text/javascript">
+
+BIX5.chart.create("chart1", "chartHolder", "", "100%", "100%");
+
+//스트링 형식으로 레이아웃 정의.
+var layoutStr =
+             '<BIX5 backgroundColor="#FFFFFF" borderStyle="none">'
+              +'<Options>'
+		             +'<Caption text="PC Total CPU, MEMORY USAGE(%)"/>'
+		             +'<SubCaption text="(마우스 드래그로  영역을 설정하면 확대/축소를 할 수 있습니다)" fontSize="11"/>'
+                     +'<Legend fontSize="11" useVisibleCheck="true"/>'
+              +'</Options>'
+              +'<DateFormatter id="dateOrgFmt" formatString="YYYY/MM/DD HH:NN:SS"/>'
+                 +'<DateFormatter id="dateFmt" formatString="YYYY/MM/DD HH:NN:SS"/>'
+              +'<NumberFormatter id="numFmt" precision="0"/>'
+                +'<Combination2DChart id="chart" showDataTips="true" dataTipMode="multiple">'
+                  +'<series>'
+                  
+                  
+                  /* MEMORY_USAGE */
+                  +'<Line2DSeries id="yesterday" xField="INSERT_DATE" yField="MEMORY_CONVERT" verticalAxis="{vAxis}"  displayName="MEMORY_USAGE">'
+                   +'<horizontalAxis>'
+                          +'<DateTimeAxis id="hAxis" displayLocalTime="true" labelUnits="minutes" dataUnits="seconds" interval="5" formatter="{dateOrgFmt}" displayName="Time"/>'
+                     +'</horizontalAxis>'
+                     +'<lineStroke>'
+                             +'<Stroke color="#E48701" weight="1"/>'
+                       +'</lineStroke>'
+                      +'<verticalAxis>'
+                          +'<LinearAxis id="vAxis" maximum="100"/>'
+                       +'</verticalAxis>'
+                     +'</Line2DSeries>'   
+                        
+                  /* CPU_USAGE */
+                  +'<Line2DSeries id="yesterday" xField="INSERT_DATE" yField="CPU_USAGE" verticalAxis="{vAxis2}"  displayName="CPU_USAGE">'
+                   +'<horizontalAxis>'
+                          +'<DateTimeAxis id="hAxis4" displayLocalTime="true" labelUnits="minutes" dataUnits="seconds" interval="5" formatter="{dateOrgFmt}" displayName="Time"/>'
+                     +'</horizontalAxis>'
+                     +'<lineStroke>'
+                             +'<Stroke color="#40b1e6" weight="1"/>'
+                       +'</lineStroke>'
+                      +'<verticalAxis>'
+                          +'<LinearAxis id="vAxis2" maximum="100"/>'
+                       +'</verticalAxis>'
+                     +'</Line2DSeries>'
+                         
+                  +'</series>'
+                     
+                   +'<horizontalAxisRenderers>'
+                       +'<Axis2DRenderer axis="{hAxis}" tickPlacement="outside" visible="true" tickLength="5" placement="bottom" formatter="{dateFmt}"/>'
+                        /*+'<Axis2DRenderer axis="{hAxis2}" tickPlacement="outside" visible="true" tickLength="5" placement="top"  formatter="{dateFmt}"/>'*/
+                         /* hAxis3, hAxis4 렌더러는 정의는 하였지만, 보여지지 않게 설정함. */
+                         /* +'<Axis2DRenderer axis="{hAxis3}" placement="top" visible="true" tickPlacement="none" minorTickPlacement="none" tickLength="0" minorTickLength="0" labelGap="0"/>' */
+                        +'<Axis2DRenderer axis="{hAxis4}" placement="top" visible="true" tickPlacement="none" minorTickPlacement="none" tickLength="0" minorTickLength="0" labelGap="0"/>' 
+                    +'</horizontalAxisRenderers>'
+                  +'<verticalAxisRenderers>'
+                         +'<Axis2DRenderer axis="{vAxis}" tickPlacement="outside" tickLength="5" placement="right" formatter="{numFmt}"/>'
+                      +'<Axis2DRenderer axis="{vAxis2}" tickPlacement="outside" tickLength="5" placement="left" formatter="{numFmt}"/>'
+                  +'</verticalAxisRenderers>'
+                    +'<annotationElements>'
+                        +'<CrossRangeZoomer zoomType="horizontal" resetMode="initial" fontSize="11" color="#ffffff" useDualCrossXLabel="true" useDualCrossYLabel="true" horizontalLabelFormatter="{numFmt}" backgroundColor="#eb494a" borderColor="#eb494a"  horizontalLabelOppFormatter="{numFmt}" verticalLabelFormatter="{dateFmt}" verticalLabelOppFormatter="{dateFmt}" enableZooming="true" enableCrossHair="true">'
+                             +'<zoomRangeStroke>'
+                               +'<Stroke weight="1" color="#454545" />'
+                           +'</zoomRangeStroke>'
+                          +'<zoomRangeFill>'
+                                 +'<SolidColor color="#454545" alpha="0.2"/>'
+                           +'</zoomRangeFill>'
+                        +'</CrossRangeZoomer>'
+                     +'</annotationElements>'
+               +'</Combination2DChart>'
+               
+               
+             +'</BIX5>';
+
+             
+var chartData =
+[
+	{{#RESULT}}
+		{ "INSERT_DATE":'{{{INSERT_DATE}}}', "MEMORY_CONVERT":{{MEMORY_CONVERT}}, "CPU_USAGE":{{CPU_USAGE}} },
+	{{/RESULT}}
+];
+             
+BIX5.chart.calls("chart1", {
+	 "setLayout" : layoutStr,
+	    "setData" : chartData
+	});
+             
+
+</script>
+</head>
+<body class="">
+	<div style="width: 100%; height: 100%;">
+		<div id="chartHolder" style="display: inline-block; width: 100%; height: 100%;"></div>
+	</div>
+</body>
+</html>
+

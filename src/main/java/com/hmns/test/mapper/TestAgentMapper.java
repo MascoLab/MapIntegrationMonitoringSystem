@@ -16,4 +16,13 @@ public interface TestAgentMapper {
 	@SuppressWarnings( "rawtypes" )
 	public List<HashMap> processListMap(HashMap processListMap) throws Exception;
 	
+	@SuppressWarnings( "rawtypes" )
+	public List<HashMap> pcListMap(HashMap processListMap) throws Exception;
+	
+	@SuppressWarnings( "rawtypes" )
+	public List<HashMap> hddListMap(HashMap processListMap) throws Exception;
+
+	@SuppressWarnings( "rawtypes" )
+	public List<HashMap> hddListMap2(HashMap processListMap) throws Exception;
+	
 }

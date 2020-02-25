@@ -24,7 +24,7 @@
 <script type="text/javascript">
 
 BIX5.chart.create("chart1", "chartHolder", "", "100%", "100%");
-
+BIX5.chart.create("chart2", "chartHolder2", "", "100%", "100%");
 
 
 /* 		 * showDataTip : 툴팁 출력 설정
@@ -65,7 +65,7 @@ var layoutStr =
                +'<CategoryAxis id="hAxis" categoryField="INSERT_DATE"/>'
             +'</horizontalAxis>'
           +'<verticalAxis>'
-             +'<LinearAxis id="vAxis" title="AGENT CPU (%)"/>'
+             +'<LinearAxis id="vAxis" title="PROCESS CPU (%)"/>'
            +'</verticalAxis>'
             +'<series>'
             
@@ -94,6 +94,45 @@ var layoutStr =
  +'</BIX5>';
  
  
+ var layoutStr2 =
+	    '<BIX5 backgroundColor="#FFFFFF" borderStyle="none">'
+	     +'<Options>'
+	           +'<Legend />'
+	     +'</Options>'
+	     +'<NumberFormatter id="nft" precision="2"/>'
+	      +'<Line2DChart showDataTips="true" dataTipFormatter="{nft}">'
+	         +'<horizontalAxis>'
+	               +'<CategoryAxis id="hAxis" categoryField="INSERT_DATE"/>'
+	            +'</horizontalAxis>'
+	          +'<verticalAxis>'
+	             +'<LinearAxis id="vAxis" title="PROCESS MEMORY (MB)"/>'
+	           +'</verticalAxis>'
+	            +'<series>'
+	            
+	            
+	               +'<Line2DSeries yField="StSessMEMORY_USAGE" form="curve" displayName="StSessMEMORY_USAGE">'  /* kairos.exe */
+	                  +'<showDataEffect>'
+	                       +'<SeriesClip duration="1000"/> '
+	                  +'</showDataEffect>'
+	              +'</Line2DSeries>'
+	              
+	                +'<Line2DSeries yField="TaskmgrMEMORY_USAGE" form="curve" displayName="TaskmgrMEMORY_USAGE">' /* DailyDetecterConsole64_v1_2_0_1.exe */
+	                    +'<showDataEffect>'
+	                       +'<SeriesClip duration="1000"/> '
+	                  +'</showDataEffect>'
+	              +'</Line2DSeries>'
+	              
+	              +'<Line2DSeries yField="MIMSAgentMEMORY_USAGE" form="curve" displayName="MIMSAgentMEMORY_USAGE">' /* sqlservr */
+	             	 +'<showDataEffect>'
+	                	 +'<SeriesClip duration="1000"/> '
+	            	+'</showDataEffect>'
+	        	  +'</Line2DSeries>'
+
+	        	  
+	            +'</series>'
+	      +'</Line2DChart>'
+	 +'</BIX5>';
+ 
  
 // 차트 데이터
 /*
@@ -103,11 +142,19 @@ var layoutStr =
 {{/processListMap}}
 ];
 */
+// syntax error 발생으로 인해 한꺼번에 못뽑음.
 
 var chartData = 
 [
 {{#RESULT}}
 {"INSERT_DATE":{{{INSERT_DATE}}},"StSessCPU_USAGE":{{StSessCPU_USAGE}}, "TaskmgrCPU_USAGE":{{TaskmgrCPU_USAGE}}, "MIMSAgentCPU_USAGE":{{MIMSAgentCPU_USAGE}} },
+{{/RESULT}}
+];
+
+var chartData2 = 
+[
+{{#RESULT}}
+{"INSERT_DATE":{{{INSERT_DATE}}},"StSessMEMORY_USAGE":{{StSessMEMORY_USAGE}}, "TaskmgrMEMORY_USAGE":{{TaskmgrMEMORY_USAGE}}, "MIMSAgentMEMORY_USAGE":{{MIMSAgentMEMORY_USAGE}} },
 {{/RESULT}}
 ];
 
@@ -128,7 +175,11 @@ BIX5.chart.calls("chart1", {
     "setData" : chartData
 });
  
-
+BIX5.chart.calls("chart2", {
+ "setLayout" : layoutStr2,
+ "setData" : chartData2
+});
+    
 </script>
 </head>
 
@@ -149,7 +200,9 @@ BIX5.chart.calls("chart1", {
 	</div>
 </div>
 -->
-	<div id="chartHolder" style="width: 100%; height: 100%;"></div>
-
+	<div style="width: 100%; height: 100%;">
+		<div id="chartHolder" style="display: inline-block; width: 49%; height: 100%;"></div>
+		<div id="chartHolder2" style="display: inline-block; width: 49%; height: 100%;"></div>
+	</div>
 </body>
 </html>

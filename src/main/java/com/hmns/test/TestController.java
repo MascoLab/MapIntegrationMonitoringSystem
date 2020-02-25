@@ -1,6 +1,5 @@
 package com.hmns.test;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +16,8 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import com.hmns.test.service.TestService;
 import com.hmns.utils.CommonUtils;
+
+
 
 @Controller
 public class TestController {
@@ -59,7 +60,8 @@ public class TestController {
 		return mv;
 	}
 	
-	//AGENT_CPU % TEST
+	
+	//PROCESS CPU,MEMORY TEST
 	
 	/* @SuppressWarnings("unchecked")
 	@RequestMapping("/test/processListMap.do")
@@ -101,14 +103,39 @@ public class TestController {
 		
 		ModelAndView mv = new ModelAndView( new MappingJackson2JsonView() );
 		mv.addObject( "RESULT", testService.processListMap( new HashMap() ) );
-		mv.setViewName("/pages/widgets/custom/test/agent_chart");
+		mv.setViewName("/pages/widgets/custom/test/agent_process");
+		return mv;
+	}
+	/////////////////////////////////////////////////////////////
+
+	//PC CPU,MEMORY TEST
+	@RequestMapping("/test/pcListMap.do")
+	public ModelAndView pcListMap(HttpServletRequest request, Model model) throws Exception {
+		ModelAndView mv = new ModelAndView( new MappingJackson2JsonView() );
+		mv.addObject( "RESULT", testService.pcListMap( new HashMap() ) );
+		mv.setViewName("/pages/widgets/custom/test/agent_pc");
+		return mv;
+	}
+	/////////////////////////////////////////////////////////////
+	
+	//PC HDD TEST
+	@RequestMapping("/test/hddListMap.do")
+	public ModelAndView hddListMap2(HttpServletRequest request, Model model) throws Exception {
+		ModelAndView mv = new ModelAndView( new MappingJackson2JsonView() );
+		mv.addObject( "RESULT", testService.hddListMap2( new HashMap() ) );
+		mv.setViewName("/pages/widgets/custom/test/agent_hdd"); 
+		return mv;
+	}
+	
+	@RequestMapping("/test/hddListMap2.do")
+	public ModelAndView hddListMap(HttpServletRequest request, Model model) throws Exception {
+		ModelAndView mv = new ModelAndView( new MappingJackson2JsonView() );
+		mv.addObject( "RESULT", testService.hddListMap( new HashMap() ) );
+		mv.setViewName("/pages/widgets/custom/test/agent_hdd2"); 
 		return mv;
 	}
 	
 	/////////////////////////////////////////////////////////////
-	
-	
-	
 	
 	
 	@SuppressWarnings( "rawtypes" )
