@@ -23,91 +23,60 @@
 BIX5.chart.create("chart1", "chartHolder1", "", "100%", "100%");
  
 // 스트링 형식으로 레이아웃 정의.
-var layoutStr =
-                '<BIX5 backgroundColor="#FFFFFF" borderStyle="none">'
-                 +'<Bar2DChart showDataTips="true" barWidthRatio="0.48">'
-                      +'<horizontalAxis>'
-                           +'<LinearAxis/>'
-                      +'</horizontalAxis>'
-                      +'<verticalAxis>'
-                         +'<CategoryAxis categoryField="Month"/>'
-                      +'</verticalAxis>'
-                        +'<series>'
-                           /*
-                          type 속성을 stacked로 변경
-                            type속성으로는
-                           clustered : 일반적인 다중데이터(차트의 멀티시리즈)방식으로 데이터를 표현합니다.(Default)
-                          stacked : 데이터를 위에 쌓아 올린 방식으로 표현 합니다.
-                            overlaid : 수치 데이터 값을 겹쳐서 표현 합니다. 주로 목표 위치와 현재 위치를 나타낼 때 많이 쓰입니다.
-                            100% : 차트의 수치 데이터를 퍼센티지로 계산 후 값을 퍼센티지로 나타냅니다.
-                           */
-                          +'<Bar2DSet type="stacked" showTotalLabel="true" totalLabelJsFunction="totalFunc" color="#666" labelYOffset="2" labelXOffset="5">'
-                                +'<series>'
-                               /* Bar2D Stacked 를 생성시에는 Bar2DSeries를 최소 2개 정의합니다 */
-                                    +'<Bar2DSeries labelPosition="inside" showValueLabels="[5]" xField="tv" displayName="TV" color="#ffffff" insideLabelYOffset="2">'
-                                     +'<showDataEffect>'
-                                           +'<SeriesInterpolate/>'
-                                       +'</showDataEffect>'
-                                  +'</Bar2DSeries>'
-                                 +'<Bar2DSeries labelPosition="inside" showValueLabels="[5]" xField="tablet" displayName="Tablet" color="#ffffff" insideLabelYOffset="2">'
-                                     +'<showDataEffect>'
-                                           +'<SeriesInterpolate/>'
-                                       +'</showDataEffect>'
-                                  +'</Bar2DSeries>'
-                                 +'<Bar2DSeries labelPosition="inside" showValueLabels="[5]" xField="phone" displayName="Cell Phone" color="#ffffff" insideLabelYOffset="2">'
-                                      +'<showDataEffect>'
-                                           +'<SeriesInterpolate/>'
-                                       +'</showDataEffect>'
-                                  +'</Bar2DSeries>'
-                             +'</series>'
-                          +'</Bar2DSet>'
-                        +'</series>'
-                  +'</Bar2DChart>'
-              +'</BIX5>';
+var layoutStr =	'<BIX5 backgroundColor="#FFFFFF" borderStyle="none">' + 
+					'<Options>' +
+/*					
+						'<Caption text="Sales by Month"/>' + 
+						'<SubCaption text="( $M )" textAlign="right" />' + 
+*/
+						'<Legend defaultMouseOverAction="false" />' + 
+					'</Options>' + 
+					'<Bar3DChart showDataTips="true">' + 
+						'<horizontalAxis>' + 
+							'<LinearAxis/>' + 
+						'</horizontalAxis>' + 
+						'<verticalAxis>' + 
+							'<CategoryAxis categoryField="도로 종별"/>' +
+						'</verticalAxis>' + 
+						'<series>' + 
+							'<Bar3DSet type="stacked" labelYOffset="-2">' + 
+								'<series>' + 
+									'<Bar3DSeries labelPosition="inside" showValueLabels="[1]" xField="구축 길이" displayName="구축 길이" color="#ffffff" insideLabelYOffset="-2">' + 
+										'<showDataEffect>' + 
+											'<SeriesInterpolate/>' + 
+										'</showDataEffect>' + 
+									'</Bar3DSeries>' + 
+									'<Bar3DSeries labelPosition="inside" showValueLabels="[1]" xField="미구축 길이" displayName="미구축 길이" color="#ffffff" insideLabelYOffset="-2">' + 
+										'<showDataEffect>' + 
+											'<SeriesInterpolate/>' + 
+										'</showDataEffect>' + 
+									'</Bar3DSeries>' + 
+								'</series>' + 
+							'</Bar3DSet>' + 
+						'</series>' +
+					'</Bar3DChart>' + 
+				'</BIX5>';
  
 // 차트 데이터
-var chartData =
-   [{"Month" : "Jan","phone" : 8,"tv" : 14,"tablet" : 12},
-  {"Month" : "Feb","phone" : 20,"tv" : 11,"tablet" : 23},
-     {"Month" : "Mar","phone" : 16,"tv" : 10,"tablet" : 23},
-     {"Month" : "Apr","phone" : 18,"tv" : 18,"tablet" : 23},
-     {"Month" : "May","phone" : 27,"tv" : 31,"tablet" : 25},
-     {"Month" : "Jun","phone" : 22,"tv" : 25,"tablet" : 25},
-     {"Month" : "Jul","phone" : 16,"tv" : 14,"tablet" : 18},
-     {"Month" : "Aug","phone" : 10,"tv" : 18,"tablet" : 12}];
- 
-BIX5.chart.calls("chart1", {
-  "setLayout" : layoutStr,
-    "setData" : chartData
-});
- 
-/*
-// ------------------------- 스택 타입의 토탈 필드 사용자 정의 함수 -----------------------------------------------------
-// 차트의 SeriesSet 에서 showTotalLabel 속성을 설정한 경우 토탈 필드를 사용자 정의하는 함수입니다.
-// layout XML 에서 Series 속성을 넣을때 labelJsFunction 주고, 만든 javascript 함수명을 넣어줍니다
-//
-// 예) <Bar2DSet showTotalLabel="true" totalLabelJsFunction="totalLabelFunc">
-//
-// 파라메터 설명
-// index : 해당 시리즈 아이템의 인덱스.
-// data : 해당 item의 값을 표현하기 위해 입력된 data(입력된 데이타중 해당 row(레코드) 자료입니다)
-// value : 총 합계 값.
-*/
-function totalFunc(index, data, value){
- if(index == 5)
-      return insertComma(value);
-  return "";
-}
- 
-//숫자에 천단위 콤마 찍어 반환하는 함수.
-function insertComma(n) {
-    var reg = /(^[+-]?\d+)(\d{3})/; // 정규식
-  n += "";
-    while (reg.test(n))
- n = n.replace(reg, '$1' + "," + '$2');
-  return n;
-}
+var chartData =	[
+	{"도로 종별" : "페리항로", "총 길이" : "4292.122", "구축 길이" : "0", "미구축 길이" : "4292.122"},
+	{"도로 종별" : "세도로", "총 길이" : "109344.7", "구축 길이" : "9.948", "미구축 길이" : "109334.752"},
+	{"도로 종별" : "기타도로2", "총 길이" : "64454.869", "구축 길이" : "3.931", "미구축 길이" : "64450.938"},
+	{"도로 종별" : "기타도로1", "총 길이" : "45605.568", "구축 길이" : "24.951", "미구축 길이" : "45580.617"},
+	{"도로 종별" : "주요도로3", "총 길이" : "16497.714", "구축 길이" : "31.948", "미구축 길이" : "16465.766"},
+	{"도로 종별" : "주요도로2", "총 길이" : "4437.126", "구축 길이" : "9.9", "미구축 길이" : "4427.226"},
+	{"도로 종별" : "주요도로1", "총 길이" : "10574.116", "구축 길이" : "539.156", "미구축 길이" : "10034.96"},
+	{"도로 종별" : "지방도", "총 길이" : "13313.287", "구축 길이" : "92.195", "미구축 길이" : "13221.092"},
+	{"도로 종별" : "국가지원지방도", "총 길이" : "3839.103", "구축 길이" : "122.046", "미구축 길이" : "3717.057"},
+	{"도로 종별" : "국도", "총 길이" : "14553.261", "구축 길이" : "1473.609", "미구축 길이" : "13079.652"},
+	{"도로 종별" : "도시고속도로", "총 길이" : "1340.008", "구축 길이" : "1262.553", "미구축 길이" : "77.455"},
+	{"도로 종별" : "고속도로", "총 길이" : "11962.428", "구축 길이" : "11428.242", "미구축 길이" : "534.186"},
+];
 
+BIX5.chart.calls("chart1", {
+	"setLayout" : layoutStr,
+	"setData" : chartData
+});
 
 </script>
 </head>

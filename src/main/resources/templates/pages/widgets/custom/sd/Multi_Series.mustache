@@ -22,43 +22,53 @@
 
 BIX5.chart.create("chart1", "chartHolder1", "", "100%", "100%");
 
-var layoutStr =
-           '<BIX5 backgroundColor="#FFFFFF" borderStyle="none">'
-             +'<Column2DChart showDataTips="true" columnWidthRatio="0.55" selectionMode="single">'
-                 +'<horizontalAxis>'
-                       +'<CategoryAxis categoryField="Month"/>'
-                  +'</horizontalAxis>'
-                  +'<verticalAxis>'
-                     +'<LinearAxis maximum="10"/>'
-                 +'</verticalAxis>'
-                    +'<series>'
-                       +'<Column2DSeries labelPosition="outside" yField="2011" displayName="2011" showValueLabels="[2]">'
-                            +'<showDataEffect>'
-                               +'<SeriesInterpolate/>'
-                           +'</showDataEffect>'
-                      +'</Column2DSeries>'
-                      +'<Column2DSeries labelPosition="outside" yField="2012" displayName="2012" showValueLabels="[2]">'
-                            +'<showDataEffect>'
-                               +'<SeriesInterpolate/>'
-                           +'</showDataEffect>'
-                      +'</Column2DSeries>'
-                      +'<Column2DSeries labelPosition="outside" yField="2013" displayName="2013" showValueLabels="[2]">'
-                            +'<showDataEffect>'
-                               +'<SeriesInterpolate/>'
-                           +'</showDataEffect>'
-                      +'</Column2DSeries>'
-                  +'</series>'
-              +'</Column2DChart>'
-           +'</BIX5>';
+var layoutStr =	'<BIX5 backgroundColor="#FFFFFF" borderStyle="none">' + 
+					'<Options>' +
+/*
+						'<Caption text="GDP Growth of the BRICS Countries"/>' + 
+						'<SubCaption text="From 2011 To 2013 (Annual %)" textAlign="center" />' +
+*/
+						'<Legend defaultMouseOverAction="false" useVisibleCheck="true"/>' + 
+					'</Options>' + 
+					'<Column3DChart showDataTips="true" columnWidthRatio="0.56" >' + 
+						'<horizontalAxis>' + 
+							'<CategoryAxis categoryField="도로 종별"/>' + 
+						'</horizontalAxis>' +
+/*						
+						'<verticalAxis>' + 
+							'<LinearAxis maximum="9"/>' + 
+						'</verticalAxis>'
+*/						
+						'<series>' + 
+							'<Column3DSeries labelPosition="outside" yField="전체 연장 길이 Km" displayName="전체 연장 길이 Km">' + 
+								'<showDataEffect>' + 
+									'<SeriesInterpolate/>' + 
+								'</showDataEffect>' + 
+							'</Column3DSeries>' + 
+							'<Column3DSeries labelPosition="outside" yField="자전도 연장 길이 Km" displayName="자전도 연장 길이 Km">' + 
+								'<showDataEffect>' + 
+									'<SeriesInterpolate/>' + 
+								'</showDataEffect>' + 
+							'</Column3DSeries>' + 
+						'</series>' + 
+					'</Column3DChart>' + 
+				'</BIX5>';
  
-var chartData = [{"Month":"Jan", "2011":2.4, "2012":3.1, "2013":2.5},
- {"Month":"Feb", "2011":3.8, "2012":4.6, "2013":1.3},
-    {"Month":"Mar", "2011":8.1, "2012":9, "2013":5.0},
-  {"Month":"Apr", "2011":5.1, "2012":4, "2013":7.7},
-  {"Month":"May", "2011":2.1, "2012":3.9, "2013":1.9},
-    {"Month":"Jun", "2011":5.2, "2012":4.9, "2013":1.9},
-    {"Month":"Jul", "2011":4.2, "2012":3.2, "2013":1.9}];
- 
+var chartData =	[
+					{"도로 종별" : "고속도로",		"전체 연장 길이 Km" : "11962.427",	"자전도 연장 길이 Km" : "11962.427"},
+					{"도로 종별" : "국가지원지방도",	"전체 연장 길이 Km" : "3839.184",	"자전도 연장 길이 Km" : "123.966"},
+					{"도로 종별" : "국도",			"전체 연장 길이 Km" : "14553.002",	"자전도 연장 길이 Km" : "1435.201"},
+					{"도로 종별" : "기타도로1",		"전체 연장 길이 Km" : "45626.517",	"자전도 연장 길이 Km" : "73.053"},
+					{"도로 종별" : "기타도로2",		"전체 연장 길이 Km" : "64465.967",	"자전도 연장 길이 Km" : "3.701"},
+					{"도로 종별" : "도시고속도로",		"전체 연장 길이 Km" : "1339.055",	"자전도 연장 길이 Km" : "1338.618"},
+					{"도로 종별" : "세도로",			"전체 연장 길이 Km" : "109461.527",	"자전도 연장 길이 Km" : "1.248"},
+					{"도로 종별" : "주요도로1",		"전체 연장 길이 Km" : "10567.279",	"자전도 연장 길이 Km" : "509.814"},
+					{"도로 종별" : "주요도로2",		"전체 연장 길이 Km" : "4436.972",	"자전도 연장 길이 Km" : "12.575"},
+					{"도로 종별" : "주요도로3",		"전체 연장 길이 Km" : "16498.088",	"자전도 연장 길이 Km" : "76.846"},
+					{"도로 종별" : "지방도",			"전체 연장 길이 Km" : "13314.029",	"자전도 연장 길이 Km" : "96.675"},
+					{"도로 종별" : "페리항로",		"전체 연장 길이 Km" : "4292.122",	"자전도 연장 길이 Km" : "0"}
+				];
+
 BIX5.chart.calls("chart1", {
   "setLayout" : layoutStr,
     "setData" : chartData

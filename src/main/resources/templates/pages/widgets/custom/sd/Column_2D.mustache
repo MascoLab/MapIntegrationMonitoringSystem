@@ -22,32 +22,40 @@
 
 BIX5.chart.create("chart1", "chartHolder1", "", "100%", "100%");
  
-var layoutStr =
-                '<BIX5 backgroundColor="#FFFFFF" borderStyle="none">'
-                 +'<SeriesInterpolate id="ss"/>'
-                   +'<Column2DChart showDataTips="true" selectionMode="multiple" columnWidthRatio="0.48">'
-                       +'<horizontalAxis>'
-                           +'<CategoryAxis categoryField="Country"/>'
-                        +'</horizontalAxis>'
-                      +'<verticalAxis>'
-                         +'<LinearAxis maximum="100" interval="10"/>'
-                      +'</verticalAxis>'
-                        +'<series>'
-                           +'<Column2DSeries labelPosition="outside" yField="GDP" displayName="GDP Growth (In %)" showDataEffect="{ss}" showValueLabels="[4]" strokeJsFunction="strokeFunction"/>'
-                       +'</series>'
-                  +'</Column2DChart>'
-               +'</BIX5>';
- 
-var chartData = [{"Country":"SouthSudan", "GDP":20},
-                {"Country":"Libya", "GDP":30},
-              {"Country":"SierraLeone", "GDP":51.2},
-                {"Country":"Mongolia", "GDP":44.5},
-             {"Country":"Paraguay", "GDP":62.35},
-                {"Country":"TimorLeste", "GDP":84.46},
-                {"Country":"Iraq", "GDP":48.9},
-             {"Country":"Panama", "GDP":38},
-             {"Country":"Gambia", "GDP":60.5},
-               {"Country":"Mozam-bique", "GDP":40.1}];
+var layoutStr =	'<BIX5 backgroundColor="#FFFFFF" borderStyle="none">' +
+					'<Column3DChart showDataTips="true">' +
+						'<horizontalAxis>' + 
+							'<CategoryAxis categoryField="도로 종별"/>' + 
+						'</horizontalAxis>' +
+						/*						
+						'<verticalAxis>' +
+							'<LinearAxis maximum="100" interval="10"/>' +
+						'</verticalAxis>' +
+						*/
+						'<series>' + 
+							'<Column3DSeries labelPosition="outside" yField="총 연장 길이" displayName="총 연장 길이 Km" outsideLabelYOffset="-14" outsideLabelXOffset="7">' + 
+								'<showDataEffect>' +
+									'<SeriesInterpolate/>' + 
+								'</showDataEffect>' + 
+							'</Column3DSeries>' + 
+						'</series>' + 
+					'</Column3DChart>' + 
+				'</BIX5>';
+ // 
+var chartData = [
+					{"도로 종별" : "고속도로", "총 연장 길이" : "11962.427"},
+					{"도로 종별" : "국가지원지방도", "총 연장 길이" : "3839.184"},
+					{"도로 종별" : "국도", "총 연장 길이" : "14553.002"},
+					{"도로 종별" : "기타도로1", "총 연장 길이" : "45626.517"},
+					{"도로 종별" : "기타도로2", "총 연장 길이" : "64465.967"},
+					{"도로 종별" : "도시고속도로", "총 연장 길이" : "1339.055"},
+					{"도로 종별" : "세도로", "총 연장 길이" : "109461.527"},
+					{"도로 종별" : "주요도로1", "총 연장 길이" : "10567.279"},
+					{"도로 종별" : "주요도로2", "총 연장 길이" : "4436.972"},
+					{"도로 종별" : "주요도로3", "총 연장 길이" : "16498.088"},
+					{"도로 종별" : "지방도	", "총 연장 길이" : "13314.029"},
+					{"도로 종별" : "페리항로", "총 연장 길이" : "4292.122"}
+				];
  
 function strokeFunction(id, index, data, values){
   if(values[0] == "Paraguay")
@@ -66,6 +74,7 @@ BIX5.chart.calls("chart1", {
 </head>
 
 <body>
+<!-- 
 	<div class="mBox1 h1">
 		<div class="tit">
 			<div class="ti">도로종별 기준 연장</div>
@@ -80,6 +89,8 @@ BIX5.chart.calls("chart1", {
 			</div>
 		</div>
 	</div>
+-->
+	<div id="chartHolder1" class="chartHolder" style="width: 100%; height:100%;"></div>
 </body>
 
 </html> 

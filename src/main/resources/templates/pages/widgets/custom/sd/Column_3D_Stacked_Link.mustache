@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="robots" content="noindex, nofollow" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta http-equiv="Content-Style-Type" content="text/css"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+<title></title>
+
+<link rel="stylesheet" type="text/css" href="../css/pages/common.css">			<!-- 공통 스타일 -->
+<link rel="stylesheet" type="text/css" href="../BIX5/Assets/BIX5.css"/>			<!-- BIX5 스타일 -->  
+<link rel="stylesheet" type="text/css" href="../BIX5/Assets/BIX5Dashboard.css"/>	<!-- BIX5 Dashboard 스타일 --> 
+
+<script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>		<!-- jQeury 라이브러리 -->
+<script type="text/javascript" src="../BIX5/JS/BIX5.js" ></script> 				<!-- BIX5 라이브러리 -->
+<script type="text/javascript" src="../BIX5/LicenseKey/BIX5License.js"></script>	<!-- BIX5 라이선스 -->
+
+<script type="text/javascript">
+
+BIX5.chart.create("chart1", "chartHolder1", "", "100%", "100%");
+
+var layoutStr =	'<BIX5 backgroundColor="#FFFFFF" borderStyle="none">' + 
+					'<Options>' +
+/*					
+						'<Caption text="Sales by Month"/>' +
+						'<SubCaption text="( $M )" textAlign="right" />' +
+*/
+						'<Legend defaultMouseOverAction="false" useVisibleCheck="true"/>' +
+					'</Options>' + 
+					'<NumberFormatter id="numfmt" useThousandsSeparator="true"/>' +
+					'<Column3DChart showDataTips="true">' +
+						'<horizontalAxis>' + 
+							'<CategoryAxis categoryField="월"/>' + 
+						'</horizontalAxis>' + 
+						'<verticalAxis>' + 
+							'<LinearAxis formatter="{numfmt}"/>' + 
+						'</verticalAxis>' +
+						'<series>' + 
+							'<Column3DSet type="stacked" showTotalLabel="true" totalLabelJsFunction="totalFunc" labelYOffset="-14" labelXOffset="7">' + 
+								'<series>' + 
+									'<Column3DSeries labelPosition="inside" yField="삭제" displayName="삭제" lineToEachItems="true" color="#ffffff">' +
+										'<lineStroke>' + 
+											'<Stroke weight="1" color="#E48701"/>' + 
+										'</lineStroke>' + 
+										'<showDataEffect>' +
+											'<SeriesInterpolate/>' + 
+										'</showDataEffect>' + 
+									'</Column3DSeries>' + 
+									'<Column3DSeries labelPosition="inside" yField="수정" displayName="수정" lineToEachItems="true" color="#ffffff">' +
+										'<lineStroke>' +
+											'<Stroke weight="1" color="#A5BC4E"/>' + 
+										'</lineStroke>' + 
+										'<showDataEffect>' + 
+											'<SeriesInterpolate/>' + 
+										'</showDataEffect>' + 
+									'</Column3DSeries>' + 
+									'<Column3DSeries labelPosition="inside" yField="신규" displayName="신규" lineToEachItems="true" color="#ffffff">' + 
+										'<lineStroke>' + 
+											'<Stroke weight="1" color="#1B95D9"/>' + 
+										'</lineStroke>' + 
+										'<showDataEffect>' + 
+											'<SeriesInterpolate/>' + 
+										'</showDataEffect>' + 
+									'</Column3DSeries>' + 
+								'</series>' +
+							'</Column3DSet>' + 
+						'</series>' + 
+					'</Column3DChart>' +
+				'</BIX5>';
+ 
+var chartData =	[
+	{"월" : "2018-02", "신규" : "96", 	"수정" : "641",	"삭제" : "204"},
+	{"월" : "2018-03", "신규" : "84", 	"수정" : "906",	"삭제" : "159"},
+	{"월" : "2018-04", "신규" : "58", 	"수정" : "798",	"삭제" : "140"},
+	{"월" : "2018-05", "신규" : "50", 	"수정" : "1054",	"삭제" : "247"},
+	{"월" : "2018-06", "신규" : "69", 	"수정" : "960",	"삭제" : "347"},
+	{"월" : "2018-07", "신규" : "72", 	"수정" : "1093",	"삭제" : "165"},
+	{"월" : "2018-08", "신규" : "52", 	"수정" : "1031",	"삭제" : "207"},
+	{"월" : "2018-09", "신규" : "112", 	"수정" : "861",	"삭제" : "188"},
+	{"월" : "2018-10", "신규" : "45", 	"수정" : "858",	"삭제" : "455"},
+	{"월" : "2018-11", "신규" : "98", 	"수정" : "1188",	"삭제" : "529"},
+	{"월" : "2018-12", "신규" : "88", 	"수정" : "1440",	"삭제" : "666"},
+	{"월" : "2019-01", "신규" : "105", 	"수정" : "1346",	"삭제" : "576"},
+	{"월" : "2019-02", "신규" : "42", 	"수정" : "577",	"삭제" : "190"},
+	{"월" : "2019-03", "신규" : "98", 	"수정" : "1251",	"삭제" : "276"},
+	{"월" : "2019-04", "신규" : "253", 	"수정" : "1419",	"삭제" : "493"},
+	{"월" : "2019-05", "신규" : "219", 	"수정" : "1524",	"삭제" : "390"},
+	{"월" : "2019-06", "신규" : "82", 	"수정" : "1114",	"삭제" : "294"},
+	{"월" : "2019-07", "신규" : "117", 	"수정" : "1714",	"삭제" : "565"},
+	{"월" : "2019-08", "신규" : "49", 	"수정" : "1206",	"삭제" : "306"},
+	{"월" : "2019-09", "신규" : "40", 	"수정" : "1531",	"삭제" : "321"},
+	{"월" : "2019-10", "신규" : "37", 	"수정" : "1024",	"삭제" : "488"},
+	{"월" : "2019-11", "신규" : "64", 	"수정" : "979",	"삭제" : "240"},
+	{"월" : "2019-12	", "신규" : "114", 	"수정" : "2005",	"삭제" : "262"},
+	{"월" : "2020-01	", "신규" : "75", 	"수정" : "1289",	"삭제" : "237"},
+	{"월" : "2020-02	", "신규" : "52", 	"수정" : "813",	"삭제" : "141"}
+];
+
+BIX5.chart.calls("chart1", {
+	"setLayout" : layoutStr,
+	"setData" : chartData
+});
+
+//스택 수치 합 사용자 정의 함수
+function totalFunc(index, data, value) {
+	if(index == 6)
+		return insertComma(value);
+	return "";
+}
+ 
+//숫자에 천단위 콤마 찍어 반환하는 함수.
+function insertComma( n ) {
+	var reg = /(^[+-]?\d+)(\d{3})/; // 정규식
+	n += "";
+	while ( reg.test(n) )
+		n = n.replace(reg, '$1' + "," + '$2');
+	return n;
+}
+
+</script>
+
+</head>
+
+<body>
+<!--
+	<div class="mBox1 h1">
+		<div class="tit">
+			<div class="ti">자동차전용도로 연장</div>
+			<div class="rt">
+				<a href="###" class="iRefresh">새로고립</a>
+				<a href="###" class="iSet2">세팅</a>
+			</div>
+		</div>
+		<div class="con">
+			<div class="co">
+				<div id="chartHolder1" class="chartHolder" style="height:270px;"></div>
+			</div>
+		</div>
+	</div>
+-->
+	<div id="chartHolder1" class="chartHolder" style="width: 100%; height: 100%;"></div>
+</body>
+
+</html> 
+
