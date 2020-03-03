@@ -10,8 +10,7 @@
 <!-- 공통 스타일 -->
 <link rel="stylesheet" type="text/css" href="../BIX5/Assets/BIX5.css" />
 <!-- BIX5 스타일 -->
-<link rel="stylesheet" type="text/css"
-	href="../BIX5/Assets/BIX5Dashboard.css" />
+<link rel="stylesheet" type="text/css" href="../BIX5/Assets/BIX5Dashboard.css" />
 <!-- BIX5 Dashboard 스타일 -->
 
 <script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
@@ -70,19 +69,19 @@ var layoutStr =
             +'<series>'
             
             
-               +'<Line2DSeries yField="StSessCPU_USAGE" form="curve" displayName="StSessCPU_USAGE">'  /* kairos.exe */
+               +'<Line2DSeries yField="StSessCPU_USAGE" form="curve" displayName="kairos.exe CPU 사용량">'  /* kairos.exe */
                   +'<showDataEffect>'
                        +'<SeriesClip duration="1000"/> '
                   +'</showDataEffect>'
               +'</Line2DSeries>'
               
-                +'<Line2DSeries yField="TaskmgrCPU_USAGE" form="curve" displayName="TaskmgrCPU_USAGE">' /* DailyDetecterConsole64_v1_2_0_1.exe */
+                +'<Line2DSeries yField="TaskmgrCPU_USAGE" form="curve" displayName="DailyDetecterConsole64_v1_2_0_1.exe CPU 사용량">' /* DailyDetecterConsole64_v1_2_0_1.exe */
                     +'<showDataEffect>'
                        +'<SeriesClip duration="1000"/> '
                   +'</showDataEffect>'
               +'</Line2DSeries>'
               
-              +'<Line2DSeries yField="MIMSAgentCPU_USAGE" form="curve" displayName="MIMSAgentCPU_USAGE">' /* sqlservr */
+              +'<Line2DSeries yField="MIMSAgentCPU_USAGE" form="curve" displayName="sqlservr CPU 사용량">' /* sqlservr */
              	 +'<showDataEffect>'
                 	 +'<SeriesClip duration="1000"/> '
             	+'</showDataEffect>'
@@ -110,19 +109,19 @@ var layoutStr =
 	            +'<series>'
 	            
 	            
-	               +'<Line2DSeries yField="StSessMEMORY_USAGE" form="curve" displayName="StSessMEMORY_USAGE">'  /* kairos.exe */
+	               +'<Line2DSeries yField="StSessMEMORY_USAGE" form="curve" displayName="kairos.exe MEMORY 사용량">'  /* kairos.exe */
 	                  +'<showDataEffect>'
 	                       +'<SeriesClip duration="1000"/> '
 	                  +'</showDataEffect>'
 	              +'</Line2DSeries>'
 	              
-	                +'<Line2DSeries yField="TaskmgrMEMORY_USAGE" form="curve" displayName="TaskmgrMEMORY_USAGE">' /* DailyDetecterConsole64_v1_2_0_1.exe */
+	                +'<Line2DSeries yField="TaskmgrMEMORY_USAGE" form="curve" displayName="DailyDetecterConsole64_v1_2_0_1.exe MEMORY 사용량">' /* DailyDetecterConsole64_v1_2_0_1.exe */
 	                    +'<showDataEffect>'
 	                       +'<SeriesClip duration="1000"/> '
 	                  +'</showDataEffect>'
 	              +'</Line2DSeries>'
 	              
-	              +'<Line2DSeries yField="MIMSAgentMEMORY_USAGE" form="curve" displayName="MIMSAgentMEMORY_USAGE">' /* sqlservr */
+	              +'<Line2DSeries yField="MIMSAgentMEMORY_USAGE" form="curve" displayName="sqlservr MEMORY 사용량">' /* sqlservr */
 	             	 +'<showDataEffect>'
 	                	 +'<SeriesClip duration="1000"/> '
 	            	+'</showDataEffect>'

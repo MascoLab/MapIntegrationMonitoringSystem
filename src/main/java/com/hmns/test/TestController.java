@@ -32,7 +32,7 @@ public class TestController {
 	
 	@RequestMapping( "/testMain.view" )
 	public String testMain( Model model ) {
-		return "/pages/test";
+		return "/pages/gridstack_Knockout_Test";
 	}
 	
 	@RequestMapping( "/test/mainTest.view" )

@@ -1,13 +1,86 @@
-$(document).ready(function() {
+$(document).ready(function(){
+	$(".jsBtnShow1").on("click", function(){
+		$(".modalBg").show();
+		$( $(this).attr("href") ).show();
+		return false;
+	});
+	$(".jsBtnClose1").on("click", function(){
+		$( $(this).attr("href") ).hide();
+		$(".modalBg").hide();
+		return false;
+	});
 	
-	// Grid Stack Init
-	$('.grid-stack').gridstack(
+	$("#header .btnClose").on("click", function(){
+		if ( $(this).parent().parent().hasClass("closed") )
+			$(this).parent().parent().removeClass("closed");
+		else
+			$(this).parent().parent().addClass("closed");
+		return false;
+	});
+	$(".gWidget .btnClose").on("click", function(){
+		if ( $(this).parent().parent().hasClass("closedWidget") )
+			$(this).parent().parent().removeClass("closedWidget");
+		else
+			$(this).parent().parent().addClass("closedWidget");
+		return false;
+	});
+
+	$(".mTab1 .ls a.iDelete").on("click", function(){
+		$(this).parent().hide();
+		return false;
+	});
+
+	$(".gMod1 .iClose").on("click", function(){
+		$(this).parent().parent().parent().hide();
+		return false;
+	});
+
+	$(document).on("click", ".gDep .dep .link", function(){
+		if ( $(this).parent().hasClass("open") )
 		{
-			resizable : {
-				handles: 'e, se, s, sw, w'
-			},
+			$(this).parent().removeClass("open");
 		}
-	);
+		else
+		{
+			$(this).parent().addClass("open");
+		}
+		return false;
+	});
+
+	$(document).on("click",".jsBtnDep1", function(){
+		var orgDep1Html = '<div class="gDep"><div class="dep dep1 open"><div class="link"><a href="###">System added</a></div><a href="###" class="add jsBtnDep1">+추가</a><div class="dep dep2 open">	<div class="link"><a href="###">System added</a></div><a href="###" class="add jsBtnDep2">+추가</a>	<div class="dep dep3"><div class="link"><a href="###">System added</a></div><a href="###" class="add jsBtnDep3">+추가</a></div></div></div></div>';
+		$(this).parent().after( orgDep1Html );
+		return false;
+	});
+	$(document).on("click",".jsBtnDep2", function(){
+		var orgDep2Html = '<div class="dep dep2 open"><div class="link"><a href="###">System added</a></div><a href="###" class="add jsBtnDep2">+추가</a><div class="dep dep3"><div class="link i1"><a href="###">System added</a></div><a href="###" class="add jsBtnDep3">+추가</a></div></div>';
+		$(this).parent().after( orgDep2Html );
+		return false;
+	});
+	$(document).on("click",".jsBtnDep3", function(){
+		var orgDep3Html = '<div class="dep dep3"><div class="link"><a href="###">System added</a></div><a href="###" class="add jsBtnDep3">+추가</a></div>';
+		$(this).parent().after( orgDep3Html );
+		return false;
+	});
+
+	$(".jsTab1 a").on("click", function(){
+		$(this).parent().children().removeClass("selected");
+		$(this).addClass("selected");
+		$(this).parent().parent().parent().children(".con").addClass("hidden");
+		$( $(this).attr("href") ).removeClass("hidden");
+		if ( $(this).attr("href") == "#jsTabContent1_2" )
+		{
+			$(".lWidget").addClass("w2");
+		}
+		else
+		{
+			$(".lWidget").removeClass("w2");
+		}
+	});
+
+	$(".postWidget").on("click", function() {
+		$( $(this).attr("href") ).click();
+	});
 /*
 	// CCTV View
 	var container = document.getElementById( 'div_map' ),

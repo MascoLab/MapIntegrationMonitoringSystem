@@ -1,0 +1,336 @@
+{{>layout/header}}
+
+<link rel="stylesheet" type="text/css" href="../css/jquery.mCustomScrollbar.css" />			<!--  -->
+<script type="text/javascript" src="../js/jquery.mCustomScrollbar.concat.min.js"></script>	<!--  -->
+
+{{>layout/left_menu}}
+
+<!-- body -->
+<div id="body" class="type2">
+		
+	<!-- module -->
+	<div class="gGrid1">
+		
+		<h3 class="mTitle1">데이터 설정</h3>
+
+		<!-- sort -->
+		<div class="mSort1">
+			<div class="col">
+				<label for="label">데이터명</label>
+				<span class="gIt"><input type="text" class="it" title="데이터 명칭"></span>
+			</div>
+			<div class="col">
+				<label for="label">IP주소</label>
+				<span class="gIt"><input type="text" class="it" title="IP주소"></span>
+			</div>
+			<div class="col">
+				<label for="label">DB명칭</label>
+				<span class="gIt"><input type="text" class="it" title="DB명칭"></span>
+			</div>
+			<div class="gBtn">
+				<a href="###" class="mBtn1 m">검색</a>
+			</div>
+		</div>
+		<!-- //sort -->
+
+		<div class="mButton1 topRight">
+			<a href="#jsLayer" class="mBtn1 blue m jsBtnShow1">신규</a>
+			<a href="###" class="mBtn1 m">선택삭제</a>
+		</div>
+		<!-- board -->
+		<div class="mBoard1">
+			<table summary="시스템설정 : 선택, 구분, 시스템명, 상태, 시스템, 연결, 쿼리로 구성된 표입니다.">
+			<caption>시스템설정</caption>
+			<colgroup>
+				<col width="100px">
+				<col width="100px">
+				<col width="*">
+				<col width="200px">
+				<col width="160px">
+				<col width="160px">
+				<col width="160px">
+			</colgroup>
+			<thead>
+			<tr>
+				<th scope="col">선택</th>
+				<th scope="col">구분</th>
+				<th scope="col" class="left">시스템명</th>
+				<th scope="col">상태</th>
+				<th scope="col">시스템</th>
+				<th scope="col">연결</th>
+				<th scope="col">쿼리</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>
+					<span class="gCheckbox noText">
+						<input type="checkbox" name="checkbox1" id="labelCheckbox1_1" title="사용" checked=""checked>
+						<label for="labelCheckbox1_1">사용</label>
+					</span>
+				</td>
+				<td>2</td>
+				<td class="left">시스템A</td>
+				<td><span class="iPlay">플레이</span></td>
+				<td>
+					<a href="#jsLayer2_1" class="btnSys">정보보기</a>
+				</td>
+				<td>
+					<a href="#jsLayer2_2" class="btnSys">정보보기</a>
+				</td>
+				<td>
+					<a href="#jsLayer2_3" class="btnSys">정보보기</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span class="gCheckbox noText">
+						<input type="checkbox" name="checkbox1" id="labelCheckbox1_2" title="사용">
+						<label for="labelCheckbox1_2">사용</label>
+					</span>
+				</td>
+				<td>1</td>
+				<td class="left">시스템A</td>
+				<td><span class="iStop">스탑</span></td>
+				<td>
+					<a href="#jsLayer2_1" class="btnSys">정보보기</a>
+				</td>
+				<td>
+					<a href="#jsLayer2_2" class="btnSys">정보보기</a>
+				</td>
+				<td>
+					<a href="#jsLayer2_3" class="btnSys">정보보기</a>
+				</td>
+			</tr>
+			</tbody>
+			</table>
+		</div>
+		<div class="mPag1">
+			<a href="###" class="first">처음</a>
+			<a href="###" class="prev">이전</a>
+			<a href="###">1</a>
+			<a href="###" class="cur" title="현재페이지">2</a>
+			<a href="###">3</a>
+			<a href="###">4</a>
+			<a href="###">5</a>
+			<a href="###" class="next">다음</a>
+			<a href="###" class="last">마지막</a>
+		</div>
+		<!-- //board -->
+
+	</div>
+	<!-- //module -->
+
+</div>
+<!-- //body -->
+
+<!-- layer -->
+<div class="modalBg" style="display:none;"></div>
+<div id="jsLayer" class="lLayer2 lQuery" style="display:none;">
+	<div class="tit">
+		<strong class="ti">쿼리 추가 변경</strong>
+		<a href="#jsLayer" class="iClose jsBtnClose1">레이어 닫기</a>
+	</div>
+	<div class="con">
+		<div class="gGrid2">
+			<!-- left -->
+			<div class="gLeft">
+				<div class="mBoard1 type2">
+					<table summary="쿼리 추가 변경 : 시스템선택, 쿼리명칭, 쿼리입력으로 구성된 표입니다.">
+					<caption>쿼리 추가 변경</caption>
+					<colgroup>
+						<col width="100px">
+						<col width="*">
+					</colgroup>
+					<tbody>
+					<tr class="linetop1">
+						<th class="left2">시스템선택</th>
+						<td class="left2">
+							<select title="시스템선택" class="select m">
+							<option>시스템선택</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th class="left2">쿼리명칭</th>
+						<td class="left2">
+							<div class="gIt"><input type="text" class="it m" title="쿼리명칭"></div>
+						</td>
+					</tr>
+					<tr>
+						<th class="left2">쿼리입력</th>
+						<td class="left2">
+							<div class="gTextarea type2"><textarea class="textarea h1" title="쿼리입력"></textarea></div>
+						</td>
+					</tr>
+					</tbody>
+					</table>
+				</div>
+				<div class="button">
+					<a href="#jsLayer2_1" class="mBtn1 ms w1">쿼리실행</a>
+				</div>
+			</div>
+			<!-- //left -->
+			<!-- right -->
+			<div class="mQuery1">
+				<div class="ti">쿼리실행결과</div>
+				<div class="list">
+					<div class="mBoard1 type3">
+						<table summary="쿼리실행결과로 구성된 표입니다.">
+						<caption>쿼리실행결과</caption>
+						<thead>
+						<tr>
+							<th scope="col">A쿼리명</th>
+							<th scope="col">A쿼리명</th>
+							<th scope="col">A쿼리명</th>
+							<th scope="col">A쿼리명</th>
+							<th scope="col">A쿼리명</th>
+							<th scope="col">A쿼리명</th>
+							<th scope="col">A쿼리명</th>
+							<th scope="col">A쿼리명</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+						</tr>
+						<tr>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+						</tr>
+						<tr>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+						</tr>
+						<tr>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+						</tr>
+						<tr>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+						</tr>
+						<tr>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+						</tr>
+						<tr>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+						</tr>
+						<tr>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+						</tr>
+						<tr>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+						</tr>
+						<tr>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+						</tr>
+						<tr>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+						</tr>
+						<tr>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+							<td>A쿼리명</td>
+						</tr>
+						</tbody>
+						</table>
+					</div>
+				</div>
+				<script type="text/javascript">
+				$(window).on("load",function(){
+					$(".mQuery1 .list").mCustomScrollbar({
+						axis:"yx"
+					});
+				});
+				</script>
+			</div>
+			<!-- //right -->
+		</div>
+		<div class="mButton1">
+			<a href="###" class="mBtn1 blue m">저장</a>
+			<a href="#jsLayer" class="mBtn1 m jsBtnClose1">취소</a>
+		</div>
+	</div>
+</div>
+<!-- //layer -->
+
+{{>layout/bottom}}

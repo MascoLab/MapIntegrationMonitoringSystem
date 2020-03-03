@@ -1,0 +1,173 @@
+{{>layout/header}}
+
+{{>layout/left_menu}}
+
+<!-- body -->
+<div id="body" class="type2">
+		
+	<!-- module -->
+	<div class="gGrid1">
+		
+		<h3 class="mTitle1">시스템설정</h3>
+
+		<!-- sort -->
+		<div class="mSort1">
+			<div class="col">
+				<label for="label">시스템명</label>
+				<select title="시스템명" class="select">
+				<option>A시스템</option>
+				</select>
+			</div>
+			<div class="col">
+				<label for="label">IP주소</label>
+				<span class="gIt"><input type="text" class="it" title="IP주소"></span>
+			</div>
+			<div class="col">
+				<label for="label">DB명칭</label>
+				<span class="gIt"><input type="text" class="it" title="DB명칭"></span>
+			</div>
+			<div class="gBtn">
+				<a href="###" class="mBtn1 m">검색</a>
+			</div>
+		</div>
+		<!-- //sort -->
+
+		<div class="mButton1 topRight">
+			<a href="#jsLayer" class="mBtn1 blue m jsBtnShow1">신규</a>
+			<a href="###" class="mBtn1 m">선택삭제</a>
+		</div>
+		<!-- board -->
+		<div class="mBoard1">
+			<table summary="시스템설정 : 선택, 구분, 시스템명, 상태, 시스템, 연결, 쿼리로 구성된 표입니다.">
+			<caption>시스템설정</caption>
+			<colgroup>
+				<col width="100px">
+				<col width="100px">
+				<col width="*">
+				<col width="200px">
+				<col width="160px">
+				<col width="160px">
+				<col width="160px">
+			</colgroup>
+			<thead>
+			<tr>
+				<th scope="col">선택</th>
+				<th scope="col">구분</th>
+				<th scope="col" class="left">시스템명</th>
+				<th scope="col">상태</th>
+				<th scope="col">시스템</th>
+				<th scope="col">연결</th>
+				<th scope="col">쿼리</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>
+					<span class="gCheckbox noText">
+						<input type="checkbox" name="checkbox1" id="labelCheckbox1_1" title="사용" checked=""checked>
+						<label for="labelCheckbox1_1">사용</label>
+					</span>
+				</td>
+				<td>2</td>
+				<td class="left">시스템A</td>
+				<td><span class="iPlay">플레이</span></td>
+				<td>
+					<a href="#jsLayer2_1" class="btnSys">정보보기</a>
+				</td>
+				<td>
+					<a href="#jsLayer2_2" class="btnSys">정보보기</a>
+				</td>
+				<td>
+					<a href="#jsLayer2_3" class="btnSys">정보보기</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span class="gCheckbox noText">
+						<input type="checkbox" name="checkbox1" id="labelCheckbox1_2" title="사용">
+						<label for="labelCheckbox1_2">사용</label>
+					</span>
+				</td>
+				<td>1</td>
+				<td class="left">시스템A</td>
+				<td><span class="iStop">스탑</span></td>
+				<td>
+					<a href="#jsLayer2_1" class="btnSys">정보보기</a>
+				</td>
+				<td>
+					<a href="#jsLayer2_2" class="btnSys">정보보기</a>
+				</td>
+				<td>
+					<a href="#jsLayer2_3" class="btnSys">정보보기</a>
+				</td>
+			</tr>
+			</tbody>
+			</table>
+		</div>
+		<div class="mPag1">
+			<a href="###" class="first">처음</a>
+			<a href="###" class="prev">이전</a>
+			<a href="###">1</a>
+			<a href="###" class="cur" title="현재페이지">2</a>
+			<a href="###">3</a>
+			<a href="###">4</a>
+			<a href="###">5</a>
+			<a href="###" class="next">다음</a>
+			<a href="###" class="last">마지막</a>
+		</div>
+		<!-- //board -->
+
+	</div>
+	<!-- //module -->
+
+</div>
+<!-- //body -->
+
+<!-- layer -->
+<div class="modalBg" style="display:none;"></div>
+<div id="jsLayer" class="lLayer2" style="display:none;">
+	<div class="tit">
+		<strong class="ti">시스템 추가/변경</strong>
+		<a href="#jsLayer" class="iClose jsBtnClose1">레이어 닫기</a>
+	</div>
+	<div class="con">
+		<dl class="mList1">
+		<dt>시스템명</dt>
+		<dd>
+			<div class="gIt"><input type="text" class="it" title="시스템명" value="시스템A"></div>
+		</dd>
+		<dt>접속주소</dt>
+		<dd>
+			<div class="gIt"><input type="text" class="it" title="접속주소" value="시스템  접속주소"></div>
+		</dd>
+		<dt>계정정보</dt>
+		<dd>
+			<div class="gIt"><input type="text" class="it" title="계정정보" value="계정 ID"></div>
+		</dd>
+		<dt>계정비번</dt>
+		<dd>
+			<div class="gIt"><input type="text" class="it" title="계정비번" value="**********"></div>
+		</dd>
+		<dt>DB접속</dt>
+		<dd>
+			<div class="gIt"><input type="text" class="it" title="DB접속" value="DB 접속주소"></div>
+		</dd>
+		<dt>DB계정</dt>
+		<dd>
+			<div class="gIt"><input type="text" class="it" title="DB계정" value="DB 계정정보"></div>
+		</dd>
+		<dt>DB비번</dt>
+		<dd>
+			<div class="gIt"><input type="text" class="it" title="DB비번" value="**********"></div>
+		</dd>
+		</dl>
+		<div class="mButton1">
+			<a href="###" class="mBtn1 blue m">저장</a>
+			<a href="#jsLayer" class="mBtn1 m jsBtnClose1">취소</a>
+			<a href="###" class="mBtn1 m">삭제</a>
+		</div>
+	</div>
+</div>
+<!-- //layer-시스템 -->
+
+{{>layout/bottom}}

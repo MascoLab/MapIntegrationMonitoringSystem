@@ -1,0 +1,429 @@
+{{>layout/header}}
+
+<link rel="stylesheet" type="text/css" href="../css/jquery.mCustomScrollbar.css" />			<!--  -->
+<script type="text/javascript" src="../js/jquery.mCustomScrollbar.concat.min.js"></script>	<!--  -->
+
+{{>layout/left_menu}}
+
+<!-- body -->
+<div id="body" class="type2">
+		
+	<!-- module -->
+	<div class="gGrid1">
+		
+		<h3 class="mTitle1">위젯설정</h3>
+
+		<!-- sort -->
+		<div class="mSort1">
+			<div class="col">
+				<label for="label">시스템명</label>
+				<select title="시스템명" class="select w1">
+				<option>A시스템</option>
+				</select>
+			</div>
+			<div class="col">
+				<label for="label">입력쿼리</label>
+				<span class="gIt w1"><input type="text" class="it" title="입력쿼리"></span>
+			</div>
+			<div class="col">
+				<label for="label">위젯명칭</label>
+				<span class="gIt w1"><input type="text" class="it" title="위젯명칭"></span>
+			</div>
+			<div class="col">
+				<label for="label">위젯타입</label>
+				<span class="gIt w1"><input type="text" class="it" title="위젯타입"></span>
+			</div>
+			<div class="col">
+				<label for="label">위젯유형</label>
+				<select title="위젯유형" class="select w1">
+				<option>A시스템</option>
+				</select>
+			</div>
+			<div class="gBtn">
+				<a href="###" class="mBtn1 m">검색</a>
+			</div>
+		</div>
+		<!-- //sort -->
+
+		<div class="mButton1 topRight">
+			<a href="#jsLayerWidget" class="mBtn1 blue m jsBtnShow1">신규</a>
+			<a href="###" class="mBtn1 m">선택삭제</a>
+			<a href="#jsLayer" class="mBtn1 green m jsBtnShow1">미리보기</a>
+		</div>
+		<!-- board -->
+		<div class="mBoard1">
+			<table summary="위젯설정 : 선택, 구분, 위젯명칭, 위젯구분, 위젯타입, 쿼리, 사용여부로 구성된 표입니다.">
+			<caption>위젯설정</caption>
+			<colgroup>
+				<col width="100px">
+				<col width="100px">
+				<col width="*">
+				<col width="200px">
+				<col width="200px">
+				<col width="200px">
+				<col width="200px">
+			</colgroup>
+			<thead>
+			<tr>
+				<th scope="col">선택</th>
+				<th scope="col">구분</th>
+				<th scope="col">위젯명칭</th>
+				<th scope="col">위젯구분</th>
+				<th scope="col">위젯타입</th>
+				<th scope="col">쿼리</th>
+				<th scope="col">사용여부</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>
+					<span class="gCheckbox noText">
+						<input type="checkbox" name="checkbox1" id="labelCheckbox1_1" title="사용" checked=""checked>
+						<label for="labelCheckbox1_1">사용</label>
+					</span>
+				</td>
+				<td>1</td>
+				<td>시스템A</td>
+				<td>시스템A</td>
+				<td>시스템A</td>
+				<td>
+					<a href="###" class="btnSys">정보보기</a>
+				</td>
+				<td>
+					<a href="###" class="btnSys">정보보기</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span class="gCheckbox noText">
+						<input type="checkbox" name="checkbox1" id="labelCheckbox1_2" title="사용">
+						<label for="labelCheckbox1_2">사용</label>
+					</span>
+				</td>
+				<td>2</td>
+				<td>시스템A</td>
+				<td>시스템A</td>
+				<td>시스템A</td>
+				<td>
+					<a href="###" class="btnSys">정보보기</a>
+				</td>
+				<td>
+					<a href="###" class="btnSys">정보보기</a>
+				</td>
+			</tr>
+			</tbody>
+			</table>
+		</div>
+		<div class="mPag1">
+			<a href="###" class="first">처음</a>
+			<a href="###" class="prev">이전</a>
+			<a href="###">1</a>
+			<a href="###" class="cur" title="현재페이지">2</a>
+			<a href="###">3</a>
+			<a href="###">4</a>
+			<a href="###">5</a>
+			<a href="###" class="next">다음</a>
+			<a href="###" class="last">마지막</a>
+		</div>
+		<!-- //board -->
+
+	</div>
+	<!-- //module -->
+
+</div>
+<!-- //body -->
+
+<!-- layer -->
+<div class="modalBg" style="display:none;"></div>
+<div id="jsLayer" class="lLayer2 lPreview" style="display:none;">
+	<div class="tit">
+		<strong class="ti">미리보기팝업</strong>
+		<a href="#jsLayer" class="iClose jsBtnClose1">레이어 닫기</a>
+	</div>
+	<div class="con">
+		<div class="mDir1 mCustomScrollbar">
+			<div class="gDep">
+				<div class="dep dep1">
+					<div class="link"><a href="###">SystemSystemSystemSystemSystemSystemSystemSystemSystemSystem</a></div>
+					<div class="dep dep2">
+						<div class="link"><a href="###">SystemSystemSystemSystemSystem</a></div>
+					</div>
+				</div>
+			</div>
+			<div class="gDep">
+				<div class="dep dep1 open">
+					<div class="link"><a href="###">System</a></div>
+					<div class="dep dep2 open">
+						<div class="link"><a href="###">System</a></div>
+						<div class="dep dep3">
+							<div class="link"><a href="###">System1</a></div>
+						</div>
+						<div class="dep dep3">
+							<div class="link i2"><a href="###">System</a></div>
+						</div>
+						<div class="dep dep3">
+							<div class="link i3"><a href="###">System</a></div>
+						</div>
+						<div class="dep dep3">
+							<div class="link i4"><a href="###">System</a></div>
+						</div>
+						<div class="dep dep3">
+							<div class="link i5"><a href="###">System</a></div>
+						</div>
+						<div class="dep dep3">
+							<div class="link i6"><a href="###">System</a></div>
+						</div>
+						<div class="dep dep3">
+							<div class="link i7"><a href="###">System</a></div>
+						</div>
+					</div>
+					<div class="dep dep2">
+						<div class="link"><a href="###">System</a></div>
+					</div>
+				</div>
+			</div>
+			<div class="gDep">
+				<div class="dep dep1 open">
+					<div class="link"><a href="###">System</a></div>
+					<div class="dep dep2 open">
+						<div class="link"><a href="###">System</a></div>
+						<div class="dep dep3">
+							<div class="link"><a href="###">System1</a></div>
+						</div>
+						<div class="dep dep3">
+							<div class="link i2"><a href="###">System</a></div>
+						</div>
+						<div class="dep dep3">
+							<div class="link i3"><a href="###">System</a></div>
+						</div>
+						<div class="dep dep3">
+							<div class="link i4"><a href="###">System</a></div>
+						</div>
+						<div class="dep dep3">
+							<div class="link i5"><a href="###">System</a></div>
+						</div>
+						<div class="dep dep3">
+							<div class="link i6"><a href="###">System</a></div>
+						</div>
+						<div class="dep dep3">
+							<div class="link i7"><a href="###">System</a></div>
+						</div>
+					</div>
+					<div class="dep dep2">
+						<div class="link"><a href="###">System</a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="mButton1">
+			<a href="###" class="mBtn1 blue m">확인</a>
+			<a href="#jsLayer" class="mBtn1 m jsBtnClose1">취소</a>
+		</div>
+	</div>
+</div>
+
+<div id="jsLayerWidget" class="lLayer2 lWidget" style="display:none;">
+	<div class="tit tab jsTab1">
+		<strong class="ti">
+			<a id="btnWidget" href="#jsTabContent1_1" class="selected"><span>위젯 기본 설정</span></a>
+			<a href="#jsTabContent1_2"><span>위젯 설정</span></a>
+		</strong>
+		<a href="#jsLayerWidget" class="iClose jsBtnClose1">레이어 닫기</a>
+	</div>
+	<!-- 위젯 기본 설정 -->
+	<div id="jsTabContent1_1" class="con">
+		<dl class="mList1 type2">
+		<dt>위젯 명칭</dt>
+		<dd>
+			<select title="위젯 명칭" class="select">
+			<option>시스템A</option>
+			</select>
+		</dd>
+		<dt>위젯 구분</dt>
+		<dd>
+			<select title="위젯 구분" class="select">
+			<option>시스템  접속주소</option>
+			</select>
+		</dd>
+		<dt>위젯 타입</dt>
+		<dd>
+			<select title="위젯 타입" class="select">
+			<option>계정 ID</option>
+			</select>
+		</dd>
+		<dt>위젯 URL</dt>
+		<dd>
+			<div class="gIt"><input type="text" class="it" title="위젯 URL"></div>
+		</dd>
+		<dt>위젯 사용여부</dt>
+		<dd>
+			<span class="gRadio">
+				<input type="radio" name="radio1" id="labelRadio1_1" title="사용" checked="true">
+				<label for="labelRadio1_1">사용</label>
+			</span>
+			<span class="gRadio">
+				<input type="radio" name="radio1" id="labelRadio1_2" title="미사용">
+				<label for="labelRadio1_2">미사용</label>
+			</span>
+		</dd>
+		</dl>
+		<div class="mButton1">
+			<a href="###" class="mBtn1 blue m">저장</a>
+			<a href="#jsLayerWidget" class="mBtn1 m jsBtnClose1">취소</a>
+		</div>
+	</div>
+	<!-- 위젯 설정 -->
+	<div id="jsTabContent1_2" class="con hidden">
+		<!-- query -->
+		<div class="mQuery1">
+			<div class="list ">
+				<div class="mBoard1 type3">
+					<table summary="쿼리실행결과로 구성된 표입니다.">
+					<caption>쿼리실행결과</caption>
+					<thead>
+					<tr>
+						<th scope="col">A쿼리명</th>
+						<th scope="col">A쿼리명</th>
+						<th scope="col">A쿼리명</th>
+						<th scope="col">A쿼리명</th>
+						<th scope="col">A쿼리명</th>
+						<th scope="col">A쿼리명</th>
+						<th scope="col">A쿼리명</th>
+						<th scope="col">A쿼리명</th>
+						<th scope="col">A쿼리명</th>
+						<th scope="col">A쿼리명</th>
+						<th scope="col">A쿼리명</th>
+						<th scope="col">A쿼리명</th>
+						<th scope="col">A쿼리명</th>
+						<th scope="col">A쿼리명</th>
+						<th scope="col">A쿼리명</th>
+						<th scope="col">A쿼리명</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+					</tr>
+					<tr>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+					</tr>
+					<tr>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+						<td>A쿼리명</td>
+					</tr>
+					</tbody>
+					</table>
+				</div>
+			</div>
+			<script type="text/javascript">
+			$(window).on("load",function(){
+				$(".mQuery1 .list").mCustomScrollbar({
+					axis:"yx"
+				});
+			});
+			</script>
+		</div>
+		<!-- //query -->
+		
+		<div class="gGrid2">
+			<!-- left -->
+			<div class="gLeft">
+				<div class="mBoard1 type2">
+					<table summary="쿼리 추가 변경 : 시스템선택, 쿼리명칭, 쿼리입력으로 구성된 표입니다.">
+					<caption>쿼리 추가 변경</caption>
+					<colgroup>
+						<col width="100px">
+						<col width="*">
+					</colgroup>
+					<tbody>
+					<tr class="linetop1">
+						<th class="left2">위젯선택</th>
+						<td class="left2">
+							<select title="위젯선택" class="select m">
+							<option>위젯선택</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th class="left2">X축 선택</th>
+						<td class="left2">
+							<select title="X축 선택" class="select m">
+							<option>X축 선택</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th class="left2">Y축 선택</th>
+						<td class="left2">
+							<select title="Y축 선택" class="select m">
+							<option>Y축 선택</option>
+							</select>
+						</td>
+					</tr>
+					</tbody>
+					</table>
+					<div class="gText1">
+						<div class="gTextarea type2"><textarea class="textarea h2" title="데이터확인">데이터확인</textarea></div>
+					</div>
+				</div>
+			</div>
+			<!-- //left -->
+			<!-- right -->
+			<div class="graph"><img src="../images/x_graph1.png" width="389" height="234" alt="그래프 샘플"></div>
+			<!-- //right -->
+		</div>
+
+		<div class="mButton1">
+			<a href="#btnWidget" class="mBtn1 m posLt postWidget">이전</a>
+			<a href="###" class="mBtn1 blue m">저장</a>
+			<a href="#jsLayerWidget" class="mBtn1 m jsBtnClose1">취소</a>
+		</div>
+	</div>
+</div>
+<!-- //layer -->
+
+{{>layout/bottom}}
