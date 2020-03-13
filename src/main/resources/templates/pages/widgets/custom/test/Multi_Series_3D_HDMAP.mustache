@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="robots" content="noindex, nofollow" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta http-equiv="Content-Style-Type" content="text/css"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+<title></title>
+
+<link rel="stylesheet" type="text/css" href="../css/pages/common.css">			<!-- 공통 스타일 -->
+<link rel="stylesheet" type="text/css" href="../BIX5/Assets/BIX5.css"/>			<!-- BIX5 스타일 -->  
+<link rel="stylesheet" type="text/css" href="../BIX5/Assets/BIX5Dashboard.css"/>	<!-- BIX5 Dashboard 스타일 --> 
+
+<script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>		<!-- jQeury 라이브러리 -->
+<script type="text/javascript" src="../BIX5/JS/BIX5.js" ></script> 				<!-- BIX5 라이브러리 -->
+<script type="text/javascript" src="../BIX5/LicenseKey/BIX5License.js"></script>	<!-- BIX5 라이선스 -->
+
+<script type="text/javascript">
+
+
+BIX5.chart.create("chart1", "chartHolder1", "", "100%", "100%");
+
+//스트링 형식으로 레이아웃 정의.
+var layoutStr =
+             '<BIX5 backgroundColor="#FFFFFF" borderStyle="none">'
+              +'<Options>'
+/*                    +'<Caption text="Sales by Month"/>'
+                    +'<SubCaption text="( $M )" textAlign="right" />' */
+                  +'<Legend defaultMouseOverAction="false" useVisibleCheck="true"/>'
+                 +'</Options>'
+              +'<Bar3DChart showDataTips="true">'
+                    +'<horizontalAxis>'
+                        +'<LinearAxis/>'
+                   +'</horizontalAxis>'
+                   +'<verticalAxis>'
+                      +'<CategoryAxis categoryField="구간명"/>'
+                   +'</verticalAxis>'
+                     +'<series>'
+                    /* Bar3D Multi-Sereis 를 생성시에는 Bar3DSeries 여러 개 정의합니다 */
+                      +'<Bar3DSeries labelPosition="inside" showValueLabels="[8]" xField="연장(km)" displayName="연장(km)" color="#ffffff" insideLabelYOffset="-2" halfWidthOffset="1">'
+                          +'<showDataEffect>'
+                                +'<SeriesInterpolate/>'
+                            +'</showDataEffect>'
+                       +'</Bar3DSeries>'
+                      +'<Bar3DSeries labelPosition="inside" showValueLabels="[8]" xField="조사(km)" displayName="조사(km)" color="#ffffff" insideLabelYOffset="-2" halfWidthOffset="1">'
+                             +'<showDataEffect>'
+                                +'<SeriesInterpolate/>'
+                            +'</showDataEffect>'
+                       +'</Bar3DSeries>'
+                  +'</series>'
+               +'</Bar3DChart>'
+           +'</BIX5>';
+
+//차트 데이터
+var chartData =
+[{"구간명" : "강남순환로","연장(km)" : 34,"조사(km)" : 15},
+{"구간명" : "서해안고속도로","연장(km)" : 90,"조사(km)" : 40},
+{"구간명" : "영동고속도로","연장(km)" : 25,"조사(km)" : 10},
+{"구간명" : "동부간선도로","연장(km)" : 91,"조사(km)" : 30},
+{"구간명" : "내부순환로","연장(km)" : 60,"조사(km)" : 20},
+{"구간명" : "서부간선도로","연장(km)" : 31,"조사(km)" : 14},
+{"구간명" : "올림픽대로","연장(km)" : 59,"조사(km)" : 30}];
+
+//BIX5.chart.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+//
+//argument 1 - BIX5.chart.create시 설정한 차트 객체 아이디 값
+//argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+//
+//아래 내용은 
+//1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+//2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+BIX5.chart.calls("chart1", {
+ "setLayout" : layoutStr,
+ "setData" : chartData
+});
+
+</script>
+</head>
+
+<body>
+<!-- 
+	<div class="mBox1 h1">
+		<div class="tit">
+			<div class="ti">도로종별별 HD 구축 연장</div>
+			<div class="rt">
+				<a href="###" class="iRefresh">새로고립</a>
+				<a href="###" class="iSet2">세팅</a>
+			</div>
+		</div>
+		<div class="con">
+			<div class="co">
+				<div id="chartHolder1" class="chartHolder" style="height:270px;"></div>
+			</div>
+		</div>
+	</div>
+-->
+	<div id="chartHolder1" class="chartHolder" style="width: 100%; height:100%;"></div>
+</body>
+
+</html> 
